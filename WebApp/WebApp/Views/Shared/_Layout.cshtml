@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Assets/css/Index.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
@@ -24,7 +25,7 @@
                     <li>@Html.ActionLink("Thể loại", "Index", "Categories")</li>
                     <li>@Html.ActionLink("Sản phẩm", "Index", "Product")</li>
                     <li>@Html.ActionLink("Nhà sản xuất", "Index", "Manufacture")</li>
-                    <li>@Html.ActionLink("Nhà hỗ trợ", "Index", "Supplier")</li>
+                    <li>@Html.ActionLink("Nhà cung cấp", "Index", "Supplier")</li>
                 </ul>
             </div>
         </div>

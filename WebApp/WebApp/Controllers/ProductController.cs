@@ -71,8 +71,9 @@ namespace WebApp.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(product.UploadImage.FileName);
                 string extension = Path.GetExtension(product.UploadImage.FileName);
                 fileName = fileName + extension;
-                product.UrlImage = fileName;
+                
                 product.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images/"), fileName));
+                product.UrlImage = "http://localhost:55666/AppFile/Images/" + fileName;
                 db.Products.Add(product);
                 db.SaveChanges();
 

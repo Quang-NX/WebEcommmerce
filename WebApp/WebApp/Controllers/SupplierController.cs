@@ -146,6 +146,11 @@ namespace WebApp.Controllers
             {
                 return HttpNotFound();
             }
+            List<Product> product = db.Products.Where(p => p.SupplierId == id).ToList();
+            foreach (var item in product)
+            {
+                db.Products.Remove(item);
+            }
             db.Suppliers.Remove(supplier);
             db.SaveChanges();
             return RedirectToAction("Index");

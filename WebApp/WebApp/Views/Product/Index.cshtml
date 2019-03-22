@@ -8,7 +8,7 @@
 <h2>SẢN PHẨM</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo mới", "Create")
 </p>
 <table class="table">
     <tr>
@@ -22,18 +22,6 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Weight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Height)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Width)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.UrlImage)
         </th>
         <th>
@@ -45,7 +33,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ManufacturerName)
         </th>
-        <th></th>
+        <th>Chức năng</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -60,19 +48,7 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Weight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Height)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Width)
-        </td>
-        <td>
-            <img src="~/AppFile/Images/@item.UrlImage" style="width:100px;height:100px;">
+            <img src="@item.UrlImage" style="width:100px;height:100px;">
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CategoryName)
@@ -84,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.ManufacturerName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            <button class="btn btn-success">@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id })</button>
+            <button class="btn btn-default">@Html.ActionLink("Chi tiết", "Details", new { id = item.Id })</button>
+            <button class="btn btn-danger">@Html.ActionLink("Xóa", "Delete", new { id = item.Id })</button>
         </td>
     </tr>
 }

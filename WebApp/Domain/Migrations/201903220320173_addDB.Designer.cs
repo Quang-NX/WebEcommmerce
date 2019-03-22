@@ -7,13 +7,13 @@ namespace Domain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreateDb : IMigrationMetadata
+    public sealed partial class addDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903141106409_CreateDb"; }
+            get { return "201903220320173_addDB"; }
         }
         
         string IMigrationMetadata.Source

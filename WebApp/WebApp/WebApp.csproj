@@ -147,6 +147,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mapping\MappingProfile.cs" />
+    <Compile Include="Models\ViewDto\ProductDto.cs" />
     <Compile Include="Models\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModels\ManufactureViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductViewModel.cs" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\font-awesome.min.css" />
+    <Content Include="Assets\css\Index.css" />
     <Content Include="Assets\css\nouislider.min.css" />
     <Content Include="Assets\css\slick-theme.css" />
     <Content Include="Assets\css\slick.css" />
@@ -178,6 +180,7 @@
     <Content Include="Assets\img\shop01.png" />
     <Content Include="Assets\img\shop02.png" />
     <Content Include="Assets\img\shop03.png" />
+    <Content Include="Assets\Index\Index.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Assets\js\jquery.min.js" />
     <Content Include="Assets\js\jquery.zoom.min.js" />

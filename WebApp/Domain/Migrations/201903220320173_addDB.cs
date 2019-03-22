@@ -3,7 +3,7 @@ namespace Domain.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateDb : DbMigration
+    public partial class addDB : DbMigration
     {
         public override void Up()
         {

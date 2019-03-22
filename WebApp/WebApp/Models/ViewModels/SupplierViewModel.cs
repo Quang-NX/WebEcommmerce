@@ -14,7 +14,7 @@ namespace WebApp.Models.ViewModels
         public string Name { get; set; }
 
 		[Required(ErrorMessage = "Email không được để trống")]
-		[DataType(DataType.EmailAddress, ErrorMessage = "E-mail không đúng")]
+		[DataType(DataType.EmailAddress, ErrorMessage = "E-mail phải chứa kí tự @")]
 		[MaxLength(50)]
         [DisplayName("Email")]
         public string Email { get; set; }

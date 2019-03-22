@@ -1,5 +1,168 @@
-﻿@{
+﻿@model IEnumerable<Domain.Entities.Product>
+@{
     Layout = "~/Views/Layout/_Layout.cshtml";
+    var productlist = (List<Domain.Entities.Product>)ViewBag.ProductList;
 }
 
 
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-6">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="~/Assets/img/shop01.png" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>Laptop</h3>
+                        <a href="#" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xs-6">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="~/Assets/img/shop03.png" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>SmartPhone</h3>
+                        <a href="#" class="cta-btn">Ghé thăm <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="~/Assets/img/shop02.png" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>Cameras</h3>
+                        <a href="#" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">SẢN PHẨM</h3>
+                    <div class="section-nav">
+                        <ul class="section-tab-nav tab-nav">
+                            <li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
+                            <li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
+                            <li><a data-toggle="tab" href="#tab2">Cameras</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab2" class="tab-pane fade in active">
+                            <div class="products-slick" data-nav="#slick-nav-2">
+                                <!-- select 5 cái -->
+                                <!-- product -->
+                                @foreach (var item in Model)
+                                {
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img src="@Url.Content(item.UrlImage)" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <p class="product-category">Thể loại</p>
+                                            <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                                            <h4 class="product-price">@item.Price</h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                        </div>
+                                    </div>
+                                }
+                                <!-- /product -->
+                            </div>
+                            <div id="slick-nav-2" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Products tab & slick -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab2" class="tab-pane fade in active">
+                            <div class="products-slick" data-nav="#slick-nav-2">
+                                <!-- product -->
+                                @foreach (var item in productlist)
+                                {
+                                    <div class="product">
+
+                                        <div class="product">
+                                            <div class="product-img">
+                                                <img src="@Url.Content(item.UrlImage)" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <p class="product-category">Thể loại</p>
+                                                <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                                                <h4 class="product-price">@item.Price</h4>
+                                                <div class="product-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="product-btns">
+                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+
+                                                </div>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                            </div>
+                                        </div>
+                           
+                                    </div>
+                                    <!-- /product -->
+                                }
+                                </div>
+                            <div id="slick-nav-2" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->

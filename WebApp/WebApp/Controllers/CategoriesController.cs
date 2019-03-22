@@ -125,6 +125,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Delete(Guid id)
         {
+            
             if (ModelState.IsValid) //check format data
             {
                 Category category = db.Categories.Find(id);
@@ -132,7 +133,11 @@ namespace WebApp.Controllers
                 {
                     return HttpNotFound();
                 }
-
+                List<Product> product = db.Products.Where(p => p.CategoryId == id).ToList();
+                foreach (var item in product)
+                {
+                    db.Products.Remove(item);
+                }
                 db.Categories.Remove(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");

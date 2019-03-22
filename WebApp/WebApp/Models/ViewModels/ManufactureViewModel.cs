@@ -10,7 +10,7 @@ namespace WebApp.Models.ViewModels
     public class ManufactureViewModel
     {
         public Guid Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập tên nhà sản xuất")]
         [MaxLength(250)]
         public string Name { get; set; }
         [DisplayName("Chi tiết")]

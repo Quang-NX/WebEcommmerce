@@ -133,7 +133,11 @@ namespace WebApp.Controllers
                 {
                     return HttpNotFound();
                 }
-
+                List<Product> product = db.Products.Where(p => p.ManufacturerId == id).ToList();
+                foreach (var item in product)
+                {
+                    db.Products.Remove(item);
+                }
                 db.Manufacturers.Remove(manufacturer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
