@@ -1,0 +1,30 @@
+﻿@using Domain.Entities
+<!-- TOP HEADER -->
+<div id="top-header">
+    <div class="container">
+        <ul class="header-links pull-left">
+            <li><a href="#"><i class="fa fa-phone"></i>033.915.1999</a></li>
+            <li><a href="#"><i class="fa fa-envelope-o"></i>adquang199x@gmail.com</a></li>
+            <li><a href="#"><i class="fa fa-map-marker"></i>144 Xuân Thủy,Cầu Giấy,Hà Nội</a></li>
+        </ul>
+        <ul class="header-links pull-right">
+            @{
+
+                if (Session["username"] != null && Session["username"].ToString() != "")
+                {
+                    User user = (User)Session["username"];
+                    <li><a href="/Home/Login"> Xin chào @user.UserName !</a></li>
+                    <li><a href="/Home/Logout"><i class="fa fa-user-o"></i>Đăng xuất</a></li>
+                }
+                else
+                {
+                    <li><a href="/Home/Login"><i class="fa fa-user-o"></i>Đăng nhập</a></li>
+
+                }
+            }
+            @*<li><a href="/Home/Login"><i class="fa fa-user-o"></i>Đăng nhập</a></li>*@
+
+        </ul>
+    </div>
+</div>
+<!-- /TOP HEADER -->

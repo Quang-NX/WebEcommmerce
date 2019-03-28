@@ -17,7 +17,6 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.PublicationDate)
         </dt>
@@ -71,7 +70,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UrlImage)
+            <img src="@Url.Content(Model.UrlImage)" style="width:50px;height:50px;" alt="Alternate Text" />
         </dd>
 
         <dt>

@@ -1,0 +1,19 @@
+﻿@using Domain.Entities
+@model IEnumerable<Category>
+<!-- SEARCH BAR -->
+<div class="col-md-6">
+    <div class="header-search">
+        <form>
+            <select class="input-select">
+                <option value="0">Tất cả thể loại</option>
+                @foreach (var item in Model)
+                {
+                    <option value="0">@item.Name</option>
+                }
+            </select>
+            <input class="input" placeholder="Tìm kiếm...">
+            <button class="search-btn">Search</button>
+        </form>
+    </div>
+</div>
+<!-- /SEARCH BAR -->

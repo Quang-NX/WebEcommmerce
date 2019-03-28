@@ -1,0 +1,51 @@
+﻿@model WebApp.Models.ViewDto.LoginDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/Assets/css/css.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login-wrap">
+        <div class="login-html">
+            
+            <div class="login-form" style="display:block;">
+                <div class="sign-in-htm">
+                    @using (Html.BeginForm())
+                    {
+                        
+                    <div class="login-page">
+                        <h3>Đăng nhập</h3>
+                        <div class="form">
+                            <form class="login-form">
+                                <div class="group">
+                                    @Html.LabelFor(model => model.UserName)
+                                    @Html.EditorFor(m => m.UserName)
+                                </div>
+                                <div class="group">
+                                    @Html.LabelFor(model => model.Password)
+                                    @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password" } })
+                                </div>
+                                <button type="submit">Đăng nhập</button>
+                                <p class="message">Not registered? <a href="/Home/CreateUser">Create an account</a></p>
+                            </form>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
