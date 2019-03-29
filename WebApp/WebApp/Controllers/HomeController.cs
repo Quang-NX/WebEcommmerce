@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApp.Common;
 using WebApp.Models.ViewDto;
+using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
 {
@@ -16,8 +17,18 @@ namespace WebApp.Controllers
 
         public ActionResult Index()
         {
-            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Take(5);
-            ViewBag.ProductList = new List<Product>(db.Products.OrderBy(p => p.CreatedDate).Take(5));
+            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s=>new ProductViewModel {
+                              Name=s.Name,Price=s.Price,UrlImage=s.UrlImage,CategoryName=s.Category.Name  }).Take(5);
+
+            ViewBag.ProductList = new List<ProductViewModel>(db.Products.OrderBy(p => p.CreatedDate).Select(s=>new ProductViewModel {
+                Name = s.Name,
+                Price = s.Price,
+                UrlImage = s.UrlImage,
+                CategoryName = s.Category.Name
+            }).Take(5));
+            ViewBag.Laptop = db.Products.Where(s => s.Category.Name.Equals("Laptop")).Select(s => s.UrlImage).FirstOrDefault();
+            ViewBag.Phone = db.Products.Where(s => s.Category.Name.Equals("Điện thoại")).Select(s => s.UrlImage).FirstOrDefault();
+            ViewBag.Camera = db.Products.Where(s => s.Category.Name.Equals("Camera")).Select(s => s.UrlImage).FirstOrDefault();
             return View(productList);
         }
 
@@ -92,6 +103,12 @@ namespace WebApp.Controllers
         {
             var lstCategory = db.Categories;
             return PartialView(lstCategory);
+        }
+
+        public ActionResult ProductDetail(Guid id)
+        {
+            var product = db.Products.Find(id);
+            return View(product);
         }
     }
 }

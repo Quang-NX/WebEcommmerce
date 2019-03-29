@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Domain.Entities.Product>
+﻿@model IEnumerable<WebApp.Models.ViewModels.ProductViewModel>
 @{
     Layout = "~/Views/Layout/_Layout.cshtml";
-    var productlist = (List<Domain.Entities.Product>)ViewBag.ProductList;
+    var productlist = (List<WebApp.Models.ViewModels.ProductViewModel>)ViewBag.ProductList;
 }
 
 
@@ -11,7 +11,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="~/Assets/img/shop01.png" alt="">
+                        <img src="@Url.Content(ViewBag.Laptop)" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Laptop</h3>
@@ -23,7 +23,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="~/Assets/img/shop03.png" alt="">
+                        <img src="@Url.Content(ViewBag.Phone)" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>SmartPhone</h3>
@@ -34,7 +34,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="~/Assets/img/shop02.png" alt="">
+                        <img src="@Url.Content(ViewBag.Camera)" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Cameras</h3>
@@ -80,11 +80,13 @@
                                 {
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="@Url.Content(item.UrlImage)" alt="">
+                                            <img src="@Url.Content(item.UrlImage)">
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">Thể loại</p>
-                                            <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                                            <p class="product-category">@item.CategoryName</p>
+                                            <h3 class="product-name">
+                                                <a class="GetId" href="@Url.Action("ProductDetail","Home",new { id=item.Id})">@item.Name</a>
+                                            </h3>
                                             <h4 class="product-price">@item.Price</h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
@@ -129,7 +131,7 @@
                                                 <img src="@Url.Content(item.UrlImage)" alt="">
                                             </div>
                                             <div class="product-body">
-                                                <p class="product-category">Thể loại</p>
+                                                <p class="product-category">@item.CategoryName</p>
                                                 <h3 class="product-name"><a href="#">@item.Name</a></h3>
                                                 <h4 class="product-price">@item.Price</h4>
                                                 <div class="product-rating">

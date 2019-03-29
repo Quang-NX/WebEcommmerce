@@ -186,7 +186,7 @@ textarea.input {
         }
 
     .input-checkbox input[type="checkbox"] + label span:after {
-        content: 'ÃƒÂ¢Ã…â€œÃ¢â‚¬Â';
+        content: 'ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â';
         position: absolute;
         top: -2px;
         left: 1px;
@@ -666,6 +666,8 @@ textarea.input {
     position: relative;
     overflow: hidden;
     margin: 15px 0px;
+    width: 360px;
+    height: 360px;
 }
 
     .shop:before {
