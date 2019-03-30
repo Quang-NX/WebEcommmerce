@@ -8,37 +8,37 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-xs-6">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=ViewBag.LaptopId})'">
                 <div class="shop">
                     <div class="shop-img">
                         <img src="@Url.Content(ViewBag.Laptop)" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Laptop</h3>
-                        <a href="#" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="@Url.Action("PageProductDetail","Home",new {Id=ViewBag.LaptopId})" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 col-xs-6">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=ViewBag.PhoneId})'">
                 <div class="shop">
                     <div class="shop-img">
                         <img src="@Url.Content(ViewBag.Phone)" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>SmartPhone</h3>
-                        <a href="#" class="cta-btn">Ghé thăm <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3>Điện thoại</h3>
+                        <a href="@Url.Action("PageProductDetail","Home",new { Id = ViewBag.PhoneId })" class="cta-btn">Ghé thăm <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xs-6">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=ViewBag.CameraId})'">
                 <div class="shop">
                     <div class="shop-img">
                         <img src="@Url.Content(ViewBag.Camera)" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Cameras</h3>
-                        <a href="#" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="@Url.Action("PageProductDetail","Home",new { Id = ViewBag.CameraId })" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -78,14 +78,14 @@
                                 <!-- product -->
                                 @foreach (var item in Model)
                                 {
-                                    <div class="product">
+                                    <div class="product" onclick="location.href='@Url.Action("ProductDetail","Home",new { id=item.Id})'">
                                         <div class="product-img">
                                             <img src="@Url.Content(item.UrlImage)">
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">@item.CategoryName</p>
                                             <h3 class="product-name">
-                                                <a class="GetId" href="@Url.Action("ProductDetail","Home",new { id=item.Id})">@item.Name</a>
+                                                <a href="@Url.Action("ProductDetail","Home",new { id=item.Id})">@item.Name</a>
                                             </h3>
                                             <h4 class="product-price">@item.Price</h4>
                                             <div class="product-rating">

@@ -1,8 +1,10 @@
-﻿using Domain;
+﻿using AutoMapper;
+using Domain;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApp.Common;
@@ -18,9 +20,10 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
             var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s=>new ProductViewModel {
-                              Name=s.Name,Price=s.Price,UrlImage=s.UrlImage,CategoryName=s.Category.Name  }).Take(5);
+                              Id=s.Id,Name=s.Name,Price=s.Price,UrlImage=s.UrlImage,CategoryName=s.Category.Name  }).Take(5);
 
             ViewBag.ProductList = new List<ProductViewModel>(db.Products.OrderBy(p => p.CreatedDate).Select(s=>new ProductViewModel {
+                Id=s.Id,
                 Name = s.Name,
                 Price = s.Price,
                 UrlImage = s.UrlImage,
@@ -29,6 +32,10 @@ namespace WebApp.Controllers
             ViewBag.Laptop = db.Products.Where(s => s.Category.Name.Equals("Laptop")).Select(s => s.UrlImage).FirstOrDefault();
             ViewBag.Phone = db.Products.Where(s => s.Category.Name.Equals("Điện thoại")).Select(s => s.UrlImage).FirstOrDefault();
             ViewBag.Camera = db.Products.Where(s => s.Category.Name.Equals("Camera")).Select(s => s.UrlImage).FirstOrDefault();
+
+            ViewBag.LaptopId = db.Products.Where(s => s.Category.Name.Equals("Laptop")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
+            ViewBag.PhoneId = db.Products.Where(s => s.Category.Name.Equals("Điện thoại")).Select(s => new ProductViewModel { CategoryId = s.Category.Id}).FirstOrDefault().CategoryId;
+            ViewBag.CameraId = db.Products.Where(s => s.Category.Name.Equals("Camera")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
             return View(productList);
         }
 
@@ -107,8 +114,34 @@ namespace WebApp.Controllers
 
         public ActionResult ProductDetail(Guid id)
         {
+            if(id==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var product = db.Products.Find(id);
-            return View(product);
+            if(product==null)
+            {
+                return HttpNotFound();
+            }
+            var productViewModel = Mapper.Map<ProductViewModel>(product);
+            return View(productViewModel);
+        }
+        public ActionResult PageProductDetail(Guid Id)
+        {
+            if(Id==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var lstProduct = db.Products.Where(p => p.Category.Id.Equals(Id)).ToList().Take(5);
+            if(lstProduct==null)
+            {
+                return HttpNotFound();
+            }
+            var lstProductViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(lstProduct);
+
+      
+
+            return View(lstProductViewModel);
         }
     }
 }

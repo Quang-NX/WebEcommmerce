@@ -51,12 +51,14 @@ namespace WebApp.Mapping
                 .ForMember(dest => dest.Status, src => src.Ignore())
                 .ForMember(dest => dest.IsDeleted, src => src.Ignore())
                 ;
+
         }
         private void CreateMapFromEntitiesToViewModel()
         {
             CreateMap<Supplier, SupplierViewModel>();
             CreateMap<Category, CategoryViewModel>();
             CreateMap<Manufacturer, ManufactureViewModel>();
+            CreateMap<Product, ProductViewModel>();
         }
 
     }
