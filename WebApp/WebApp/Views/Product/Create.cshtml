@@ -7,7 +7,7 @@
 
 <h2>TẠO MỚI</h2>
 
-@using (Html.BeginForm("SaveData","Product",FormMethod.Post,new { enctype = "multipart/form-data", onsubmit="return AjaxPost(this)"}))
+@using (Html.BeginForm("SaveData", "Product", FormMethod.Post, new { enctype = "multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
 
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PublicationDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PublicationDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PublicationDate, new { htmlAttributes = new { @class = "form-control dates" } })
                 @Html.ValidationMessageFor(model => model.PublicationDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -71,10 +71,18 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.productInStock, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.productInStock, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.productInStock, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.UrlImage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <label>Image</label><br />
-                <input type="file" id="UploadImage" name="UploadImage" class="form-control" /><br />
+                <input type="file" id="UploadImage" name="file" class="form-control" /><br />
             </div>
         </div>
 
@@ -113,27 +121,18 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-<script>
-    function AjaxPost(formData) {
-        var ajaxConfig = {
-            type: "POST",
-            url: "/Product/SaveData",
-            data: new FormData(formData),
-            success: function (e) {
-                alert(e);
-                window.location.href='@Url.Action("Index", "Product")';
-            },
-            error: function (e) {
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
 
-                alert("Vui lòng nhập đầy đủ thông tin !");
-            }
-            
-        };
-        if ($(formData).attr('enctype') == "multipart/form-data") {
-            ajaxConfig["contentType"] = false;
-            ajaxConfig["processData"] = false;
-        }
-        $.ajax(ajaxConfig);
-        return false;
-    }
-</script>
+        $(function () {
+            $(".dates").datepicker({
+                dateFormat: "mm/dd/yy",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}

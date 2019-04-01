@@ -71,12 +71,17 @@
     <Compile Include="Migrations\201903231729252_AddTableUser.Designer.cs">
       <DependentUpon>201903231729252_AddTableUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903301934408_addFieldToProduct.cs" />
+    <Compile Include="Migrations\201903301934408_addFieldToProduct.Designer.cs">
+      <DependentUpon>201903301934408_addFieldToProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Scripts\jquery-1.12.4.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903220320173_addDB.resx">
@@ -85,6 +90,14 @@
     <EmbeddedResource Include="Migrations\201903231729252_AddTableUser.resx">
       <DependentUpon>201903231729252_AddTableUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903301934408_addFieldToProduct.resx">
+      <DependentUpon>201903301934408_addFieldToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

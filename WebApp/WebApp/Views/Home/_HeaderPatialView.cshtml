@@ -6,6 +6,16 @@
             <li><a href="#"><i class="fa fa-phone"></i>033.915.1999</a></li>
             <li><a href="#"><i class="fa fa-envelope-o"></i>adquang199x@gmail.com</a></li>
             <li><a href="#"><i class="fa fa-map-marker"></i>144 Xuân Thủy,Cầu Giấy,Hà Nội</a></li>
+            @{
+                if (Session["username"] != null && Session["username"].ToString() != "")
+                {
+                    User user = (User)Session["username"];
+                    if (user.UserName.Equals("admin"))
+                    {
+                        <li><a href="/Product/Index">Trang Quản Trị</a></li>
+                    }
+                }
+            }
         </ul>
         <ul class="header-links pull-right">
             @{

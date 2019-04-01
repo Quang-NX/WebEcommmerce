@@ -68,19 +68,19 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.productInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productInStock)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.UrlImage)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UrlImage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
+            <img src="@Url.Content(Model.UrlImage)" height="70" width="70" alt="Alternate Text" />
         </dd>
 
         <dt>
@@ -92,27 +92,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SupplierId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SupplierId)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.SupplierName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.SupplierName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ManufacturerId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ManufacturerId)
         </dd>
 
         <dt>

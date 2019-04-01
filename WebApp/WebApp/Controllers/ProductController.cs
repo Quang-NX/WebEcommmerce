@@ -59,25 +59,25 @@ namespace WebApp.Controllers
 
             return View();
         }
-
+        
         // POST: Products/Create
         [HttpPost]
-        public ActionResult SaveData(ProductViewModel productViewModel)
+        public ActionResult SaveData(HttpPostedFileBase file,ProductViewModel productViewModel)
         {
-            if (productViewModel.UploadImage!=null)
+            if (file!=null)
             {
                 var product = Mapper.Map<Product>(productViewModel);
                 product.Id = Guid.NewGuid();
-                string fileName = Path.GetFileNameWithoutExtension(product.UploadImage.FileName);
-                string extension = Path.GetExtension(product.UploadImage.FileName);
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
                 fileName = fileName + extension;
-                
-                product.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images/"), fileName));
+
+                file.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images/"), fileName));
                 product.UrlImage = "http://localhost:55666/AppFile/Images/" + fileName;
                 db.Products.Add(product);
                 db.SaveChanges();
 
-                return Json("Sussess !", JsonRequestBehavior.AllowGet);
+                return RedirectToAction("Index");
 
             }
             return View();
@@ -89,22 +89,26 @@ namespace WebApp.Controllers
             var suppliers = db.Suppliers.ToList();
             var manufacturers = db.Manufacturers.ToList();
 
-            ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
+            var product = db.Products.Find(id);
 
-            ViewBag.SupplierId = new SelectList(suppliers, "Id", "Name");//select("thể loại","giá trị option","Giá trị sẽ được hiển thị")
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name",product.CategoryId);
 
-            ViewBag.ManufacturerId = new SelectList(manufacturers, "Id", "Name");
+            ViewBag.SupplierId = new SelectList(suppliers, "Id", "Name",product.SupplierId);//select("thể loại","giá trị option","Giá trị sẽ được hiển thị",tham số)
+
+            ViewBag.ManufacturerId = new SelectList(manufacturers, "Id", "Name",product.ManufacturerId);
 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var product = db.Products.Find(id);
+            
             if (product == null)
             {
                 return HttpNotFound();
             }
+
+            Session["img"] = product.UrlImage;
 
             var productViewModel = Mapper.Map<ProductViewModel>(product);
 
@@ -113,23 +117,33 @@ namespace WebApp.Controllers
 
         // POST: Products/Edit/5
         [HttpPost]
-        public ActionResult Edit(ProductViewModel productViewModel)
+        public ActionResult Edit(HttpPostedFileBase file,ProductViewModel productViewModel)
         {
-            if (productViewModel!=null)
+            var product = db.Products.Find(productViewModel.Id);
+            if (file!=null)
             {
-                var product = db.Products.Find(productViewModel.Id);
-                if (product == null)
-                {
-                    return HttpNotFound();
-                }
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+                fileName = fileName + extension;
 
+                file.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images/"), fileName));
+                
                 Mapper.Map(productViewModel, product);
+                product.UrlImage = "http://localhost:55666/AppFile/Images/" + fileName;
+                db.Entry(product).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                
+                Mapper.Map(productViewModel, product);
+                product.UrlImage = Session["img"].ToString();
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(productViewModel);
         }
 
         // GET: Products/Delete/5

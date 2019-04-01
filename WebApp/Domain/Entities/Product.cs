@@ -22,6 +22,7 @@ namespace Domain.Entities
         public double? Height { get; set; }
         public double? Width { get; set; }
         public string UrlImage { get; set; }
+        public int  productInStock { get; set; }
         #endregion
 
         #region Relation

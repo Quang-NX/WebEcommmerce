@@ -91,7 +91,7 @@ namespace WebApp.Controllers
         public ActionResult Logout()
         {
             Session["username"] = null;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Home");
         }
         public ActionResult About()
         {

@@ -16,9 +16,10 @@ namespace WebApp.Models.ViewModels
         [DisplayName("Tên sp")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập ngày hết hạn.")]
+        
         [DisplayName("Ngày hết hạn")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.DateTime), Required]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? PublicationDate { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập giá sản phẩm.")]
@@ -60,11 +61,16 @@ namespace WebApp.Models.ViewModels
 		[DisplayName("Nhà sản xuất")]
         public Guid? ManufacturerId { get; set; }
         [Required(ErrorMessage = "Vui lòng chọn ảnh sản phẩm.")]
+
         [DisplayName("Nhà sản xuất")]
 		public string ManufacturerName { get; set; }
 
         [Required(ErrorMessage = "Vui lòng chọn ảnh sản phẩm.")]
         [NotMapped]
 		public HttpPostedFileBase UploadImage { get; set; }
-	}
+
+        [Required(ErrorMessage = "Vui lòng chọn chọn số lượng còn lại.")]
+        [DisplayName("Số lượng")]
+        public int productInStock { get; set; }
+    }
 }
