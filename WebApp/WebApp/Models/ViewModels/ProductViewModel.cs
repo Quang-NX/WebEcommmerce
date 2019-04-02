@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using WebApp.Models.ViewDto;
 
 namespace WebApp.Models.ViewModels
 {
@@ -22,6 +23,7 @@ namespace WebApp.Models.ViewModels
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? PublicationDate { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C0} VNĐ")]
         [Required(ErrorMessage = "Vui lòng nhập giá sản phẩm.")]
         [DisplayName("Mệnh giá")]
         public double Price { get; set; }
@@ -58,11 +60,11 @@ namespace WebApp.Models.ViewModels
 		public string SupplierName { get; set; }
 		
 
-		[DisplayName("Nhà sản xuất")]
+		[DisplayName("Hãng sản xuất")]
         public Guid? ManufacturerId { get; set; }
         [Required(ErrorMessage = "Vui lòng chọn ảnh sản phẩm.")]
 
-        [DisplayName("Nhà sản xuất")]
+        [DisplayName("Hãng sản xuất")]
 		public string ManufacturerName { get; set; }
 
         [Required(ErrorMessage = "Vui lòng chọn ảnh sản phẩm.")]
@@ -72,5 +74,6 @@ namespace WebApp.Models.ViewModels
         [Required(ErrorMessage = "Vui lòng chọn chọn số lượng còn lại.")]
         [DisplayName("Số lượng")]
         public int productInStock { get; set; }
+
     }
 }

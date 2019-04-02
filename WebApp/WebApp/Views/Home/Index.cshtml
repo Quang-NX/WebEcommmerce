@@ -8,37 +8,37 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=ViewBag.LaptopId})'">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new { Id = TempData["GammingId"] })'">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="@Url.Content(ViewBag.Laptop)" alt="">
+                        <img src="@Url.Content(ViewBag.Gamming)" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>Laptop</h3>
-                        <a href="@Url.Action("PageProductDetail","Home",new {Id=ViewBag.LaptopId})" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3>GAMMING</h3>
+                        <a href="@Url.Action("PageProductDetail","Home",new {Id=TempData["GammingId"] })" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=ViewBag.PhoneId})'">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=TempData["DoanhNhanId"]})'">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="@Url.Content(ViewBag.Phone)" alt="">
+                        <img src="@Url.Content(ViewBag.DoanhNhan)" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>Điện thoại</h3>
-                        <a href="@Url.Action("PageProductDetail","Home",new { Id = ViewBag.PhoneId })" class="cta-btn">Ghé thăm <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3>DOANH NHÂN</h3>
+                        <a href="@Url.Action("PageProductDetail","Home",new {Id=TempData["DoanhNhanId"]})" class="cta-btn">Ghé thăm <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=ViewBag.CameraId})'">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=TempData["DoHoaId"]})'">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="@Url.Content(ViewBag.Camera)" alt="">
+                        <img src="@Url.Content(ViewBag.DoHoa)" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>Cameras</h3>
-                        <a href="@Url.Action("PageProductDetail","Home",new { Id = ViewBag.CameraId })" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3>ĐỒ HỌA</h3>
+                        <a href="@Url.Action("PageProductDetail","Home",new {Id=TempData["DoHoaId"]})" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                                             <h3 class="product-name">
                                                 <a href="@Url.Action("ProductDetail","Home",new { id=item.Id})">@item.Name</a>
                                             </h3>
-                                            <h4 class="product-price">@item.Price</h4>
+                                            <h4 class="product-price">@item.Price VNĐ</h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -133,7 +133,7 @@
                                             <div class="product-body">
                                                 <p class="product-category">@item.CategoryName</p>
                                                 <h3 class="product-name"><a href="#">@item.Name</a></h3>
-                                                <h4 class="product-price">@item.Price</h4>
+                                                <h4 class="product-price">@item.Price VNĐ</h4>
                                                 <div class="product-rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>

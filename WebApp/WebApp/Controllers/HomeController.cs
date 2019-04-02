@@ -19,23 +19,23 @@ namespace WebApp.Controllers
 
         public ActionResult Index()
         {
-            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s=>new ProductViewModel {
-                              Id=s.Id,Name=s.Name,Price=s.Price,UrlImage=s.UrlImage,CategoryName=s.Category.Name  }).Take(5);
+            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s => new ProductViewModel {
+                Id = s.Id, Name = s.Name, Price = s.Price, UrlImage = s.UrlImage, CategoryName = s.Category.Name }).Take(5);
 
-            ViewBag.ProductList = new List<ProductViewModel>(db.Products.OrderBy(p => p.CreatedDate).Select(s=>new ProductViewModel {
-                Id=s.Id,
+            ViewBag.ProductList = new List<ProductViewModel>(db.Products.OrderBy(p => p.CreatedDate).Select(s => new ProductViewModel {
+                Id = s.Id,
                 Name = s.Name,
                 Price = s.Price,
                 UrlImage = s.UrlImage,
                 CategoryName = s.Category.Name
             }).Take(5));
-            ViewBag.Laptop = db.Products.Where(s => s.Category.Name.Equals("Laptop")).Select(s => s.UrlImage).FirstOrDefault();
-            ViewBag.Phone = db.Products.Where(s => s.Category.Name.Equals("Điện thoại")).Select(s => s.UrlImage).FirstOrDefault();
-            ViewBag.Camera = db.Products.Where(s => s.Category.Name.Equals("Camera")).Select(s => s.UrlImage).FirstOrDefault();
+            ViewBag.Gamming = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => s.UrlImage).FirstOrDefault();
+            ViewBag.DoanhNhan = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => s.UrlImage).FirstOrDefault();
+            ViewBag.DoHoa = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => s.UrlImage).FirstOrDefault();
 
-            ViewBag.LaptopId = db.Products.Where(s => s.Category.Name.Equals("Laptop")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
-            ViewBag.PhoneId = db.Products.Where(s => s.Category.Name.Equals("Điện thoại")).Select(s => new ProductViewModel { CategoryId = s.Category.Id}).FirstOrDefault().CategoryId;
-            ViewBag.CameraId = db.Products.Where(s => s.Category.Name.Equals("Camera")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
+            TempData["GammingId"] = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
+            TempData["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id}).FirstOrDefault().CategoryId;
+            TempData["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
             return View(productList);
         }
 
@@ -128,18 +128,30 @@ namespace WebApp.Controllers
         }
         public ActionResult PageProductDetail(Guid Id)
         {
-            if(Id==null)
+            if (Id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var lstProduct = db.Products.Where(p => p.Category.Id.Equals(Id)).ToList().Take(5);
-            if(lstProduct==null)
+            if (lstProduct == null)
             {
                 return HttpNotFound();
             }
+            //ViewBag.ListManu = new List<ManufactureViewModel>(db.Manufacturers.Select(s => new ManufactureViewModel { Name = s.Name }));
+
+            ViewBag.QuantityManu = new List<ManufactureDto>(db.Products.Join(db.Manufacturers, p => p.ManufacturerId, m => m.Id, (p, m) => new { p = p.productInStock, m = m.Name })
+                .ToList().GroupBy(model => model.m, (i, models) => new ManufactureDto { Name = i, QuantityManu = models.Sum(model => model.p) }));
+
             var lstProductViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(lstProduct);
 
-      
+            ViewBag.ListCate = new List<CategoryDto>(db.Products.Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
+                .GroupBy(model => model.c, (i, models) => new CategoryDto { Name = i, QuantityCate = models.Sum(model => model.p) }));
+
+            TempData["GammingId"] = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
+            TempData["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
+            TempData["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
+
+
 
             return View(lstProductViewModel);
         }

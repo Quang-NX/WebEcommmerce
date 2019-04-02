@@ -148,8 +148,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mapping\MappingProfile.cs" />
+    <Compile Include="Models\ViewDto\CategoryDto.cs" />
     <Compile Include="Models\ViewDto\CreateUserDto.cs" />
     <Compile Include="Models\ViewDto\LoginDto.cs" />
+    <Compile Include="Models\ViewDto\ManufactureDto.cs" />
     <Compile Include="Models\ViewDto\UserDto.cs" />
     <Compile Include="Models\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModels\ManufactureViewModel.cs" />
@@ -250,6 +252,7 @@
     <Content Include="Assets\fonts\slick.eot" />
     <Content Include="Assets\fonts\slick.ttf" />
     <Content Include="Assets\fonts\slick.woff" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

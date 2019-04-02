@@ -1,5 +1,9 @@
-﻿$(function () {
-    //$(".product").click(function () {
-    //    $(this).filter("h3 a").click();
-    //});
-});
+﻿//$(function () {
+//    $(".clickManu").click(function () {
+//        var id = $(this).next().attr("id");
+//        $.ajax({
+//            type: "POST",
+//            url :""
+//        });
+//    });
+//});

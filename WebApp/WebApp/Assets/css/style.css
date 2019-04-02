@@ -186,7 +186,7 @@ textarea.input {
         }
 
     .input-checkbox input[type="checkbox"] + label span:after {
-        content: 'ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â';
+        content: 'v';
         position: absolute;
         top: -2px;
         left: 1px;
@@ -374,14 +374,19 @@ textarea.input {
         color: #FFF;
     }
 
-        .header-links li a:hover {
-            color: #D10024;
-        }
+#top-header .home {
+    font-size: 20px;
+    font-weight: 500;
+}
 
-    .header-links li i {
-        color: #D10024;
-        margin-right: 5px;
-    }
+.header-links li a:hover {
+    color: #D10024;
+}
+
+.header-links li i {
+    color: #D10024;
+    margin-right: 5px;
+}
 
 /*----------------------------*\
   Logo
@@ -1376,9 +1381,6 @@ textarea.input {
     visibility: visible;
 }
 
-#product-main-img .zoomImg {
-    background-color: #FFF;
-}
 
 #product-imgs .product-preview {
     margin: 0px 5px;
