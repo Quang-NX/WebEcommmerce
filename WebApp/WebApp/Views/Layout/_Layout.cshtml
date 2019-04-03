@@ -76,9 +76,9 @@
                     <li class="active"><a href="#">Trang chủ</a></li>
                     <!-- <li><a href="#">Hot Deals</a></li> -->
                     @*<li><a href="#">Thể loại</a></li>*@
-                    <li><a href="#">Gamming</a></li>
-                    <li><a href="#">Doanh nhân</a></li>
-                    <li><a href="#">Đồ họa</a></li>
+                    <li><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=TempData["GammingId"]})">Gamming</a></li>
+                    <li><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=TempData["DoanhNhanId"]})">Doanh nhân</a></li>
+                    <li><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=TempData["DoHoaId"]})">Đồ họa</a></li>
                 </ul>
                 <!-- /NAV -->
             </div>

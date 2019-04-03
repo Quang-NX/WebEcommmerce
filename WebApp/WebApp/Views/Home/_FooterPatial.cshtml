@@ -22,9 +22,9 @@
                     <div class="footer">
                         <h3 class="footer-title">Thể loại</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Laptops</a></li>
-                            <li><a href="#">Smartphones</a></li>
-                            <li><a href="#">Cameras</a></li>
+                            <li><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=TempData["GammingId"]})">Gamming</a></li>
+                            <li><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=TempData["DoanhNhanId"]})">Doanh nhân</a></li>
+                            <li><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=TempData["DoHoaId"]})">Đồ họa</a></li>
                         </ul>
                     </div>
                 </div>

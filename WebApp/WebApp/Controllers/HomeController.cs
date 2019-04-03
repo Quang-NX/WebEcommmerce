@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain;
 using Domain.Entities;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,9 +113,9 @@ namespace WebApp.Controllers
             return PartialView(lstCategory);
         }
 
-        public ActionResult ProductDetail(Guid id)
+        public ActionResult ProductDetail(Guid? id,string sp)
         {
-            if(id==null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -126,23 +127,13 @@ namespace WebApp.Controllers
             var productViewModel = Mapper.Map<ProductViewModel>(product);
             return View(productViewModel);
         }
-        public ActionResult PageProductDetail(Guid Id)
+        public ActionResult PageProductDetail(int? page,Guid Id)
         {
-            if (Id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var lstProduct = db.Products.Where(p => p.Category.Id.Equals(Id)).ToList().Take(5);
-            if (lstProduct == null)
-            {
-                return HttpNotFound();
-            }
             //ViewBag.ListManu = new List<ManufactureViewModel>(db.Manufacturers.Select(s => new ManufactureViewModel { Name = s.Name }));
 
             ViewBag.QuantityManu = new List<ManufactureDto>(db.Products.Join(db.Manufacturers, p => p.ManufacturerId, m => m.Id, (p, m) => new { p = p.productInStock, m = m.Name })
                 .ToList().GroupBy(model => model.m, (i, models) => new ManufactureDto { Name = i, QuantityManu = models.Sum(model => model.p) }));
 
-            var lstProductViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(lstProduct);
 
             ViewBag.ListCate = new List<CategoryDto>(db.Products.Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
                 .GroupBy(model => model.c, (i, models) => new CategoryDto { Name = i, QuantityCate = models.Sum(model => model.p) }));
@@ -151,9 +142,14 @@ namespace WebApp.Controllers
             TempData["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
             TempData["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
 
-
-
-            return View(lstProductViewModel);
+            var listProduct = db.Products.Where(p => p.Category.Id.Equals(Id)).ToList();
+            var lstProductViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(listProduct);
+            int pageSize = 2;
+            //toán tử tương đương với nếu page!=null thì pageNumber =1 ngược lại =page
+            int pageNumber = (page ?? 1);
+            //get Id Category
+            ViewBag.CategoryId = Id;
+            return View(lstProductViewModel.ToPagedList(pageNumber,pageSize));
         }
     }
 }

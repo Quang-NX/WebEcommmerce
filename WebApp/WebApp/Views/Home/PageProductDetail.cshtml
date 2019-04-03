@@ -1,9 +1,9 @@
-﻿@model IEnumerable<WebApp.Models.ViewModels.ProductViewModel>
+﻿@model PagedList.IPagedList<WebApp.Models.ViewModels.ProductViewModel>
+@using PagedList.Mvc
 @{
     Layout = null;
 }
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,7 +31,7 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="~/Assets/css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -66,15 +66,15 @@
                                         <span>-</span>
                                         @if (name == "Gamming")
                                         {
-                                            <a href="@Url.Action("PageProductDetail","Home",new {Id=TempData["GammingId"]})">@item.Name</a>
+                                            <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = TempData["GammingId"] })">@item.Name</a>
                                         }
                                         else if (name == "Doanh nhân")
                                         {
-                                            <a href="@Url.Action("PageProductDetail","Home",new {Id=TempData["DoanhNhanId"]})">@item.Name</a>
+                                            <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = TempData["DoanhNhanId"] })">@item.Name</a>
                                         }
                                         else if (name == "Đồ họa")
                                         {
-                                            <a href="@Url.Action("PageProductDetail","Home",new {Id=TempData["DoHoaId"]})">@item.Name</a>
+                                            <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = TempData["DoHoaId"] })">@item.Name</a>
                                         }
                                         <small>(@item.QuantityCate)</small>
                                     </div>
@@ -105,35 +105,35 @@
                     <!-- /aside Widget -->
                     <!-- aside Widget -->
                     @*<div class="aside">
-                        <h3 class="aside-title">Thương hiệu</h3>
+                            <h3 class="aside-title">Thương hiệu</h3>
 
-                        <div class="checkbox-filter">
-                            @{
-                                var listCategory = (List<WebApp.Models.ViewModels.ManufactureViewModel>)ViewBag.ListManu;
-                                var quantity = (List<WebApp.Models.ViewDto.ManufactureDto>)ViewBag.QuantityManu;
-                                var dem = 1;
-                                foreach (var item in listCategory)
-                                {
-                                    <div class="input-checkbox">
-                                        <input type="checkbox" id="brand-@dem">
-                                        <span>-</span>
-                                        <a href="#" class="clickManu">@item.Name</a>
-                                        @foreach (var i in quantity)
-                                        {
-                                            if (i.Name.Equals(item.Name))
+                            <div class="checkbox-filter">
+                                @{
+                                    var listCategory = (List<WebApp.Models.ViewModels.ManufactureViewModel>)ViewBag.ListManu;
+                                    var quantity = (List<WebApp.Models.ViewDto.ManufactureDto>)ViewBag.QuantityManu;
+                                    var dem = 1;
+                                    foreach (var item in listCategory)
+                                    {
+                                        <div class="input-checkbox">
+                                            <input type="checkbox" id="brand-@dem">
+                                            <span>-</span>
+                                            <a href="#" class="clickManu">@item.Name</a>
+                                            @foreach (var i in quantity)
                                             {
-                                                <div id="@i.Name" style="display:none;"></div>
-                                                <small>(@i.QuantityManu)</small>
+                                                if (i.Name.Equals(item.Name))
+                                                {
+                                                    <div id="@i.Name" style="display:none;"></div>
+                                                    <small>(@i.QuantityManu)</small>
+
+                                                }
 
                                             }
-
-                                        }
-                                    </div>
-                                    dem++;
+                                        </div>
+                                        dem++;
+                                    }
                                 }
-                            }
-                        </div>
-                    </div>*@
+                            </div>
+                        </div>*@
                     @*<!-- /aside Widget -->
                         <!-- aside Widget -->
                         <div class="aside">
@@ -208,7 +208,7 @@
                         {
                             <!-- product take 9-->
                             <div class="col-md-4 col-xs-6">
-                                <div class="product" onclick="location.href='@Url.Action("ProductDetail","Home",new { id=item.Id})'">
+                                <div class="product" onclick="location.href='@Url.Action("ProductDetail", "Home", new { id = item.Id })'">
                                     <div class="product-img">
                                         <img src="@item.UrlImage" alt="">
                                         <!-- <div class="product-label">
@@ -239,18 +239,32 @@
                             <!-- /product -->
                         }
 
+
                     </div>
                     <!-- /store products -->
                     <!-- store bottom filter -->
                     <div class="store-filter clearfix">
-                        <span class="store-qty">Showing 20-100 products</span>
+                        <span class="store-qty">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</span>
+                        @{
+                            var currentPage = Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber;
+                        }
                         <ul class="store-pagination">
-                            <li class="active">1</li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="@Url.Action("PageProductDetail", new { page = ((currentPage-1)==0)?currentPage=1:currentPage-=1, Id = ViewBag.CategoryId })"><i class="fa fa-angle-left"></i></a></li>
+                            @for (int vip = 1; vip <= Model.PageCount; vip++)
+                            {
+                                if (vip == (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber))
+                                {
+                                    <li class="active"><a href="@Url.Action("PageProductDetail", new { page = vip, Id = ViewBag.CategoryId })">@vip</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("PageProductDetail", new { page = vip, Id = ViewBag.CategoryId })">@vip</a></li>
+                                }
+                            }
+                            <li><a href="@Url.Action("PageProductDetail", new { page = (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)+1, Id = ViewBag.CategoryId })"><i class="fa fa-angle-right"></i></a></li>
+
                         </ul>
+
                     </div>
                     <!-- /store bottom filter -->
                 </div>

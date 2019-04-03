@@ -56,14 +56,14 @@
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">SẢN PHẨM</h3>
-                    <div class="section-nav">
+                    <h3 class="title">SẢN PHẨM MỚI</h3>
+                    @*<div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
                             <li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
                             <li><a data-toggle="tab" href="#tab2">Cameras</a></li>
                         </ul>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <!-- /section title -->
@@ -78,14 +78,14 @@
                                 <!-- product -->
                                 @foreach (var item in Model)
                                 {
-                                    <div class="product" onclick="location.href='@Url.Action("ProductDetail","Home",new { id=item.Id})'">
+                                    <div class="product" onclick="location.href='@Url.RouteUrl("xemchitiet", new {@sp=item.Name,@Id=item.Id })'">
                                         <div class="product-img">
                                             <img src="@Url.Content(item.UrlImage)">
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">@item.CategoryName</p>
                                             <h3 class="product-name">
-                                                <a href="@Url.Action("ProductDetail","Home",new { id=item.Id})">@item.Name</a>
+                                                <a href="@Url.RouteUrl("xemchitiet", new {@id=item.Id,@sp=item.Name })">@item.Name</a>
                                             </h3>
                                             <h4 class="product-price">@item.Price VNĐ</h4>
                                             <div class="product-rating">
@@ -124,7 +124,7 @@
                                 <!-- product -->
                                 @foreach (var item in productlist)
                                 {
-                                    <div class="product" onclick="location.href='@Url.Action("ProductDetail","Home",new { id=item.Id})'">
+                                    <div class="product" onclick="location.href='@Url.RouteUrl("xemchitiet", new {@id=item.Id,@sp=item.Name })'">
 
                                         <div class="product">
                                             <div class="product-img">
