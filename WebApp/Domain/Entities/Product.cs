@@ -23,6 +23,9 @@ namespace Domain.Entities
         public double? Width { get; set; }
         public string UrlImage { get; set; }
         public int  productInStock { get; set; }
+        public int? View { get; set; }
+        public int? QuantityBuy { get; set; }
+
         #endregion
 
         #region Relation
@@ -35,6 +38,9 @@ namespace Domain.Entities
         public virtual Supplier Supplier { get; set; }
         public Guid? ManufacturerId { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
+        public ICollection<LikeNumberProductUser> likeNumberProductUsers { get; set; }
+        public ICollection<CatalogCoupon> CatalogCoupons { get; set; }
+
         [NotMapped]
         public HttpPostedFileBase UploadImage { get; set; }
         #endregion

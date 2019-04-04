@@ -57,8 +57,12 @@
   <ItemGroup>
     <Compile Include="EcommerceDbContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\CatalogCoupon.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\LikeNumberProductUser.cs" />
     <Compile Include="Entities\Manufacturer.cs" />
+    <Compile Include="Entities\OrderDetails.cs" />
+    <Compile Include="Entities\Orders.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Entities\User.cs" />
@@ -74,6 +78,14 @@
     <Compile Include="Migrations\201903301934408_addFieldToProduct.cs" />
     <Compile Include="Migrations\201903301934408_addFieldToProduct.Designer.cs">
       <DependentUpon>201903301934408_addFieldToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904031823560_updateDb.cs" />
+    <Compile Include="Migrations\201904031823560_updateDb.Designer.cs">
+      <DependentUpon>201904031823560_updateDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904040854219_addtabledb.cs" />
+    <Compile Include="Migrations\201904040854219_addtabledb.Designer.cs">
+      <DependentUpon>201904040854219_addtabledb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903301934408_addFieldToProduct.resx">
       <DependentUpon>201903301934408_addFieldToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904031823560_updateDb.resx">
+      <DependentUpon>201904031823560_updateDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904040854219_addtabledb.resx">
+      <DependentUpon>201904040854219_addtabledb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using WebApp.Common;
@@ -150,6 +151,37 @@ namespace WebApp.Controllers
             //get Id Category
             ViewBag.CategoryId = Id;
             return View(lstProductViewModel.ToPagedList(pageNumber,pageSize));
+        }
+        public ActionResult GetFormEmail(FormCollection form)
+        {
+            string email = form["email"].ToString();
+            string emailAddress = email;
+            /*Cảm ơn bạn đã để lại thông tin gmail.Chúng tôi sẽ cập nhật cho bạn những thông tin mới nhất từ trang web.*/
+            string content = "<h1>Thư xác nhận Email từ Quang Bếu</h1></br>";
+            content += "<p>Chúc tìn yêu một ngày tốt lành nha !</p>";
+            content += "<a href=" + "http://localhost:55666/Home/Index" + ">Quay lại trang chủ</a>";
+            GuiEmail("Email từ tình iu <3 !", emailAddress, "adquang199x@gmail.com",
+                "Quangtrang99xx", content);
+            return RedirectToAction("Index");
+        }
+        //gửi email
+        public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
+        {
+            // goi email
+            MailMessage mail = new MailMessage();
+            mail.To.Add(ToEmail); // Địa chỉ nhận
+            mail.From = new MailAddress(ToEmail); // Địa chửi gửi
+            mail.Subject = Title; // tiêu đề gửi
+            mail.Body = Content; // Nội dung
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com"; // host gửi của Gmail
+            smtp.Port = 587; //port của Gmail
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new System.Net.NetworkCredential
+            (FromEmail, PassWord);//Tài khoản password người gửi
+            smtp.EnableSsl = true; //kích hoạt giao tiếp an toàn SSL
+            smtp.Send(mail); //Gửi mail đi
         }
     }
 }

@@ -284,8 +284,8 @@
                 <div class="col-md-12">
                     <div class="newsletter">
                         <p>Đăng nhập để nhận thông tin <strong>MỚI NHẤT</strong></p>
-                        <form>
-                            <input class="input" type="email" placeholder="Nhập Email của bạn">
+                        <form method="post" action="/Home/GetFormEmail">
+                            <input class="input" type="email" placeholder="Nhập Email của bạn" name="email">
                             <button class="newsletter-btn"><i class="fa fa-envelope"></i> Nhận</button>
                         </form>
                         <ul class="newsletter-follow">

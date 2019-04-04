@@ -87,7 +87,14 @@
                                             <h3 class="product-name">
                                                 <a href="@Url.RouteUrl("xemchitiet", new {@id=item.Id,@sp=item.Name })">@item.Name</a>
                                             </h3>
-                                            <h4 class="product-price">@item.Price VNĐ</h4>
+                                            @if (item.Price == 0)
+                                            {
+                                                <h4 class="product-price">Liên hệ</h4>
+                                            }
+                                            else
+                                            {
+                                                <h4 class="product-price">@item.Price VNĐ</h4>
+                                            }
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>

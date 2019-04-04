@@ -21,5 +21,9 @@ namespace Domain
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<LikeNumberProductUser> LikeNumberProductUsers { get; set; }
+        public DbSet<CatalogCoupon> CatalogCoupons  { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }

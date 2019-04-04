@@ -18,6 +18,7 @@ namespace Domain.Entities
         #endregion
         #region Relation
         public ICollection<Product> Products { get; set; }
+        public ICollection<CatalogCoupon> CatalogCoupons { get; set; }
         #endregion
     }
 }
