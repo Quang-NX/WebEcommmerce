@@ -39,7 +39,7 @@
 <body>
     <!-- HEADER -->
     <header>
-        @Html.Partial("_HeaderPatialView")
+        @{ Html.RenderPartial("~/Views/Layout/_HeaderPatialView.cshtml");}
         <!-- MAIN HEADER -->
         <div id="header">
             <!-- container -->
@@ -56,6 +56,31 @@
                     </div>
                     <!-- /LOGO -->
                     @Html.Action("SearchPatialView", "Home")
+                    <!-- ACCOUNT -->
+                    <div class="col-md-3 clearfix">
+                        <div class="header-ctn">
+                            <!-- Wishlist -->
+                            <div>
+                                <a href="#">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span>Yêu thích</span>
+                                    <div class="qty">2</div>
+                                </a>
+                            </div>
+                            <!-- /Wishlist -->
+                            @Html.Action("GioHangPartial", "GioHang");
+                            <!-- Menu Toogle -->
+                            <div class="menu-toggle">
+                                <a href="#">
+                                    <i class="fa fa-bars"></i>
+                                    <span>Menu</span>
+                                </a>
+                            </div>
+                            <!-- /Menu Toogle -->
+                        </div>
+                    </div>
+                    <!-- /ACCOUNT -->
+                    <!-- /SEARCH BAR -->
 
                 </div>
                 <!-- row -->
@@ -88,7 +113,9 @@
     </nav>
     <!-- /NAVIGATION -->
     @RenderBody()
-    @Html.Partial("_FooterPatial")
+    @{ 
+        Html.RenderPartial("~/Views/Layout/_FooterPatial.cshtml");
+    }
     <!-- jQuery Plugins -->
     <script src="~/Assets/js/jquery.min.js"></script>
     <script src="~/Assets/js/bootstrap.min.js"></script>

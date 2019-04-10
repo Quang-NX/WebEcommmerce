@@ -148,6 +148,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LikeProductController.cs" />
     <Compile Include="Controllers\ManufactureController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -161,7 +162,8 @@
     <Compile Include="Models\ViewDto\ManufactureDto.cs" />
     <Compile Include="Models\ViewDto\UserDto.cs" />
     <Compile Include="Models\ViewModels\CategoryViewModel.cs" />
-    <Compile Include="Models\ViewModels\GioHang.cs" />
+    <Compile Include="Models\ViewModels\ItemGioHang.cs" />
+    <Compile Include="Models\ViewModels\LikeProduct.cs" />
     <Compile Include="Models\ViewModels\ManufactureViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductViewModel.cs" />
     <Compile Include="Models\ViewModels\SupplierViewModel.cs" />
@@ -312,17 +314,21 @@
     <Content Include="Views\Layout\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\CreateUser.cshtml" />
-    <Content Include="Views\Home\_HeaderPatialView.cshtml" />
+    <Content Include="Views\Layout\_HeaderPatialView.cshtml" />
     <Content Include="Views\Home\SearchPatialView.cshtml" />
-    <Content Include="Views\Home\_FooterPatial.cshtml" />
+    <Content Include="Views\Layout\_FooterPatial.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Home\PageProductDetail.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\GioHang\ThongBao.cshtml" />
     <Content Include="Views\GioHang\XemGioHang.cshtml" />
+    <Content Include="Views\GioHang\SuaGioHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppFile\Images\" />
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\WebApp\" />
+    <Folder Include="Views\LikeProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

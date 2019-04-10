@@ -78,7 +78,7 @@
                                 <!-- product -->
                                 @foreach (var item in Model)
                                 {
-                                    <div class="product" onclick="location.href='@Url.RouteUrl("xemchitiet", new {@sp=item.Name,@Id=item.Id })'">
+                                    <div class="product" @*onclick="location.href='@Url.RouteUrl("xemchitiet", new {@sp=item.Name,@Id=item.Id })'"*@>
                                         <div class="product-img">
                                             <img src="@Url.Content(item.UrlImage)">
                                         </div>
@@ -93,7 +93,7 @@
                                             }
                                             else
                                             {
-                                                <h4 class="product-price">@item.Price VNĐ</h4>
+                                                <h4 class="product-price">@item.Price.ToString("#,##") VNĐ</h4>
                                             }
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
@@ -108,7 +108,9 @@
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                            <a href="@Url.Action("ThemGioHang","GioHang",new { @productId=item.Id,@strURL=Request.Url.ToString()})">
+                                                <i class="fa fa-shopping-cart">Thêm vào giỏ</i>
+                                            </a>
                                         </div>
                                     </div>
                                 }
@@ -140,7 +142,7 @@
                                             <div class="product-body">
                                                 <p class="product-category">@item.CategoryName</p>
                                                 <h3 class="product-name"><a href="#">@item.Name</a></h3>
-                                                <h4 class="product-price">@item.Price VNĐ</h4>
+                                                <h4 class="product-price">@item.Price.ToString("#,##") VNĐ</h4>
                                                 <div class="product-rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
@@ -154,7 +156,9 @@
                                                 </div>
                                             </div>
                                             <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                                <a href="@Url.Action("ThemGioHang","GioHang",new { @productId=item.Id,@strURL=Request.Url.ToString()})">
+                                                    <i class="fa fa-shopping-cart">Thêm vào giỏ</i>
+                                                </a>
                                             </div>
                                         </div>
                            

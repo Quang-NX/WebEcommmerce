@@ -1,9 +1,147 @@
 ﻿@using WebApp.Models.ViewModels
-@model IEnumerable<GioHang>
+@model List<ItemGioHang>
 @{
+    /**/
+
     ViewBag.Title = "XemGioHang";
     Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-<h2>XemGioHang</h2>
+@if (Model == null || Session["GioHang"] == null)
+{
+    <h1>Bạn chưa đặt sản phẩm nào !</h1>
+}
+else
+{
+    <div class="display_cart">
+        <table class="table">
+            <tr>
+                <td>Mã sản phẩm</td>
+                <td>Tên sp</td>
+                <td>Hình ảnh</td>
+                <td>Đơn giá</td>
+                <td>Số lượng</td>
+                <td>Thành tiền</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.ProductCode</td>
+                    <td>@item.ProductName</td>
+                    <td><img src="@Url.Content(item.ProductImage)" width="100" height="100" /></td>
+                    <td>@item.ProductPrice.ToString("#,##") VNĐ</td>
+                    <td>x @item.QuantityProduct</td>
+                    <td>@item.TotalPrice.ToString("#,##") VNĐ</td>
+                    <td>@Html.ActionLink("Sửa", "SuaGioHang", new { @productId = item.ProductCode })</td>
+                    <td>@Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.ProductCode })</td>
+                </tr>
+            }
+
+        </table>
+
+        <div class="pull-right total-price">
+
+            <p>Tổng tiền : @ViewBag.TotalPrice.ToString("#,##") VNĐ</p>
+        </div>
+        <div class="divDatHang">
+            @using (Html.BeginForm("DatHang", "GioHang"))
+            {
+                @*Thiết kế form lưu thông tin khách hnafg chưa có tài khoản*@
+                if (Session["username"] != null)
+                {
+                    <input class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDatHang" />
+                    @Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })
+                }
+                else
+                {
+                    <div class="ThongTinMuaHang">
+                        <table align="center" class="table">
+                            <tr>
+                                <td align="center" colspan="2"><b>Thông tin khách hàng</b></td>
+                            </tr>
+                            <tr>
+                                <td>Tên đăng nhập</td>
+                                <td>
+                                    @Html.TextBox("UserName")
+                                    <p style="color:red;" id="TenKh"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>
+                                    @Html.TextBox("Email")
+                                    <p style="color:red;" id="EmailKh"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Địa chỉ</td>
+                                <td>
+                                    @Html.TextArea("Address")
+                                    <p style="color:red;" id="AddressKh"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tuổi</td>
+                                <td>
+                                    @Html.TextBox("Age")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Số điện thoại</td>
+                                <td>
+                                    @Html.TextBox("PhoneNumber")
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <input class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDatHang"/>
+                    @Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })
+                }
+
+
+            }
+
+        </div>
+
+    </div>
+}
+    <script>
+        $("#btnDatHang").click(function () {
+            var bug = 0;
+            if ($("#UserName").val() == '') {
+                $("#TenKh").text("Tên khách hàng không được bỏ trống");
+                bug++;
+            }
+
+            else {
+                $("#TenKh").text("");
+            }
+
+            if ($("#Address").val() == '') {
+                $("#AddressKh").text("Địa chỉ khách hàng không được bỏ trống");
+                bug++;
+            }
+            else {
+                $("#AddressKh").text("");
+            }
+            //định dạng email
+            dinhdang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@[\w\d.]+\.\w{2,4}$/;
+            KTemail = dinhdang.test($('#Email').val());
+            if (!KTemail) {
+                $('#EmailKh').text("Email không hợp lệ")
+                bug++;
+            }
+            else {
+                $("#EmailKh").text("");
+            }
+            
+            
+
+            if (bug != 0) {
+                //ngăn form submit 
+                return false;
+            }
+        });
+    </script>
 

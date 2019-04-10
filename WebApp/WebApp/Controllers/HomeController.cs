@@ -38,8 +38,19 @@ namespace WebApp.Controllers
             TempData["GammingId"] = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
             TempData["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id}).FirstOrDefault().CategoryId;
             TempData["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
+
             return View(productList);
         }
+
+        //thêm sản phẩm yêu thích
+        //public ActionResult LikeProduct(Guid? id)
+        //{
+        //    if(id==null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+            
+        //}
 
         public ActionResult CreateUser()
         {
@@ -128,8 +139,9 @@ namespace WebApp.Controllers
             var productViewModel = Mapper.Map<ProductViewModel>(product);
             return View(productViewModel);
         }
+        //phân trang
         public ActionResult PageProductDetail(int? page,Guid Id)
-        {
+        {   
             //ViewBag.ListManu = new List<ManufactureViewModel>(db.Manufacturers.Select(s => new ManufactureViewModel { Name = s.Name }));
 
             ViewBag.QuantityManu = new List<ManufactureDto>(db.Products.Join(db.Manufacturers, p => p.ManufacturerId, m => m.Id, (p, m) => new { p = p.productInStock, m = m.Name })
@@ -157,10 +169,10 @@ namespace WebApp.Controllers
             string email = form["email"].ToString();
             string emailAddress = email;
             /*Cảm ơn bạn đã để lại thông tin gmail.Chúng tôi sẽ cập nhật cho bạn những thông tin mới nhất từ trang web.*/
-            string content = "<h1>Thư xác nhận Email từ Quang Bếu</h1></br>";
-            content += "<p>Chúc tìn yêu một ngày tốt lành nha !</p>";
+            string content = "<h1>WebEcommerceUET xin chào quý khách !</h1></br>";
+            content += "<p>Cảm ơn bạn đã đăng kí nhận thông báo. !</p>";
             content += "<a href=" + "http://localhost:55666/Home/Index" + ">Quay lại trang chủ</a>";
-            GuiEmail("Email từ tình iu <3 !", emailAddress, "adquang199x@gmail.com",
+            GuiEmail("Thư xác nhận Email từ WEbEcommerceUET !", emailAddress, "adquang199x@gmail.com",
                 "Quangtrang99xx", content);
             return RedirectToAction("Index");
         }

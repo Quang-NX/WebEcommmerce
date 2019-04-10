@@ -59,6 +59,7 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CatalogCoupon.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\LikeNumberProductUser.cs" />
     <Compile Include="Entities\Manufacturer.cs" />
     <Compile Include="Entities\OrderDetails.cs" />
@@ -67,25 +68,13 @@
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enum\CommonStatus.cs" />
-    <Compile Include="Migrations\201903220320173_addDB.cs" />
-    <Compile Include="Migrations\201903220320173_addDB.Designer.cs">
-      <DependentUpon>201903220320173_addDB.cs</DependentUpon>
+    <Compile Include="Migrations\201904100853046_addDb.cs" />
+    <Compile Include="Migrations\201904100853046_addDb.Designer.cs">
+      <DependentUpon>201904100853046_addDb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903231729252_AddTableUser.cs" />
-    <Compile Include="Migrations\201903231729252_AddTableUser.Designer.cs">
-      <DependentUpon>201903231729252_AddTableUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903301934408_addFieldToProduct.cs" />
-    <Compile Include="Migrations\201903301934408_addFieldToProduct.Designer.cs">
-      <DependentUpon>201903301934408_addFieldToProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904031823560_updateDb.cs" />
-    <Compile Include="Migrations\201904031823560_updateDb.Designer.cs">
-      <DependentUpon>201904031823560_updateDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904040854219_addtabledb.cs" />
-    <Compile Include="Migrations\201904040854219_addtabledb.Designer.cs">
-      <DependentUpon>201904040854219_addtabledb.cs</DependentUpon>
+    <Compile Include="Migrations\201904100927417_update.cs" />
+    <Compile Include="Migrations\201904100927417_update.Designer.cs">
+      <DependentUpon>201904100927417_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,26 +85,17 @@
     <None Include="Scripts\jquery-1.12.4.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903220320173_addDB.resx">
-      <DependentUpon>201903220320173_addDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903231729252_AddTableUser.resx">
-      <DependentUpon>201903231729252_AddTableUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903301934408_addFieldToProduct.resx">
-      <DependentUpon>201903301934408_addFieldToProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904031823560_updateDb.resx">
-      <DependentUpon>201904031823560_updateDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904040854219_addtabledb.resx">
-      <DependentUpon>201904040854219_addtabledb.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904100853046_addDb.resx">
+      <DependentUpon>201904100853046_addDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904100927417_update.resx">
+      <DependentUpon>201904100927417_update.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

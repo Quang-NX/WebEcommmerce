@@ -13,13 +13,18 @@ namespace Domain.Entities
         #region Field
         public DateTime? OrderDate{ get; set; }
         public DateTime? ShippedDate { get; set; }
+        //tình trạng giao hàng
         public CommonStatus StatusPayment { get; set; }
+        //đã hủy
+        public CommonStatus Cancelled { get; set; }
+        //đã xóa
+        public CommonStatus Deleted { get; set; }
 
         #endregion
         #region Relationship
-        [ForeignKey("User")]
-        public Guid UserId { get; set; }
-        public virtual User User { get; set; }
+        [ForeignKey("Customer")]
+        public Guid CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
         #endregion
     }
 }

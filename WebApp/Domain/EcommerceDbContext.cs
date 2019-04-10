@@ -25,5 +25,6 @@ namespace Domain
         public DbSet<CatalogCoupon> CatalogCoupons  { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }
