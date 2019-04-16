@@ -33,48 +33,48 @@ namespace WebApp.Controllers
         }
 
         //Thêm giỏ hàng thông thường load lại trang
-        public ActionResult ThemGioHang(Guid productId, string strURL)//mã sản phẩm,đường link dẫn đến khi redirect
-        {
-            //kiểm tra sản phẩm thông qua mã sp tồn tại trong csdl hay không
-            Product sp = db.Products.SingleOrDefault(n => n.Id == productId);
-            if (sp == null)
-            {
+        //public ActionResult ThemGioHang(Guid productId, string strURL)//mã sản phẩm,đường link dẫn đến khi redirect
+        //{
+        //    //kiểm tra sản phẩm thông qua mã sp tồn tại trong csdl hay không
+        //    Product sp = db.Products.SingleOrDefault(n => n.Id == productId);
+        //    if (sp == null)
+        //    {
                 
-                //trả về trang 404 đường dẫn không hợp lệ
+        //        //trả về trang 404 đường dẫn không hợp lệ
 
-                Response.StatusCode = 404;
-                return null;
-            }
-            //lấy list giỏ hàng ra
-            List<ItemGioHang> lstGioHang = LayGioHang();
-            //TH1:Nếu đã có sản phẩm đó tồn tại trong giỏ hàng
-            //thì lấy ra sản phẩm đó ra và tăng số lượng lên tính lại thành tiền của sản phẩm đó
-            ItemGioHang spCheck = lstGioHang.SingleOrDefault(s => s.ProductCode == productId);
-            if (spCheck != null)
-            {
-                //kiểm tra xem trong số lượng tồn còn đủ số sản phẩm khách hàng muốn mua hay không
-                //nếu không đủ sẽ in ra thông báo cho khách hàng biết
-                //chứ không nói là hết hàng
-                //kiểm tra số lượng tồn trước khi cho khách hàng đặt hàng
-                //nếu số sản phẩm tồn nhỏ hơn số sản phẩm đặt thì view ra thông báo
-                if ( sp.productInStock < spCheck.QuantityProduct )
-                {
-                    return View("ThongBao");
-                }
-                spCheck.QuantityProduct++;
-                spCheck.TotalPrice = spCheck.ProductPrice * spCheck.QuantityProduct;
-                return Redirect(strURL);
-            }
-            //còn không thì tạo lại một sản phẩm mới và add vào
-            //tạo ra 1 item để thêm vào giỏ hàng
-            ItemGioHang itemGioHang = new ItemGioHang(productId);
-            if (sp.productInStock < itemGioHang.QuantityProduct)
-            {
-                return View("ThongBao");
-            }
-            lstGioHang.Add(itemGioHang);
-            return Redirect(strURL);
-        }
+        //        Response.StatusCode = 404;
+        //        return null;
+        //    }
+        //    //lấy list giỏ hàng ra
+        //    List<ItemGioHang> lstGioHang = LayGioHang();
+        //    //TH1:Nếu đã có sản phẩm đó tồn tại trong giỏ hàng
+        //    //thì lấy ra sản phẩm đó ra và tăng số lượng lên tính lại thành tiền của sản phẩm đó
+        //    ItemGioHang spCheck = lstGioHang.SingleOrDefault(s => s.ProductCode == productId);
+        //    if (spCheck != null)
+        //    {
+        //        //kiểm tra xem trong số lượng tồn còn đủ số sản phẩm khách hàng muốn mua hay không
+        //        //nếu không đủ sẽ in ra thông báo cho khách hàng biết
+        //        //chứ không nói là hết hàng
+        //        //kiểm tra số lượng tồn trước khi cho khách hàng đặt hàng
+        //        //nếu số sản phẩm tồn nhỏ hơn số sản phẩm đặt thì view ra thông báo
+        //        if ( sp.productInStock < spCheck.QuantityProduct )
+        //        {
+        //            return View("ThongBao");
+        //        }
+        //        spCheck.QuantityProduct++;
+        //        spCheck.TotalPrice = spCheck.ProductPrice * spCheck.QuantityProduct;
+        //        return Redirect(strURL);
+        //    }
+        //    //còn không thì tạo lại một sản phẩm mới và add vào
+        //    //tạo ra 1 item để thêm vào giỏ hàng
+        //    ItemGioHang itemGioHang = new ItemGioHang(productId);
+        //    if (sp.productInStock < itemGioHang.QuantityProduct)
+        //    {
+        //        return View("ThongBao");
+        //    }
+        //    lstGioHang.Add(itemGioHang);
+        //    return Redirect(strURL);
+        //}
 
         //Tinhs tổng số lượng
         public int TinhTongSoLuong()
@@ -190,6 +190,7 @@ namespace WebApp.Controllers
             return RedirectToAction("XemGioHang","GioHang");
         }
         //Xây dưng chức năng đặt hàng
+        [HttpPost]
         public ActionResult DatHang(Customer cus)
         {
             //Tạo đơn đặt hàng
@@ -241,6 +242,50 @@ namespace WebApp.Controllers
             db.SaveChanges();
             Session["GioHang"] = null;
             return RedirectToAction("XemGioHang");
+        }
+        //Thêm giỏ hàng sử dụng Ajax
+        public ActionResult ThemGioHangAjax(Guid productId)//mã sản phẩm,đường link dẫn đến khi redirect
+        {
+            //kiểm tra sản phẩm thông qua mã sp tồn tại trong csdl hay không
+            Product sp = db.Products.SingleOrDefault(n => n.Id == productId);
+            if (sp == null)
+            {
+
+                //trả về trang 404 đường dẫn không hợp lệ
+
+                Response.StatusCode = 404;
+                return null;
+            }
+            //lấy list giỏ hàng ra
+            List<ItemGioHang> lstGioHang = LayGioHang();
+            //TH1:Nếu đã có sản phẩm đó tồn tại trong giỏ hàng
+            //thì lấy ra sản phẩm đó ra và tăng số lượng lên tính lại thành tiền của sản phẩm đó
+            ItemGioHang spCheck = lstGioHang.SingleOrDefault(s => s.ProductCode == productId);
+            if (spCheck != null)
+            {
+                //kiểm tra xem trong số lượng tồn còn đủ số sản phẩm khách hàng muốn mua hay không
+                //nếu không đủ sẽ in ra thông báo cho khách hàng biết
+                //chứ không nói là hết hàng
+                //kiểm tra số lượng tồn trước khi cho khách hàng đặt hàng
+                //nếu số sản phẩm tồn nhỏ hơn số sản phẩm đặt thì view ra thông báo
+                if (sp.productInStock < spCheck.QuantityProduct)
+                {
+                    return Content("<script> alert(\"Sản phẩm hết hàng !\")</script>");
+                }
+                spCheck.QuantityProduct++;
+                TempData["TongSoLuong"] = TinhTongSoLuong();
+                return PartialView("GioHangPartial");
+            }
+            //còn không thì tạo lại một sản phẩm mới và add vào
+            //tạo ra 1 item để thêm vào giỏ hàng
+            ItemGioHang itemGioHang = new ItemGioHang(productId);
+            if (sp.productInStock < itemGioHang.QuantityProduct)
+            {
+                return Content("<script> alert(\"Sản phẩm hết hàng !\")</script>");
+            }
+            lstGioHang.Add(itemGioHang);
+            TempData["TongSoLuong"] = TinhTongSoLuong();
+            return PartialView("GioHangPartial");
         }
     }
 }

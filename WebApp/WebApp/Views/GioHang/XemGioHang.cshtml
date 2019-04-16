@@ -1,13 +1,13 @@
 ﻿@using WebApp.Models.ViewModels
 @model List<ItemGioHang>
 @{
-    /**/
 
     ViewBag.Title = "XemGioHang";
     Layout = "~/Views/Layout/_Layout.cshtml";
+    
 }
 
-@if (Model == null || Session["GioHang"] == null)
+@if (Model.Count == 0)
 {
     <h1>Bạn chưa đặt sản phẩm nào !</h1>
 }
@@ -48,55 +48,65 @@ else
             @using (Html.BeginForm("DatHang", "GioHang"))
             {
                 @*Thiết kế form lưu thông tin khách hnafg chưa có tài khoản*@
-                if (Session["username"] != null)
-                {
-                    <input class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDatHang" />
+            if (Session["username"] != null)
+            {
+
+                    <button class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDH" >Đặt hàng</button>
                     @Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })
                 }
                 else
                 {
-                    <div class="ThongTinMuaHang">
-                        <table align="center" class="table">
-                            <tr>
-                                <td align="center" colspan="2"><b>Thông tin khách hàng</b></td>
-                            </tr>
-                            <tr>
-                                <td>Tên đăng nhập</td>
-                                <td>
-                                    @Html.TextBox("UserName")
-                                    <p style="color:red;" id="TenKh"></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>
-                                    @Html.TextBox("Email")
-                                    <p style="color:red;" id="EmailKh"></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Địa chỉ</td>
-                                <td>
-                                    @Html.TextArea("Address")
-                                    <p style="color:red;" id="AddressKh"></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Tuổi</td>
-                                <td>
-                                    @Html.TextBox("Age")
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Số điện thoại</td>
-                                <td>
-                                    @Html.TextBox("PhoneNumber")
-                                </td>
-                            </tr>
-                        </table>
+                    <div class="container showInfo">
+                        <div class="row">
+                            <div class="col-md-8 col-lg-8">
+                                <div class="ThongTinMuaHang">
+                                    <ul>
+                                        <li>
+                                            <p align="center" colspan="2"><b>Điền thông tin đặt hàng</b></p>
+                                        </li>
+                                        <li>
+                                            <span>Họ và tên</span>
+                                            <div>
+                                                @Html.TextBox("CustomerName", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="TenKh"></p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Email</span>
+                                            <div>
+                                                @Html.TextBox("Email", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="EmailKh"></p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Địa chỉ</span>
+                                            <div>
+                                                @Html.TextArea("Address", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="AddressKh"></p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Tuổi</span>
+                                            <div>
+                                                @Html.TextBox("Age", null, new { @class = "form-control" })
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Số điện thoại</span>
+                                            <div>
+                                                @Html.TextBox("PhoneNumber", null, new { @class = "form-control" })
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row btnUp">
+                            <input class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDatHang" />
+                            @Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })
+                        </div>
                     </div>
-                    <input class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDatHang"/>
-                    @Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })
+
                 }
 
 
@@ -106,42 +116,44 @@ else
 
     </div>
 }
-    <script>
-        $("#btnDatHang").click(function () {
-            var bug = 0;
-            if ($("#UserName").val() == '') {
-                $("#TenKh").text("Tên khách hàng không được bỏ trống");
-                bug++;
-            }
+<script src="~/Assets/js/jquery.min.js"></script>
+<script>
 
-            else {
-                $("#TenKh").text("");
-            }
+    $("#btnDatHang").click(function () {
+        var bug = 0;
+        if ($("#CustomerName").val() == '') {
+            $("#TenKh").text("Tên khách hàng không được bỏ trống");
+            bug++;
+        }
 
-            if ($("#Address").val() == '') {
-                $("#AddressKh").text("Địa chỉ khách hàng không được bỏ trống");
-                bug++;
-            }
-            else {
-                $("#AddressKh").text("");
-            }
-            //định dạng email
-            dinhdang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@[\w\d.]+\.\w{2,4}$/;
-            KTemail = dinhdang.test($('#Email').val());
-            if (!KTemail) {
-                $('#EmailKh').text("Email không hợp lệ")
-                bug++;
-            }
-            else {
-                $("#EmailKh").text("");
-            }
-            
-            
+        else {
+            $("#TenKh").text("");
+        }
 
-            if (bug != 0) {
-                //ngăn form submit 
-                return false;
-            }
-        });
-    </script>
+        if ($("#Address").val() == '') {
+            $("#AddressKh").text("Địa chỉ khách hàng không được bỏ trống");
+            bug++;
+        }
+        else {
+            $("#AddressKh").text("");
+        }
+        //định dạng email
+        dinhdang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@[\w\d.]+\.\w{2,4}$/;
+        KTemail = dinhdang.test($('#Email').val());
+        if (!KTemail) {
+            $('#EmailKh').text("Email không hợp lệ")
+            bug++;
+        }
+        else {
+            $("#EmailKh").text("");
+        }
+
+
+
+        if (bug != 0) {
+            //ngăn form submit
+            return false;
+        }
+    });
+</script>
 

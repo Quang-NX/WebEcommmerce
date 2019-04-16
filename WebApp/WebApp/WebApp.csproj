@@ -144,29 +144,31 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Common\AccountLogin.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LikeProductController.cs" />
-    <Compile Include="Controllers\ManufactureController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManufactureController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Models\ViewDto\CategoryDto.cs" />
+    <Compile Include="Areas\Admin\Mapping\MappingProfile.cs" />
+    <Compile Include="Areas\Admin\Models\ViewDto\CategoryDto.cs" />
     <Compile Include="Models\ViewDto\CreateUserDto.cs" />
     <Compile Include="Models\ViewDto\LoginDto.cs" />
-    <Compile Include="Models\ViewDto\ManufactureDto.cs" />
+    <Compile Include="Areas\Admin\Models\ViewDto\ManufactureDto.cs" />
     <Compile Include="Models\ViewDto\UserDto.cs" />
-    <Compile Include="Models\ViewModels\CategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModels\ItemGioHang.cs" />
     <Compile Include="Models\ViewModels\LikeProduct.cs" />
-    <Compile Include="Models\ViewModels\ManufactureViewModel.cs" />
-    <Compile Include="Models\ViewModels\ProductViewModel.cs" />
-    <Compile Include="Models\ViewModels\SupplierViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\ManufactureViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\ProductViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\SupplierViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +265,8 @@
     <Content Include="Assets\fonts\slick.eot" />
     <Content Include="Assets\fonts\slick.ttf" />
     <Content Include="Assets\fonts\slick.woff" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -272,6 +276,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -291,26 +297,26 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\Details.cshtml" />
-    <Content Include="Views\Product\Create.cshtml" />
-    <Content Include="Views\Product\Edit.cshtml" />
-    <Content Include="Views\Product\Delete.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Supplier\Index.cshtml" />
-    <Content Include="Views\Supplier\Details.cshtml" />
-    <Content Include="Views\Supplier\Create.cshtml" />
-    <Content Include="Views\Supplier\Edit.cshtml" />
-    <Content Include="Views\Supplier\Delete.cshtml" />
-    <Content Include="Views\Manufacture\Index.cshtml" />
-    <Content Include="Views\Manufacture\Details.cshtml" />
-    <Content Include="Views\Manufacture\Create.cshtml" />
-    <Content Include="Views\Manufacture\Edit.cshtml" />
-    <Content Include="Views\Manufacture\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacture\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacture\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacture\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacture\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacture\Delete.cshtml" />
     <Content Include="Views\Layout\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\CreateUser.cshtml" />
@@ -319,16 +325,17 @@
     <Content Include="Views\Layout\_FooterPatial.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Home\PageProductDetail.cshtml" />
-    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\ThongBao.cshtml" />
     <Content Include="Views\GioHang\XemGioHang.cshtml" />
     <Content Include="Views\GioHang\SuaGioHang.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppFile\Images\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\LikeProduct\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Scripts\WebApp\" />
-    <Folder Include="Views\LikeProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

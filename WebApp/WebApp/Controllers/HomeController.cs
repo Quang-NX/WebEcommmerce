@@ -9,9 +9,10 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using WebApp.Areas.Admin.Models.ViewDto;
+using WebApp.Areas.Admin.Models.ViewModels;
 using WebApp.Common;
 using WebApp.Models.ViewDto;
-using WebApp.Models.ViewModels;
 
 namespace WebApp.Controllers
 {
@@ -96,14 +97,17 @@ namespace WebApp.Controllers
                 {
                     return RedirectToAction("Index", "Product");
                 }
+                Session["GioHang"] = null;
                 return RedirectToAction("Index", "Home");
 
             }
+
             return RedirectToAction("Login");
         }
         public ActionResult Logout()
         {
             Session["username"] = null;
+            Session["GioHang"] = null;
             return RedirectToAction("Login", "Home");
         }
         public ActionResult About()
@@ -173,7 +177,7 @@ namespace WebApp.Controllers
             content += "<p>Cảm ơn bạn đã đăng kí nhận thông báo. !</p>";
             content += "<a href=" + "http://localhost:55666/Home/Index" + ">Quay lại trang chủ</a>";
             GuiEmail("Thư xác nhận Email từ WEbEcommerceUET !", emailAddress, "adquang199x@gmail.com",
-                "Quangtrang99xx", content);
+                "Quangquang99xx", content);
             return RedirectToAction("Index");
         }
         //gửi email

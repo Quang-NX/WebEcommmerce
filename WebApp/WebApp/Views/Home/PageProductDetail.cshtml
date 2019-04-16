@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<WebApp.Models.ViewModels.ProductViewModel>
+﻿@model PagedList.IPagedList<WebApp.Areas.Admin.Models.ViewModels.ProductViewModel>
 @using PagedList.Mvc
 @{
     Layout = "~/Views/Layout/_Layout.cshtml";
@@ -17,7 +17,7 @@
                         <h3 class="aside-title">Thể loại</h3>
                         <div class="checkbox-filter">
                             @{
-                                var listcategory = (List<WebApp.Models.ViewDto.CategoryDto>)ViewBag.ListCate;
+                                var listcategory = (List<WebApp.Areas.Admin.Models.ViewDto.CategoryDto>)ViewBag.ListCate;
                                 int count = 1;
                                 foreach (var item in listcategory)
                                 {
@@ -169,15 +169,15 @@
                         {
                             <!-- product take 9-->
                             <div class="col-md-4 col-xs-6">
-                                <div class="product" onclick="location.href='@Url.Action("ProductDetail", "Home", new { id = item.Id })'">
-                                    <div class="product-img">
+                                <div class="product" >
+                                    <div class="product-img" onclick="location.href='@Url.Action("ProductDetail", "Home", new { id = item.Id })'">
                                         <img src="@item.UrlImage" alt="">
                                         <!-- <div class="product-label">
                                             <span class="sale">-30%</span>
                                             <span class="new">NEW</span>
                                         </div> -->
                                     </div>
-                                    <div class="product-body">
+                                    <div class="product-body" onclick="location.href='@Url.Action("ProductDetail", "Home", new { id = item.Id })'">
                                         <p class="product-category">@item.CategoryName</p>
                                         <h3 class="product-name"><a href="#">@item.Name</a></h3>
                                         <h4 class="product-price">@item.Price.ToString("#,##") VNĐ</h4>
@@ -193,7 +193,11 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
+                                        <a class="addCart">
+                                            @Html.Hidden("productId", item.Id)
+                                            <i class="fa fa-shopping-cart">Thêm vào giỏ</i>
+                                        </a>
+
                                     </div>
                                 </div>
                             </div>
