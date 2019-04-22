@@ -13,5 +13,6 @@ namespace WebApp.Areas.Admin.Controllers
         {
             return View();
         }
+        int a = 10;
     }
 }
