@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $(".addCart").click(function () {
+    $(".addCart,.add2").click(function () {
         $(".loader").show();
         var id = $(this).find("input").val();
         $.ajax({
@@ -15,22 +15,22 @@
             }
         });
     });
-    $(".add-to-cart-btn").click(function () {
-        var id = $(this).find("input").val();
-        $(".loader").show();
-        $.ajax({
-            type: "GET",
-            url: "/GioHang/ThemGioHangAjax?productId=" + id,
-            dataType: "html",
-            success: function (data) {
-                $("#divGioHang").html(data);
-                swal("Thành công", "Đã thêm vào giỏ hàng !", "success");
-            },
-            complete: function () {
-                $(".loader").hide();
-            }
-        });
-    });
+    //$(".add-to-cart-btn").click(function () {
+    //    var id = $(this).find("input").val();
+    //    $(".loader").show();
+    //    $.ajax({
+    //        type: "GET",
+    //        url: "/GioHang/ThemGioHangAjax?productId=" + id,
+    //        dataType: "html",
+    //        success: function (data) {
+    //            $("#divGioHang").html(data);
+    //            swal("Thành công", "Đã thêm vào giỏ hàng !", "success");
+    //        },
+    //        complete: function () {
+    //            $(".loader").hide();
+    //        }
+    //    });
+    //});
     $(".logo").click(function () {
         window.location.href = "/Home/Index";
     });

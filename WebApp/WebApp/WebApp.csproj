@@ -175,13 +175,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\ajax-loader.gif" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\css.css" />
     <Content Include="Assets\css\font-awesome.min.css" />
-    <Content Include="Assets\css\fontcss.css" />
-    <Content Include="Assets\css\fonts\fontawesome-webfont.svg" />
-    <Content Include="Assets\css\fonts\slick.svg" />
-    <Content Include="Assets\css\Index.css" />
     <Content Include="Assets\css\jquery-ui.css" />
     <Content Include="Assets\css\nouislider.min.css" />
     <Content Include="Assets\css\slick-theme.css" />
@@ -209,7 +206,6 @@
     <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Assets\js\jquery-ui.js" />
     <Content Include="Assets\js\jquery.min.js" />
-    <Content Include="Assets\js\jquery.zoom.min.js" />
     <Content Include="Assets\js\main.js" />
     <Content Include="Assets\js\nouislider.min.js" />
     <Content Include="Assets\js\slick.min.js" />
@@ -316,14 +312,6 @@
     <Content Include="Assets\fonts\slick.eot" />
     <Content Include="Assets\fonts\slick.ttf" />
     <Content Include="Assets\fonts\slick.woff" />
-    <Content Include="Assets\css\fonts\fontawesome-webfont.eot" />
-    <Content Include="Assets\css\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Assets\css\fonts\fontawesome-webfont.woff" />
-    <Content Include="Assets\css\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Assets\css\fonts\FontAwesome.otf" />
-    <Content Include="Assets\css\fonts\slick.eot" />
-    <Content Include="Assets\css\fonts\slick.ttf" />
-    <Content Include="Assets\css\fonts\slick.woff" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

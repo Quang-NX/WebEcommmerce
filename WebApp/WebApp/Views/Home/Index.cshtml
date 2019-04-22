@@ -77,6 +77,7 @@
                             <div class="products-slick" data-nav="#slick-nav-2">
                                 <!-- select 5 cái -->
                                 <!-- product -->
+
                                 @foreach (var item in Model)
                                 {
                                     <div class="product">
@@ -109,11 +110,10 @@
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <a class="addCart">
-                                                @Html.Hidden("productId",item.Id)
-                                                <i class="fa fa-shopping-cart">Thêm vào giỏ</i>
-                                            </a>
-
+                                            <button class="add-to-cart-btn addCart">
+                                                @Html.Hidden("productId", item.Id)
+                                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ
+                                            </button>
                                         </div>
                                         @*<span>
                                             @Ajax.ActionLink("Thêm vào giỏ hàng ajax","ThemGioHangAjax","GioHang",new { @productId =item.Id},
@@ -135,8 +135,8 @@
                 <div class="row">
                     <div class="products-tabs">
                         <!-- tab -->
-                        <div id="tab2" class="tab-pane fade in active">
-                            <div class="products-slick" data-nav="#slick-nav-2">
+                        <div id="tab1" class="tab-pane fade in active">
+                            <div class="products-slick" data-nav="#slick-nav-1">
                                 <!-- product -->
                                 @foreach (var item in productlist)
                                 {
@@ -163,10 +163,10 @@
                                                 </div>
                                             </div>
                                             <div class="add-to-cart">
-                                                <a class="addCart">
+                                                <button class="add-to-cart-btn addCart">
                                                     @Html.Hidden("productId", item.Id)
-                                                    <i class="fa fa-shopping-cart">Thêm vào giỏ</i>
-                                                </a>
+                                                    <i class="fa fa-shopping-cart"></i> Thêm vào giỏ
+                                                </button>
                                             </div>
                                         </div>
 
@@ -174,7 +174,7 @@
                                     <!-- /product -->
                                 }
                             </div>
-                            <div id="slick-nav-2" class="products-slick-nav"></div>
+                            <div id="slick-nav-1" class="products-slick-nav"></div>
                         </div>
                         <!-- /tab -->
                     </div>
