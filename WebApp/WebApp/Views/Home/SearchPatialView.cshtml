@@ -3,17 +3,51 @@
 <!-- SEARCH BAR -->
 <div class="col-md-6">
     <div class="header-search">
-        <form>
-            <select class="input-select">
-                <option value="0">Tất cả thể loại</option>
-                @foreach (var item in Model)
-                {
-                    <option value="0">@item.Name</option>
-                }
-            </select>
-            <input class="input" placeholder="Tìm kiếm...">
+        @using (Html.BeginForm("Search", "Home"))
+        {
+            @*@Html.DropDownList("CategoryLstSearch", TempData["CategoryLstSearch"] as SelectList, "---Thể loại---", new { @class = "form-control" })*@
+            <input class="input" name="keyword" id="txtkeyword" placeholder="Tìm kiếm...">
             <button class="search-btn">Search</button>
-        </form>
+       }
 
     </div>
 </div>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+    $("#txtkeyword").autocomplete({
+        minlength: 0,
+        source: function (request, response) {
+            $.ajax({
+                url: "/Home/ListName",
+                datatype: "json",
+                data: {
+                    q: request.term
+                },
+                success: function (data) {
+                    response(data.data);
+                }
+            });
+        },
+        focus: function (event, ui) {
+            $("#txtkeyword").val(ui.item.label);
+            return false;
+        },
+        select: function (event, ui) {
+            $("#txtkeyword").val(ui.item.label);
+            $("#project-id").val(ui.item.value);
+            $("#project-description").html(ui.item.desc);
+            $("#project-icon").attr("src", "images/" + ui.item.icon);
+
+            return false;
+        }
+    })
+        .autocomplete("instance")._renderitem = function (ul, item) {
+            return $("<li>")
+                .append("<div>" + item.label + /*"<br>" + item.desc +*/ "</div>")
+                .appendto(ul);
+        };
+
+</script>

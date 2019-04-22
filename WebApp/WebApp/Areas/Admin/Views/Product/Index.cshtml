@@ -2,13 +2,15 @@
 
 @{
     ViewBag.Title = "SẢN PHẨM";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
 }
 
 <h2>SẢN PHẨM</h2>
 
 <p>
-    @Html.ActionLink("Tạo mới", "Create")
+    <button class="btn btn-success addProduct" style="font-size:17px;">
+        @Html.ActionLink("Thêm mới sản phẩm", "Create")
+    </button>
 </p>
 <table class="table">
     <tr>

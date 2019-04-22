@@ -9,37 +9,37 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new { Id = TempData["GammingId"] })'">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new { Id = Session["GammingId"] })'">
                 <div class="shop">
                     <div class="shop-img">
                         <img src="@Url.Content(ViewBag.Gamming)" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>GAMMING</h3>
-                        <a href="@Url.Action("PageProductDetail","Home",new {Id=TempData["GammingId"] })" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="@Url.Action("PageProductDetail","Home",new {Id=Session["GammingId"] })" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=TempData["DoanhNhanId"]})'">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=Session["DoanhNhanId"]})'">
                 <div class="shop">
                     <div class="shop-img">
                         <img src="@Url.Content(ViewBag.DoanhNhan)" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>DOANH NHÂN</h3>
-                        <a href="@Url.Action("PageProductDetail","Home",new {Id=TempData["DoanhNhanId"]})" class="cta-btn">Ghé thăm <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="@Url.Action("PageProductDetail","Home",new {Id=Session["DoanhNhanId"]})" class="cta-btn">Ghé thăm <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=TempData["DoHoaId"]})'">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=Session["DoHoaId"]})'">
                 <div class="shop">
                     <div class="shop-img">
                         <img src="@Url.Content(ViewBag.DoHoa)" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>ĐỒ HỌA</h3>
-                        <a href="@Url.Action("PageProductDetail","Home",new {Id=TempData["DoHoaId"]})" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="@Url.Action("PageProductDetail","Home",new {Id=Session["DoHoaId"]})" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

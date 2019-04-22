@@ -112,12 +112,12 @@ namespace WebApp.Controllers
         {
             if(TinhTongSoLuong()==0)
             {
-                TempData["TongSoLuong"] = 0;
-                TempData["TongTien"] = 0;
+                Session["TongSoLuong"] = 0;
+                Session["TongTien"] = 0;
                 return PartialView();
             }
-            TempData["TongSoLuong"] = TinhTongSoLuong();
-            TempData["TongTien"] = TinhTongTien();
+            Session["TongSoLuong"] = TinhTongSoLuong();
+            Session["TongTien"] = TinhTongTien();
             return PartialView();
         }
         //chỉnh sửa giỏ hàng
@@ -273,7 +273,7 @@ namespace WebApp.Controllers
                     return Content("<script> alert(\"Sản phẩm hết hàng !\")</script>");
                 }
                 spCheck.QuantityProduct++;
-                TempData["TongSoLuong"] = TinhTongSoLuong();
+                Session["TongSoLuong"] = TinhTongSoLuong();
                 return PartialView("GioHangPartial");
             }
             //còn không thì tạo lại một sản phẩm mới và add vào
@@ -284,7 +284,7 @@ namespace WebApp.Controllers
                 return Content("<script> alert(\"Sản phẩm hết hàng !\")</script>");
             }
             lstGioHang.Add(itemGioHang);
-            TempData["TongSoLuong"] = TinhTongSoLuong();
+            Session["TongSoLuong"] = TinhTongSoLuong();
             return PartialView("GioHangPartial");
         }
     }

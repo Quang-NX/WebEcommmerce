@@ -10,14 +10,14 @@
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
+    @*<link href="~/Assets/css/fontcss.css" rel="stylesheet" />*@
     <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="~/Assets/css/bootstrap.min.css" />
-
     <!-- Slick -->
     <link type="text/css" rel="stylesheet" href="~/Assets/css/slick.css" />
     <link type="text/css" rel="stylesheet" href="~/Assets/css/slick-theme.css" />
 
+    <link href="~/Assets/css/jquery-ui.css" rel="stylesheet" />
     <!-- nouislider -->
     <link type="text/css" rel="stylesheet" href="~/Assets/css/nouislider.min.css" />
 
@@ -27,7 +27,6 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="~/Assets/css/style.css" />
 
-    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -91,12 +90,12 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav thanhmenu">
-                    <li class="hien"><a href="#">Trang chủ</a></li>
+                    <li class="hien"><a href="/Home/Index">Trang chủ</a></li>
                     <!-- <li><a href="#">Hot Deals</a></li> -->
                     @*<li><a href="#">Thể loại</a></li>*@
-                    <li class="hien"><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=TempData["GammingId"]})">Gamming</a></li>
-                    <li class="hien"><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=TempData["DoanhNhanId"]})">Doanh nhân</a></li>
-                    <li class="hien"><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=TempData["DoHoaId"]})">Đồ họa</a></li>
+                    <li class="hien"><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=Session["GammingId"]})">Gamming</a></li>
+                    <li class="hien"><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=Session["DoanhNhanId"]})">Doanh nhân</a></li>
+                    <li class="hien"><a href="@Url.Action("PageProductDetail","Home",new {page=1,Id=Session["DoHoaId"]})">Đồ họa</a></li>
                 </ul>
                 <!-- /NAV -->
             </div>
@@ -115,9 +114,11 @@
     <script src="~/Assets/js/bootstrap.min.js"></script>
     @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" onload="window.$ = window.jQuery"></script>*@
     <script src="~/Assets/js/slick.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="~/Assets/js/nouislider.min.js"></script>
     <script src="~/Assets/js/main.js"></script>
     <script src="~/Assets/Index/Index.js"></script>
     @RenderSection("scripts", required: false);
+
 </body>
 </html>

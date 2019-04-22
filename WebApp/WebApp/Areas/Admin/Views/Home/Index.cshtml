@@ -1,18 +1,22 @@
-﻿
+﻿@using Domain.Entities
+@model IEnumerable<Product>
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 2);
 }
+@**Thực hiện hiển thị dữ liệu thông qua control WebGrid*@
+@grid.GetHtml(
+    tableStyle:"gridTable",//class bao ngoài của bảng.có thể tùy chỉnh css
+    headerStyle:"gridHeader",
+    footerStyle:"gridFooter",
+    rowStyle:"gridRow",
+    alternatingRowStyle:"gridAltRow",
+    columns:grid.Columns(
+        grid.Column("Id","Mã SP"),
+        grid.Column("Name","Tên SP"),
+        grid.Column("Description","Mô tả",format:p=>@Html.Raw(p.Description)),
+        grid.Column("UrlImage", "Hình ảnh", format: p => @Html.Raw("<img src=\"" + p.UrlImage + "\">"))
+    ))
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-        <h2>Đây là trang admin</h2>
-    </div>
-</body>
-</html>

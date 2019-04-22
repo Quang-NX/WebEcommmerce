@@ -16,9 +16,28 @@
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-
+.sign-in-htm h3 {
+    position: absolute;
+    top: -14%;
+    font-size: 28px;
+    font-weight: 700;
+    left: 36%;
+}
+.message a {
+    font-size: 15px;
+}
+.back a {
+    font-size: 16px;
+    font-weight: 600;
+}
+input#btnDangNhap {
+    background-color: #5cb85c;
+}
 .sign-in-htm .form {
     margin-top: 11%;
+}
+input#btnCreateAccount {
+    background: #449d44;
 }
 
 .form input {
@@ -121,4 +140,14 @@ body {
 .login-page h3 {
     font-weight: bold;
     text-align: center;
+}
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('ajax-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
 }

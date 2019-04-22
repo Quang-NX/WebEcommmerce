@@ -36,9 +36,9 @@ namespace WebApp.Controllers
             ViewBag.DoanhNhan = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => s.UrlImage).FirstOrDefault();
             ViewBag.DoHoa = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => s.UrlImage).FirstOrDefault();
 
-            TempData["GammingId"] = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
-            TempData["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id}).FirstOrDefault().CategoryId;
-            TempData["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
+            Session["GammingId"] = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
+            Session["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id}).FirstOrDefault().CategoryId;
+            Session["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
 
             return View(productList);
         }
@@ -80,6 +80,8 @@ namespace WebApp.Controllers
             return View(loginDto);
         }
 
+
+
         public ActionResult Login()
         {
             return View();
@@ -110,6 +112,17 @@ namespace WebApp.Controllers
             Session["GioHang"] = null;
             return RedirectToAction("Login", "Home");
         }
+
+        //list name product
+        public ActionResult ListName(string q)
+        {
+            var lstName = db.Products.Where(m => m.Name.Contains(q)).Select(s => s.Name).ToList();
+            return Json(new {
+                data=lstName,
+                status=true
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -125,7 +138,8 @@ namespace WebApp.Controllers
         }
         public ActionResult SearchPatialView()
         {
-            var lstCategory = db.Categories;
+            var lstCategory = db.Categories.ToList();
+            TempData["CategoryLstSearch"] = new SelectList(lstCategory, "Id", "Name");
             return PartialView(lstCategory);
         }
 
@@ -155,10 +169,6 @@ namespace WebApp.Controllers
             ViewBag.ListCate = new List<CategoryDto>(db.Products.Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
                 .GroupBy(model => model.c, (i, models) => new CategoryDto { Name = i, QuantityCate = models.Sum(model => model.p) }));
 
-            TempData["GammingId"] = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
-            TempData["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
-            TempData["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
-
             var listProduct = db.Products.Where(p => p.Category.Id.Equals(Id)).ToList();
             var lstProductViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(listProduct);
             int pageSize = 2;
@@ -166,7 +176,48 @@ namespace WebApp.Controllers
             int pageNumber = (page ?? 1);
             //get Id Category
             ViewBag.CategoryId = Id;
+            
             return View(lstProductViewModel.ToPagedList(pageNumber,pageSize));
+        }
+        //phân trang
+        public ActionResult Search(string keyword, int? page/*, FormCollection formCollection*/)
+        {
+            //IEnumerable<Product> listProduct = null;
+            ////ViewBag.ListManu = new List<ManufactureViewModel>(db.Manufacturers.Select(s => new ManufactureViewModel { Name = s.Name }));
+            //Guid categoryId = Guid.NewGuid();
+
+            //if (formCollection.Count!= 0)
+            //{
+            //    categoryId = Guid.Parse(formCollection["CategoryLstSearch"].ToString());
+            //    Session["keysearch"] = categoryId;
+            //    //nếu khách hàng chọn thể loại để tìm kiếm thì tìm kiếm theo từ khóa và thể loại
+            //    listProduct = db.Products.Where(m => m.Name.Contains(keyword) && m.CategoryId == categoryId).ToList();
+            //}
+            //else
+            //{
+            //    //ngược lại chỉ tìm kiếm theo từ khóa
+
+            //    listProduct = db.Products.Where(m => m.Name.Contains(keyword)).ToList();
+            //}
+            
+            ViewBag.QuantityManu = new List<ManufactureDto>(db.Products.Join(db.Manufacturers, p => p.ManufacturerId, m => m.Id, (p, m) => new { p = p.productInStock, m = m.Name })
+                .ToList().GroupBy(model => model.m, (i, models) => new ManufactureDto { Name = i, QuantityManu = models.Sum(model => model.p) }));
+
+
+            ViewBag.ListCate = new List<CategoryDto>(db.Products.Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
+                .GroupBy(model => model.c, (i, models) => new CategoryDto { Name = i, QuantityCate = models.Sum(model => model.p) }));
+
+
+            var listProduct = db.Products.Where(m => m.Name.Contains(keyword)).ToList();
+            var lstProductViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(listProduct);
+            int pageSize = 2;
+            //toán tử tương đương với nếu page!=null thì pageNumber =1 ngược lại =page
+            int pageNumber = (page ?? 1);
+            ////get Id Category
+            //ViewBag.CategoryId = categoryId;
+            //lưu lại từ khóa để search
+            ViewBag.KeyWord = keyword;
+            return View(lstProductViewModel.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult GetFormEmail(FormCollection form)
         {

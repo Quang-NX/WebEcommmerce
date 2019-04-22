@@ -65,6 +65,7 @@
     <Compile Include="Entities\OrderDetails.cs" />
     <Compile Include="Entities\Orders.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Supplier.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enum\CommonStatus.cs" />
@@ -75,6 +76,10 @@
     <Compile Include="Migrations\201904100927417_update.cs" />
     <Compile Include="Migrations\201904100927417_update.Designer.cs">
       <DependentUpon>201904100927417_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904221355112_AddRoleTable.cs" />
+    <Compile Include="Migrations\201904221355112_AddRoleTable.Designer.cs">
+      <DependentUpon>201904221355112_AddRoleTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904100927417_update.resx">
       <DependentUpon>201904100927417_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904221355112_AddRoleTable.resx">
+      <DependentUpon>201904221355112_AddRoleTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

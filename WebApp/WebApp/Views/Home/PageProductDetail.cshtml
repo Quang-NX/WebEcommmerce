@@ -27,15 +27,15 @@
                                         <span>-</span>
                                         @if (name == "Gamming")
                                         {
-                                            <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = TempData["GammingId"] })">@item.Name</a>
+                                            <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = Session["GammingId"] })">@item.Name</a>
                                         }
                                         else if (name == "Doanh nhân")
                                         {
-                                            <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = TempData["DoanhNhanId"] })">@item.Name</a>
+                                            <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = Session["DoanhNhanId"] })">@item.Name</a>
                                         }
                                         else if (name == "Đồ họa")
                                         {
-                                            <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = TempData["DoHoaId"] })">@item.Name</a>
+                                            <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = Session["DoHoaId"] })">@item.Name</a>
                                         }
                                         <small>(@item.QuantityCate)</small>
                                     </div>

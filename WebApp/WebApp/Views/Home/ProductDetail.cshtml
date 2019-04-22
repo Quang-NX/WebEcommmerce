@@ -51,8 +51,8 @@
                         }
                     </div>
                     <p>@Model.Description</p>
-
-                    <div class="product-options">
+                    
+                    @*<div class="product-options">
                         <label>
                             Weight
                             <select class="input-select">
@@ -65,10 +65,15 @@
                                 <option value="0">Red</option>
                             </select>
                         </label>
-                    </div>
+                    </div>*@
 
                     <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng    </button>
+                        
+                        <button class="add-to-cart-btn">
+                            <i class="fa fa-shopping-cart"></i>
+                            Thêm vào giỏ hàng
+                            @Html.Hidden("productId", Model.Id)
+                        </button>
                     </div>
 
                     <ul class="product-btns">
