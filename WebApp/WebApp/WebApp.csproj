@@ -148,7 +148,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SetRoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Models\ViewDto\UserDto.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Common\AccountLogin.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -186,6 +189,7 @@
     <Content Include="Assets\css\style.css" />
     <Content Include="Assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\fonts\slick.svg" />
+    <Content Include="Assets\img\bg.jpg" />
     <Content Include="Assets\img\hotdeal.png" />
     <Content Include="Assets\img\logo.jpg" />
     <Content Include="Assets\img\logo.png" />
@@ -245,7 +249,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\homeController\homeController.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\plugins\mustache.min.js" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -297,11 +303,6 @@
     <Content Include="Areas\Admin\Views\_AdminLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
     <Content Include="fonts\slick.woff" />
     <Content Include="fonts\slick.ttf" />
     <Content Include="Assets\fonts\fontawesome-webfont.eot" />
@@ -312,6 +313,15 @@
     <Content Include="Assets\fonts\slick.eot" />
     <Content Include="Assets\fonts\slick.ttf" />
     <Content Include="Assets\fonts\slick.woff" />
+    <Content Include="Areas\Admin\Views\Home\NotAccessAuthorize.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SetRole\IndexAjax.cshtml" />
+    <Content Include="Areas\Admin\Views\SetRole\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SetRole\EditRole.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

@@ -52,6 +52,14 @@ namespace WebApp.Mapping
                 .ForMember(dest => dest.Status, src => src.Ignore())
                 .ForMember(dest => dest.IsDeleted, src => src.Ignore())
                 ;
+            CreateMap<UserViewModel, User>()
+                .ForMember(dest => dest.CreatedBy, src => src.Ignore())
+                .ForMember(dest => dest.UpdatedDate, src => src.Ignore())
+                .ForMember(dest => dest.UpdatedBy, src => src.Ignore())
+                .ForMember(dest => dest.Status, src => src.Ignore())
+                .ForMember(dest => dest.IsDeleted, src => src.Ignore())
+                ;
+
 
         }
         private void CreateMapFromEntitiesToViewModel()
@@ -60,6 +68,7 @@ namespace WebApp.Mapping
             CreateMap<Category, CategoryViewModel>();
             CreateMap<Manufacturer, ManufactureViewModel>();
             CreateMap<Product, ProductViewModel>();
+            CreateMap<User, UserViewModel>();
         }
 
     }

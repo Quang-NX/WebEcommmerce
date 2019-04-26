@@ -16,7 +16,6 @@ namespace WebApp.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            
             return View(db.Products.ToList());
         }
         //login
@@ -33,10 +32,19 @@ namespace WebApp.Areas.Admin.Controllers
             if(myuser!=null)
             {
                 var role = myuser.Role.Name;
+                
+                if(role==null)
+                {
+                    return RedirectToAction("NotAccessAuthorize");
+                }
                 AuthorizeUser(username, role);
                 return RedirectToAction("Index");
             }
-            ViewBag.ThongBao("Tài khoản hoặc mật khẩu không chính xác !");
+            ViewBag.ThongBao="Tài khoản hoặc mật khẩu không chính xác !";
+            return View();
+        }
+        public ActionResult NotAccessAuthorize()
+        {
             return View();
         }
         //logout
@@ -65,6 +73,6 @@ namespace WebApp.Areas.Admin.Controllers
             //thêm vào cookie
             Response.Cookies.Add(cookie);
         }
-
+        
     }
 }

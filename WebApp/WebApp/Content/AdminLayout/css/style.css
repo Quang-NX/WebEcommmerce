@@ -17,8 +17,28 @@ body a{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+input#submitEditRole {
+    margin-left: 5%;
+    margin-right: 10px;
+}
+select#RoleId {
+    width: 65%;
+    float: left;
+}
 .gridTable tbody {
     background: #ffffff;
+}
+th#DropHI {
+    width: 15%;
+}
+#EditRole {
+    text-decoration: none;
+    font-size:20px;
+    color:black;
+    transition: 0.2s;
+}
+th {
+    text-align: center;
 }
 tr.gridFooter {
     font-size: 15px;

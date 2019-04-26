@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+
+
+#line default
+#line hidden
+
+#line 3 "D:\Visual Studio 2017\WebEcommmerce\WebApp\WebApp\Areas\Admin\Views\SetRole\Index.cshtml"
+    __o = Html.ActionLink("Create New", "Create");
+
+
+#line default
+#line hidden
+
+#line 4 "D:\Visual Studio 2017\WebEcommmerce\WebApp\WebApp\Areas\Admin\Views\SetRole\Index.cshtml"
+    __o = Html.DisplayNameFor(model => model.UserName);
+
+
+#line default
+#line hidden
+
+#line 5 "D:\Visual Studio 2017\WebEcommmerce\WebApp\WebApp\Areas\Admin\Views\SetRole\Index.cshtml"
+    __o = Html.DisplayNameFor(model => model.Password);
+
+
+#line default
+#line hidden
+
+#line 6 "D:\Visual Studio 2017\WebEcommmerce\WebApp\WebApp\Areas\Admin\Views\SetRole\Index.cshtml"
+    __o = Html.DisplayNameFor(model => model.Email);
+}
+@section scripts{
+    <script src="~/Content/plugins/mustache.min.js"></script>
+    <script src="~/Content/homeController/homeController.js"></script>
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Tài khoản</td>
+            <td>Tuổi</td>
+            <td>Email</td>
+            <td>Địa chỉ</td>
+            <td>Số ĐT</td>
+            <td>Quyền</td>
+        </tr>
+    </thead>
+    <tbody id="tblData">
+
+    </tbody>
+</table>
+<script id="data-template" type="x-tmpl-mustache">
+    <tr>
+        <td>{{Id}}</td>
+        <td>{{UserName}}</td>
+        <td>{{Age}}</td>
+        <td>{{Email}}</td>
+        <td>{{Address}}</td>
+        <td>{{PhoneNumber}}</td>
+        <td>
+            <select class="form-control" name="sub_menu" id="sub_menu">
+                {{#.}}
+                    <option value="{{RoleId}}">{{RoldName}}</option>
+                {{/.}}
+            </select>
+        </td>
+    </tr>
+</script>
+

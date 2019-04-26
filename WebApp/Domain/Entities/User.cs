@@ -21,7 +21,7 @@ namespace Domain.Entities
 
 
         #region Relationship
-        public int RoleId { get; set; }
+        public Guid? RoleId { get; set; }
         public virtual Role Role { get; set; }
         public ICollection<LikeNumberProductUser> likeNumberProductUsers { get; set; }
         #endregion

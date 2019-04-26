@@ -1,0 +1,79 @@
+﻿@model Domain.Entities.User
+
+@{
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+    var lstUser = ViewBag.LstUser as IEnumerable<Domain.Entities.User>;
+}
+
+<h2>Quản lý nhân viên</h2>
+<br />
+@using (Html.BeginForm("EditRole", "SetRole", FormMethod.Post))
+{
+    <table class="table table-bordered table-hover">
+        <thread>
+            <tr style="text-align:center;">
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role.Name)
+                </th>
+            </tr>
+        </thread>
+
+        @foreach (var item in lstUser)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                @if (item.Id == Model.Id)
+                {
+                <td>
+                    @Html.Hidden("Id", item.Id)
+                    @Html.DropDownList("RoleId", null, new { @class = "form-control" })
+                    <input type="submit" class="btn btn-success" id="submitEditRole" value="Lưu" />
+                    <input type="button" class="btn btn-danger" value="Hủy" onclick="location.href='@Url.Content("/Admin/SetRole/Index")'"/>
+                </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role.Name)
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+}

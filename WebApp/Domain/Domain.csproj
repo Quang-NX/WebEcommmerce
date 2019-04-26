@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201904221355112_AddRoleTable.Designer.cs">
       <DependentUpon>201904221355112_AddRoleTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904250646579_abcd.cs" />
+    <Compile Include="Migrations\201904250646579_abcd.Designer.cs">
+      <DependentUpon>201904250646579_abcd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904221355112_AddRoleTable.resx">
       <DependentUpon>201904221355112_AddRoleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904250646579_abcd.resx">
+      <DependentUpon>201904250646579_abcd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
