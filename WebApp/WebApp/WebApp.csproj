@@ -147,16 +147,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SetRoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\ViewDto\UserDto.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\UserViewModel.cs" />
-    <Compile Include="Common\AccountLogin.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LikeProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManufactureController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
@@ -171,7 +170,6 @@
     <Compile Include="Models\ViewDto\UserDto.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModels\ItemGioHang.cs" />
-    <Compile Include="Models\ViewModels\LikeProduct.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ManufactureViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ProductViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\SupplierViewModel.cs" />
@@ -190,6 +188,7 @@
     <Content Include="Assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\fonts\slick.svg" />
     <Content Include="Assets\img\bg.jpg" />
+    <Content Include="Assets\img\favicon.ico" />
     <Content Include="Assets\img\hotdeal.png" />
     <Content Include="Assets\img\logo.jpg" />
     <Content Include="Assets\img\logo.png" />
@@ -293,7 +292,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -322,6 +320,7 @@
     <Content Include="Areas\Admin\Views\SetRole\IndexAjax.cshtml" />
     <Content Include="Areas\Admin\Views\SetRole\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SetRole\EditRole.cshtml" />
+    <Content Include="Areas\Admin\Views\Error\PageNotFounded.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -339,7 +338,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\sweetalert.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -350,8 +351,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
@@ -419,6 +418,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\img\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />

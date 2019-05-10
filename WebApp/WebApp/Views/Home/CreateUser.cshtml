@@ -18,40 +18,45 @@
         <div class="login-html">
 
             <div class="login-form">
-                
+
                 <div class="sign-in-htm">
 
                     @using (Html.BeginForm())
                     {
-                    <div class="form">
+                        <div class="form">
 
-                        <form class="login-form">
-                            <h3>Đăng kí</h3>
-                            <div class="group">
-                                @Html.LabelFor(model => model.UserName)
-                                @Html.EditorFor(m => m.UserName)
-                                <p id="TB_UserName" style="color:red;"></p>
+                            <form class="login-form">
+                                <h3>Đăng kí</h3>
+                                <div class="group">
+                                    @if (ViewBag.Notify != null)
+                                    {
+                                        <p style="color:red;">@ViewBag.Notify</p>
+                                    }
+
+                                    @Html.LabelFor(model => model.UserName)
+                                    @Html.EditorFor(m => m.UserName)
+                                    <p id="TB_UserName" style="color:red;"></p>
+                                </div>
+                                <div class="group">
+                                    @Html.LabelFor(model => model.Password)
+                                    @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password" } })
+                                    <p id="TB_Password" style="color:red;"></p>
+                                </div>
+                                <div class="group">
+                                    @Html.LabelFor(model => model.ConfirmPassword)
+                                    @Html.EditorFor(m => m.ConfirmPassword, new { htmlAttributes = new { @type = "password" } })
+                                    <p id="TB_ConfirmPassword" style="color:red;"></p>
+                                </div>
+                                <input type="submit" class="btn btn-success" value="Đăng kí" id="btnCreateAccount" />
+                            </form>
+                            <div class="pull-left back">
+                                <a href="/Home/Index">< Trang chủ</a>
                             </div>
-                            <div class="group">
-                                @Html.LabelFor(model => model.Password)
-                                @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password" } })
-                                <p id="TB_Password" style="color:red;"></p>
+                            <div class="pull-right back">
+                                <a href="/Home/Login">Đăng nhập >   </a>
                             </div>
-                            <div class="group">
-                                @Html.LabelFor(model => model.ConfirmPassword)
-                                @Html.EditorFor(m => m.ConfirmPassword, new { htmlAttributes = new { @type = "password" } })
-                                <p id="TB_ConfirmPassword" style="color:red;"></p>
-                            </div>
-                            <input type="submit" class="btn btn-success" value="Đăng kí" id="btnCreateAccount" />
-                        </form>
-                        <div class="pull-left back">
-                            <a href="/Home/Index">< Trang chủ</a>
                         </div>
-                        <div class="pull-right back">
-                            <a href="/Home/Login">Đăng nhập >   </a>
-                        </div>
-                    </div>
-                        
+
                     }
                 </div>
             </div>
@@ -60,4 +65,3 @@
     <script src="~/Assets/Index/Index.js"></script>
 </body>
 </html>
-

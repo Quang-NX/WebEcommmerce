@@ -85,18 +85,16 @@
     <Compile Include="Migrations\201904250646579_abcd.Designer.cs">
       <DependentUpon>201904250646579_abcd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905091136490_addvarchar.cs" />
+    <Compile Include="Migrations\201905091136490_addvarchar.Designer.cs">
+      <DependentUpon>201905091136490_addvarchar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Scripts\jquery-1.12.4.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-1.12.4.intellisense.js" />
-    <Content Include="Scripts\jquery-1.12.4.js" />
-    <Content Include="Scripts\jquery-1.12.4.min.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904100853046_addDb.resx">
@@ -110,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904250646579_abcd.resx">
       <DependentUpon>201904250646579_abcd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905091136490_addvarchar.resx">
+      <DependentUpon>201905091136490_addvarchar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

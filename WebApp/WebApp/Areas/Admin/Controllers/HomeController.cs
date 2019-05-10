@@ -31,9 +31,8 @@ namespace WebApp.Areas.Admin.Controllers
             User myuser = db.Users.SingleOrDefault(m => m.UserName.Equals(username) && m.Password.Equals(password));
             if(myuser!=null)
             {
-                var role = myuser.Role.Name;
-                
-                if(role==null)
+                var role = db.Roles.Where(r => r.Id==myuser.RoleId).Select(s=>s.Name).FirstOrDefault();
+                if(role == null)
                 {
                     return RedirectToAction("NotAccessAuthorize");
                 }

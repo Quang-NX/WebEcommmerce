@@ -19,7 +19,7 @@ namespace WebApp.Areas.Admin.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var product = db.Products.ToList();
+            var product = db.Products.OrderByDescending(o=>o.CreatedDate).ToList();
 
             var productViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(product);
             return View(productViewModel);

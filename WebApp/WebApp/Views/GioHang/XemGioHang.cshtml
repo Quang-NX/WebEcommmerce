@@ -42,7 +42,7 @@ else
 
         <div class="pull-right total-price">
 
-            <p>Tổng tiền : @ViewBag.TotalPrice.ToString("#,##") VNĐ</p>
+            <p>Tổng tiền : <span>@ViewBag.TotalPrice.ToString("#,##")</span> VNĐ</p>
         </div>
         <div class="divDatHang">
             @using (Html.BeginForm("DatHang", "GioHang"))
@@ -52,7 +52,7 @@ else
             {
 
                     <button class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDH" >Đặt hàng</button>
-                    @Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })
+                    @*@Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })*@
                 }
                 else
                 {
@@ -103,7 +103,7 @@ else
                         </div>
                         <div class="row btnUp">
                             <input class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDatHang" />
-                            @Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })
+                            @*@Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })*@
                         </div>
                     </div>
 

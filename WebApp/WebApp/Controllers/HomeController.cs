@@ -7,25 +7,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Web;
 using System.Web.Mvc;
 using WebApp.Areas.Admin.Models.ViewDto;
 using WebApp.Areas.Admin.Models.ViewModels;
-using WebApp.Common;
 using WebApp.Models.ViewDto;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        EcommerceDbContext db = new EcommerceDbContext();
+        private EcommerceDbContext db = new EcommerceDbContext();
 
         public ActionResult Index()
         {
-            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s => new ProductViewModel {
-                Id = s.Id, Name = s.Name, Price = s.Price, UrlImage = s.UrlImage, CategoryName = s.Category.Name }).Take(5);
+            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s => new ProductViewModel
+            {
+                Id = s.Id,
+                Name = s.Name,
+                Price = s.Price,
+                UrlImage = s.UrlImage,
+                CategoryName = s.Category.Name
+            }).Take(5);
 
-            ViewBag.ProductList = new List<ProductViewModel>(db.Products.OrderBy(p => p.CreatedDate).Select(s => new ProductViewModel {
+            ViewBag.ProductList = new List<ProductViewModel>(db.Products.OrderBy(p => p.CreatedDate).Select(s => new ProductViewModel
+            {
                 Id = s.Id,
                 Name = s.Name,
                 Price = s.Price,
@@ -37,55 +42,54 @@ namespace WebApp.Controllers
             ViewBag.DoHoa = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => s.UrlImage).FirstOrDefault();
 
             Session["GammingId"] = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
-            Session["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id}).FirstOrDefault().CategoryId;
+            Session["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
             Session["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
 
             return View(productList);
         }
 
-        //thêm sản phẩm yêu thích
-        //public ActionResult LikeProduct(Guid? id)
-        //{
-        //    if(id==null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-            
-        //}
-
         public ActionResult CreateUser()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult CreateUser(CreateUserDto loginDto)
         {
             User user = new User();
             if (ModelState.IsValid)
             {
-                if (loginDto.Password.Equals(loginDto.ConfirmPassword))
+                var username = db.Users.Select(s => s.UserName);
+                if (username.Contains(loginDto.UserName))
                 {
-                    user.UserName = loginDto.UserName;
-                    user.Password = loginDto.Password;
-                    db.Users.Add(user);
-                    db.SaveChanges();
-                    return RedirectToAction("Login", "Home");
+                    ViewBag.Notify = "Tên tài khoản đã được sử dụng.Vui lòng chọn tên khác !";
+                    return View("CreateUser",loginDto);
                 }
                 else
                 {
-                    return RedirectToAction("CreateUser", "Home", loginDto);
+                    if (loginDto.Password.Equals(loginDto.ConfirmPassword))
+                    {
+                        user.UserName = loginDto.UserName;
+                        user.Password = loginDto.Password;
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                        return RedirectToAction("Login", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("CreateUser", "Home", loginDto);
+                    }
                 }
             }
 
             return View(loginDto);
         }
 
-
-
         public ActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(LoginDto loginDto)
         {
@@ -101,11 +105,11 @@ namespace WebApp.Controllers
                 }
                 Session["GioHang"] = null;
                 return RedirectToAction("Index", "Home");
-
             }
 
             return RedirectToAction("Login");
         }
+
         public ActionResult Logout()
         {
             Session["username"] = null;
@@ -117,25 +121,13 @@ namespace WebApp.Controllers
         public ActionResult ListName(string q)
         {
             var lstName = db.Products.Where(m => m.Name.Contains(q)).Select(s => s.Name).ToList();
-            return Json(new {
-                data=lstName,
-                status=true
+            return Json(new
+            {
+                data = lstName,
+                status = true
             }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
         public ActionResult SearchPatialView()
         {
             var lstCategory = db.Categories.ToList();
@@ -143,28 +135,28 @@ namespace WebApp.Controllers
             return PartialView(lstCategory);
         }
 
-        public ActionResult ProductDetail(Guid? id,string sp)
+        public ActionResult ProductDetail(Guid? id, string sp)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var product = db.Products.Find(id);
-            if(product==null)
+            if (product == null)
             {
                 return HttpNotFound();
             }
             var productViewModel = Mapper.Map<ProductViewModel>(product);
             return View(productViewModel);
         }
+
         //phân trang
-        public ActionResult PageProductDetail(int? page,Guid Id)
-        {   
+        public ActionResult PageProductDetail(int? page, Guid Id)
+        {
             //ViewBag.ListManu = new List<ManufactureViewModel>(db.Manufacturers.Select(s => new ManufactureViewModel { Name = s.Name }));
 
             ViewBag.QuantityManu = new List<ManufactureDto>(db.Products.Join(db.Manufacturers, p => p.ManufacturerId, m => m.Id, (p, m) => new { p = p.productInStock, m = m.Name })
                 .ToList().GroupBy(model => model.m, (i, models) => new ManufactureDto { Name = i, QuantityManu = models.Sum(model => model.p) }));
-
 
             ViewBag.ListCate = new List<CategoryDto>(db.Products.Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
                 .GroupBy(model => model.c, (i, models) => new CategoryDto { Name = i, QuantityCate = models.Sum(model => model.p) }));
@@ -176,9 +168,10 @@ namespace WebApp.Controllers
             int pageNumber = (page ?? 1);
             //get Id Category
             ViewBag.CategoryId = Id;
-            
-            return View(lstProductViewModel.ToPagedList(pageNumber,pageSize));
+
+            return View(lstProductViewModel.ToPagedList(pageNumber, pageSize));
         }
+
         //phân trang
         public ActionResult Search(string keyword, int? page/*, FormCollection formCollection*/)
         {
@@ -199,14 +192,12 @@ namespace WebApp.Controllers
 
             //    listProduct = db.Products.Where(m => m.Name.Contains(keyword)).ToList();
             //}
-            
+
             ViewBag.QuantityManu = new List<ManufactureDto>(db.Products.Join(db.Manufacturers, p => p.ManufacturerId, m => m.Id, (p, m) => new { p = p.productInStock, m = m.Name })
                 .ToList().GroupBy(model => model.m, (i, models) => new ManufactureDto { Name = i, QuantityManu = models.Sum(model => model.p) }));
 
-
             ViewBag.ListCate = new List<CategoryDto>(db.Products.Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
                 .GroupBy(model => model.c, (i, models) => new CategoryDto { Name = i, QuantityCate = models.Sum(model => model.p) }));
-
 
             var listProduct = db.Products.Where(m => m.Name.Contains(keyword)).ToList();
             var lstProductViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(listProduct);
@@ -219,6 +210,7 @@ namespace WebApp.Controllers
             ViewBag.KeyWord = keyword;
             return View(lstProductViewModel.ToPagedList(pageNumber, pageSize));
         }
+
         public ActionResult GetFormEmail(FormCollection form)
         {
             string email = form["email"].ToString();
@@ -231,6 +223,7 @@ namespace WebApp.Controllers
                 "Quangquang99xx", content);
             return RedirectToAction("Index");
         }
+
         //gửi email
         public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
         {

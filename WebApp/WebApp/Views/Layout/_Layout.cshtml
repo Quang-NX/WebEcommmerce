@@ -13,6 +13,7 @@
     @*<link href="~/Assets/css/fontcss.css" rel="stylesheet" />*@
     <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="~/Assets/css/bootstrap.min.css" />
+    <link href="~/Assets/img/favicon.ico" rel="icon" type="image/x-icon" />
     <!-- Slick -->
     <link type="text/css" rel="stylesheet" href="~/Assets/css/slick.css" />
     <link type="text/css" rel="stylesheet" href="~/Assets/css/slick-theme.css" />
@@ -58,13 +59,13 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <!-- Wishlist -->
-                            <div>
+                            @*<div>
                                 <a href="#">
                                     <i class="fa fa-heart-o"></i>
                                     <span>Yêu thích</span>
                                     <div class="qty">2</div>
                                 </a>
-                            </div>
+                            </div>*@
                             <!-- /Wishlist -->
                             <div id="divGioHang">
                                 @Html.Action("GioHangPartial", "GioHang")

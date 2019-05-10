@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using WebApp.Areas.Admin.Models.ViewDto;
 using WebApp.Areas.Admin.Models.ViewModels;
@@ -16,6 +17,7 @@ namespace WebApp.Areas.Admin.Controllers
     public class SetRoleController : Controller
     {
         private EcommerceDbContext db = new EcommerceDbContext();
+        [Authorize(Roles ="Admin")]
         // GET: Admin/SetRole
         //vừa hiển thị dữ liệu người dùng vừa cấp quyền cho người dùng
         public ActionResult Index()
@@ -33,6 +35,10 @@ namespace WebApp.Areas.Admin.Controllers
         //hàm chỉnh sửa quyền cho nhân viên
         public ActionResult EditRole(Guid? Id)
         {
+            if(Id==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             //var id = form.GetValues("item.Id");
             //var roleId = form.GetValues("item.RoleId");
             var user = db.Users.Find(Id);

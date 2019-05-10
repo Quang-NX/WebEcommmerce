@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -9,11 +8,14 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Không thể truy cập</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
 </head>
 <body>
-    <div> 
+    <div>
         <h2>Bạn không có quyền truy cập.Vui lòng liên hệ Admin để được cấp truyền.</h2>
-        <a href="/Admin/Home/Login">Đăng nhập với tư cách là Nhân Viên hoặc Admin</a>
+        <button class="btn btn-success" onclick="history.back();">Quay lại</button>
     </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 </body>
 </html>

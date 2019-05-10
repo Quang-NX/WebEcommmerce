@@ -1,0 +1,21 @@
+﻿
+@{
+    
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>404-Không tìm thấy trang</title>
+</head>
+<body>
+    <div class="pageNotFound"> 
+        <center><h2>404 !</h2><h3>Rất tiếc trang web hiện không tồn tại hoặc đã bị thay đổi !</h3>
+                              <input type="button" class="btn btn-primary" onchange="location.href='@Request.UrlReferrer'"  value="Nhấn vào đây để quay trở lại !" />
+        </center>
+    </div>
+</body>
+</html>
