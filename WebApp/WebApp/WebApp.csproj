@@ -149,9 +149,13 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ErrorController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManagerOrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\SetRoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\ViewDto\UserDto.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\ManagerOrderViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\OrderDetailViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -176,6 +180,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Assets\css\css.css" />
     <Content Include="Assets\css\ajax-loader.gif" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\css.css" />
@@ -300,7 +305,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_AdminLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="fonts\slick.woff" />
     <Content Include="fonts\slick.ttf" />
     <Content Include="Assets\fonts\fontawesome-webfont.eot" />
@@ -321,6 +325,24 @@
     <Content Include="Areas\Admin\Views\SetRole\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SetRole\EditRole.cshtml" />
     <Content Include="Areas\Admin\Views\Error\PageNotFounded.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerOrder\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerOrder\_ManagerOrderPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerOrder\_OrderDetailPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\_Statistic.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\_GetPagingProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\_SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Manufacture\SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerOrder\SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\SetRole\SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistic\SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\SearchPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Error\SearchPartialView.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -389,9 +411,7 @@
   <ItemGroup>
     <Folder Include="AppFile\Images\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\LikeProduct\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Scripts\WebApp\" />
+    <Folder Include="Areas\Admin\Assets\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

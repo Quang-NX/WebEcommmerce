@@ -6,7 +6,9 @@
     WebGrid grid = new WebGrid(source: Model, rowsPerPage: 2);
 }
 @**Thực hiện hiển thị dữ liệu thông qua control WebGrid*@
-@grid.GetHtml(
+
+<div class="total-sales">
+    @grid.GetHtml(
     tableStyle:"gridTable",//class bao ngoài của bảng.có thể tùy chỉnh css
     headerStyle:"gridHeader",
     footerStyle:"gridFooter",
@@ -18,5 +20,37 @@
         grid.Column("Description","Mô tả",format:p=>@Html.Raw(p.Description)),
         grid.Column("UrlImage", "Hình ảnh", format: p => @Html.Raw("<img src=\"" + p.UrlImage + "\">"))
     ))
-
-
+    <div class="site-report">
+        <div class="alert-close3"> </div>
+        <h3>Thống kê</h3>
+        <div class="skills-top">
+            <h5>Sales</h5>
+            <h4>45%</h4>
+            <div class="clearfix"></div>
+            <div class="skills">
+                <div class="skill" style="width:45%"></div>
+            </div>
+        </div>
+        <div class="skills-top">
+            <h5>Revenue</h5>
+            <h4>68%</h4>
+            <div class="clearfix"></div>
+            <div class="skills">
+                <div class="skill1" style="width:68%"></div>
+            </div>
+        </div>
+        <div class="skills-top">
+            <h5>New Orders</h5>
+            <h4>89%</h4>
+            <div class="clearfix"></div>
+            <div class="skills">
+                <div class="skill2" style="width:89%"></div>
+            </div>
+        </div>
+        <p>It is a long established fact that a re-ader will be distracted by the readable content of a page when looking at its layout.</p>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div id="map" style="width:1425px;height:500px;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.9005222849705!2d105.77912431533231!3d21.03666599288339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b55a7e0e7f%3A0x9e45dc464f9aa4a3!2zMTQ0IFh1w6JuIFRo4buneSwgROG7i2NoIFbhu41uZyBI4bqtdSwgQ-G6p3UgR2nhuqV5LCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1557888172200!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>

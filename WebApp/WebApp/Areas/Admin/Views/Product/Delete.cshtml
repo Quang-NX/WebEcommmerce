@@ -114,7 +114,10 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <button class="btn btn-default">
+                @Html.ActionLink("Back to List", "Index",null, new { @style = "color:black;text-decoration:none;" })
+            </button>
         </div>
     }
 </div>
+<br />

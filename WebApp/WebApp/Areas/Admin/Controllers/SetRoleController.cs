@@ -17,7 +17,7 @@ namespace WebApp.Areas.Admin.Controllers
     public class SetRoleController : Controller
     {
         private EcommerceDbContext db = new EcommerceDbContext();
-        [Authorize(Roles ="Admin")]
+        
         // GET: Admin/SetRole
         //vừa hiển thị dữ liệu người dùng vừa cấp quyền cho người dùng
         public ActionResult Index()
@@ -31,7 +31,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             return View(lstUserViewModel);
         }
-
+        [Authorize(Roles = "Admin")]
         //hàm chỉnh sửa quyền cho nhân viên
         public ActionResult EditRole(Guid? Id)
         {
@@ -47,6 +47,7 @@ namespace WebApp.Areas.Admin.Controllers
             return View(user);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditRole(User user)
         {
             if(user==null)

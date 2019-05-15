@@ -107,6 +107,12 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-success">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @style = "color:black;text-decoration:none;" })
+    </button>
+    <button class="btn btn-danger">
+        @Html.ActionLink("Back to List", "Index",null, new { @style = "color:black;text-decoration:none;" })
+    </button>
+    
 </p>
+<br />

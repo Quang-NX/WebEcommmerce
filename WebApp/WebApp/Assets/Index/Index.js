@@ -64,6 +64,12 @@
         }
 
     });
+    $("#login").keypress(function (e) {
+        if (e.which === 13) {
+            $("#password").focus();
+            return false;
+        }
+    });
     $("#btnCreateAccount").click(function () {
         var bug = 0;
         if ($("#UserName").val() == '') {

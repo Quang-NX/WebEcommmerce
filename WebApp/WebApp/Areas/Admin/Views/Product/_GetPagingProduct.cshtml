@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<WebApp.Areas.Admin.Models.ViewModels.ProductViewModel>
+@using PagedList.Mvc
+
+
+<p>
+    <button class="btn btn-success addProduct" style="font-size:17px;">
+        @Html.ActionLink("Thêm mới", "Create", null, new { @style = "color:black;text-decoration:none;" })
+    </button>
+    
+</p>
+<span >
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+    @Html.PagedListPager(Model,page=>Url.Action("GetProductPagsing", new { page }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() {
+        HttpMethod="GET",UpdateTargetId= "productList"
+    }))
+</span>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Ngày hết hạn
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Thể loại
+        </th>
+        <th>
+            Nhà cung cấp
+        </th>
+        <th>
+            Nhà sản xuất
+        </th>
+        <th>
+            Số lượng tồn
+        </th>
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublicationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <img src="@item.UrlImage" style="width:100px;height:100px;">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufacturerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productInStock)
+            </td>
+            <td>
+                <button class="btn btn-success">@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }, new { @style = "color:black;text-decoration:none;" })</button>
+                <button class="btn btn-default">@Html.ActionLink("Chi tiết", "Details", new { id = item.Id }, new { @style = "color:black;text-decoration:none;" })</button>
+                <button class="btn btn-danger">@Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @style = "color:black;text-decoration:none;" })</button>
+            </td>
+        </tr>
+    }
+</table>
+<br />
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+@Html.PagedListPager(Model,page=>Url.Action("GetProductPagsing", new { page }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() {
+        HttpMethod="GET",UpdateTargetId= "productList"
+    }))

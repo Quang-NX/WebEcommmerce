@@ -1,0 +1,24 @@
+﻿@model PagedList.IPagedList<WebApp.Areas.Admin.Models.ViewModels.ProductViewModel>
+@using PagedList.Mvc
+
+@{
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
+<div class="container-fluid danhmuc">
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Sản phẩm", "Index", "Product")</li>
+            <li>@Html.ActionLink("Nhà sản xuất", "Index", "Manufacture")</li>
+            <li>@Html.ActionLink("Nhà cung cấp", "Index", "Supplier")</li>
+        </ul>
+    </div>
+</div>
+<br />
+<h2>SẢN PHẨM</h2>
+
+
+<div id="productList">
+    @{
+        Html.RenderAction("SearchList", "Home", new { keyword=Session["keyword"] as string, page = 1 });
+    }
+</div>

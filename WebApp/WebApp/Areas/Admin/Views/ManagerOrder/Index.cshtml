@@ -1,0 +1,13 @@
+﻿@model PagedList.IPagedList<WebApp.Areas.Admin.Models.ViewModels.ManagerOrderViewModel>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
+
+
+<div id="managerOrder">
+    @{ 
+        Html.RenderAction("GetPagsing", "ManagerOrder", new { page = 1 });
+    }
+</div>

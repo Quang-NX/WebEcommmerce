@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain;
 using Domain.Entities;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,12 +20,17 @@ namespace WebApp.Areas.Admin.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var product = db.Products.OrderByDescending(o=>o.CreatedDate).ToList();
+            return View();
+        }
+        public ActionResult GetProductPagsing(int? page)
+        {
+            var product = db.Products.OrderByDescending(o => o.CreatedDate).Where(w => w.IsDeleted == false).ToList();
 
             var productViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(product);
-            return View(productViewModel);
+            var pageSize = 5;
+            var pageNumber = page ?? 1;
+            return PartialView("_GetPagingProduct", productViewModel.ToPagedList(pageNumber, pageSize));
         }
-
         // GET: Products/Details/5
         public ActionResult Details(Guid? id)
         {
@@ -178,7 +184,7 @@ namespace WebApp.Areas.Admin.Controllers
                     return HttpNotFound();
                 }
 
-                db.Products.Remove(product);
+                product.IsDeleted = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

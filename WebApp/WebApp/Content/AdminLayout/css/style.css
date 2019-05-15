@@ -10,12 +10,41 @@ body{
 	font-family: 'Open Sans', sans-serif;
 	background:#f0f7f5;
 }
+
+.logo img {
+    width: 200px;
+}
 body a{
     transition:0.5s all;
 	-webkit-transition:0.5s all;
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
+}
+
+.search2 input#txtkeyword {
+    outline: none;
+    color: #fff;
+    background: none;
+    font-size: 1.8em;
+    border: none;
+    width: 80%;
+    height: 45px;
+    font-weight: 300;
+}
+    .danhmuc ul li a:hover {
+    background: #f0f7f5;
+    color:brown;
+    transition:0.4s;
+}
+.user-trends td, th {
+    text-align: center;
+}
+.danhmuc ul li a {
+    color: black;
+}
+.danhmuc ul li a {
+    color: black;
 }
 input#submitEditRole {
     margin-left: 5%;
@@ -154,11 +183,11 @@ label{
 }
 /*-----start-header----*/
 .side-bar {
-	background:#1C445F;
-	padding:0;
-	min-height: 2500px;
-	width:22%;
-	margin-right:2%;
+    background: #1C445F;
+    padding: 0;
+    min-height: 1580px;
+    width: 22%;
+    margin-right: 2%;
 }
 .content {
 	padding:0;
@@ -168,9 +197,18 @@ label{
 	margin:2em 1em;
 }
 .logo {
-    padding:3em 0;
-	background:#2F5671;
-	margin-bottom:5em;
+    background:#2F5671;
+    margin-bottom: 1em;
+}
+#productList table.table.table-bordered {
+    background: white;
+    width: 100%;
+    float: left;
+}
+#productList table {
+    background: white;
+    width: 100%;
+    float: left;
 }
 .navigation h3 {
 	background:#2F5671;
@@ -180,6 +218,7 @@ label{
 	font-weight:600;
 	padding-left:2.5em;
 	margin-bottom:1em;
+    cursor:pointer;
 }
 .navigation ul {
 	padding-left:4em;
@@ -445,13 +484,13 @@ i.faq {
 	  margin-right: 1%;
 	  min-height: 110px;
 }
-.search{
-	width: 32.66%;
-	background: #2e9df7;
-	padding: 1.7em 1.5em 0 1.5em;
-	float: left;
-	margin-right: 1%;
-	min-height: 110px;
+.search {
+    width: 65%;
+    background: #2e9df7;
+    padding: 1.7em 1.5em 0 1.5em;
+    float: left;
+    margin-right: 1%;
+    min-height: 110px;
 }
 .member{
 	width: 32.66%;
@@ -781,12 +820,12 @@ p.home a {
 	margin:2em 0;
 }
 .visitors {
-	width: 23.5%;
-	margin-right:0%;
-	background:#3f4e62;
-	padding:1.8em 2em;
-	float:left;
-	cursor: pointer;
+    width: 20%;
+    margin-right: 0%;
+    background: #3f4e62;
+    padding: 1.8em 2em;
+    float: left;
+    cursor: pointer;
 }
 i.user1 {
 	width: 60px;
@@ -813,27 +852,24 @@ i.dollar {
 	display: inline-block;
 }
 .sales {
-	width:23.5%;
-	margin-right:2%;
-	background:#16a085;
-	padding:1.8em 1.5em;
-	float:left;
-	  cursor: pointer;
+    width: 20%;
+    background: #16a085;
+    padding: 1.8em 1.5em;
+    float: left;
+    cursor: pointer;
 }
 .orders {
-	width:23.5%;
-	margin-right:2%;
-	background:#418bca;
-	padding:1.8em 1.5em;
-	float:left;
-	  cursor: pointer;
+    width: 20%;
+    background: #418bca;
+    padding: 1.8em 1.5em;
+    float: left;
+    cursor: pointer;
 }
 .new-users {
-	width:23.5%;
+	width:20%;
 	background:#e05d6f;
 	padding:1.8em 01.5em;
 	float:left;
-	margin-right:2%;
 	  cursor: pointer;
 }
 .icon {
@@ -843,12 +879,12 @@ i.dollar {
 .icon-text {
 	float:left;
 }
-.visitors h3,.sales h3,.new-users h3,.orders h3 {
-	color:#fff;
-	text-align:center;
-	font-size:2.6em;
-	font-weight:500;
-	letter-spacing:1px;
+.visitors h4, .sales h4, .new-users h4, .orders h4 {
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 1px;
 }
 .visitors p,.sales p,.new-users p,.orders p {
 	float:left;
@@ -1408,8 +1444,13 @@ button.btn.btn-success.addProduct {
 	position:relative;
 	float:left
 }
-    .user-trends table {
+#map iframe {
+    width: 1425px;
+}
+    .user-trends .gridTable {
         background: white;
+        width: 64%;
+        float: left;
     }
 .footer {
 	padding:2em 0;

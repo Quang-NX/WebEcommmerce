@@ -10,10 +10,20 @@
     <title>Không thể truy cập</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.js"></script>
+    <style>
+        .Error404 {
+            position: absolute;
+            top: 10%;
+            left: 30%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <div class="Error404">
         <h2>Bạn không có quyền truy cập.Vui lòng liên hệ Admin để được cấp truyền.</h2>
+        <p>Hoặc đăng nhập với tài khoản đã được cấp quyền.</p>
+        <button class="btn btn-success" onclick="location.href='@Url.Content("/Admin/Home/Login")'">Đăng nhập</button>
         <button class="btn btn-success" onclick="history.back();">Quay lại</button>
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>

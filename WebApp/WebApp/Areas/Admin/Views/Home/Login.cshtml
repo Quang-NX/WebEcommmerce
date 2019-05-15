@@ -7,47 +7,35 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-
-    <link href="~/Assets/css/css.css" rel="stylesheet" />
-    <script src="~/Assets/js/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="~/Areas/Admin/Assets/css/css.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="login-wrap">
-        <div class="login-html">
-
-            <div class="login-form" style="display:block;">
-                <div class="sign-in-htm">
-                    @using (Html.BeginForm())
-                    {
-
-                        <div class="login-page">
-                            <h3>Đăng nhập</h3>
-                            <div class="form">
-                                <form class="login-form">
-                                    <div class="group">
-                                        @Html.LabelFor(model => model.UserName)
-                                        @Html.EditorFor(m => m.UserName)
-                                        <p id="TB_username" style="color:red;"></p>
-                                    </div>
-                                    <div class="group">
-                                        @Html.LabelFor(model => model.Password)
-                                        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password" } })
-                                        <p id="TB_password" style="color:red;"></p>
-                                    </div>
-                                    <input type="submit" id="btnDangNhap" value="Đăng nhập" class="btn btn-success" />
-                                    <p class="message"><a href="/Admin/Home/CreateUser">Quên mật khẩu?</a></p>
-                                </form>
-                                <p style="color:red;">@ViewBag.ThongBao</p>
-                            </div>
-                            <div class="pull-left back">
-                                <a href="/Admin/Home/Index">Quay lại</a>
-                            </div>
-                        </div>
-                    }
-                </div>
-
+<body style="background-color:rgb(110, 195, 255)">
+    <!------ Include the above in your HEAD tag ---------->
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="~/Assets/img/logo1.png" id="icon" alt="User Icon" />
+                
+            </div>
+            <h2>Đăng nhập</h2>
+            <!-- Login Form -->
+            @using (Html.BeginForm())
+            {
+                @Html.EditorFor(m => m.UserName, new { htmlAttributes = new { @class = "fadeIn second", @id = "login" } })
+                <p id="TB_username" style="color:red;"></p>
+                @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password", @class = "fadeIn third", @id = "password" } })
+                <p id="TB_password" style="color:red;"></p>
+                <input type="submit" class="fadeIn fourth" value="Đăng nhập" id="btnDangNhap">
+            }
+            <p style="color:red;">@ViewBag.ThongBao</p>
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Quên mật khẩu?</a>
             </div>
         </div>
     </div>

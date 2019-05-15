@@ -38,5 +38,6 @@ jQuery(document).ready(function($){
 		} else {
 			tabs.parent('.cd-tabs').removeClass('is-ended');
 		}
-	}
+    }
+    
 });

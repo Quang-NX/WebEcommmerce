@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WebApp.Areas.Admin.Models.ViewModels.OrderDetailViewModel>
+@{
+    double TotalPrice = 0;
+    int Quantity = 0;
+}
+<h3><a style="text-decoration:none;" href="/Admin/ManagerOrder/Index">Danh sách đơn hàng</a> > <span style="font-weight:bold">Chi tiết đơn hàng</span></h3>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Tên sản phẩm</th>
+        <th>Hình ảnh</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.Product.Name</td>
+        <td ><img style="width:50px;height:50px;" src="@item.Product.UrlImage"  /></td>
+        <td>@item.QuantityProduct</td>
+        <td>@(item.BuyPrice * item.QuantityProduct) VNĐ</td>
+    </tr>
+
+        TotalPrice += item.BuyPrice * item.QuantityProduct;
+        Quantity += item.QuantityProduct;
+    }
+</table>
+
+<p style="font-weight:bold;font-size:20px">Số lượng : @Quantity</p>
+<p style="font-weight:bold;font-size:20px">Tổng tiền : @TotalPrice.ToString("##,#") VNĐ</p>
+<br />

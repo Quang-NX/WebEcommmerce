@@ -20,7 +20,7 @@ namespace WebApp.Controllers
 
         public ActionResult Index()
         {
-            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s => new ProductViewModel
+            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Where(w=>w.IsDeleted==false).Select(s => new ProductViewModel
             {
                 Id = s.Id,
                 Name = s.Name,
@@ -29,7 +29,7 @@ namespace WebApp.Controllers
                 CategoryName = s.Category.Name
             }).Take(5);
 
-            ViewBag.ProductList = new List<ProductViewModel>(db.Products.OrderBy(p => p.CreatedDate).Select(s => new ProductViewModel
+            ViewBag.ProductList = new List<ProductViewModel>(db.Products.OrderBy(p => p.CreatedDate).Where(w=>w.IsDeleted==false).Select(s => new ProductViewModel
             {
                 Id = s.Id,
                 Name = s.Name,
@@ -37,13 +37,13 @@ namespace WebApp.Controllers
                 UrlImage = s.UrlImage,
                 CategoryName = s.Category.Name
             }).Take(5));
-            ViewBag.Gamming = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => s.UrlImage).FirstOrDefault();
-            ViewBag.DoanhNhan = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => s.UrlImage).FirstOrDefault();
-            ViewBag.DoHoa = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => s.UrlImage).FirstOrDefault();
+            ViewBag.Gamming = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Where(w => w.IsDeleted == false).Select(s => s.UrlImage).FirstOrDefault();
+            ViewBag.DoanhNhan = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Where(w => w.IsDeleted == false).Select(s => s.UrlImage).FirstOrDefault();
+            ViewBag.DoHoa = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Where(w => w.IsDeleted == false).Select(s => s.UrlImage).FirstOrDefault();
 
-            Session["GammingId"] = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
-            Session["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
-            Session["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
+            Session["GammingId"] = db.Products.Where(s => s.Category.Name.Equals("Gamming")).Where(w => w.IsDeleted == false).Select(s => new ProductViewModel { CategoryId = s.CategoryId }).FirstOrDefault().CategoryId;
+            Session["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Where(w => w.IsDeleted == false).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
+            Session["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Where(w => w.IsDeleted == false).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
 
             return View(productList);
         }
@@ -120,7 +120,7 @@ namespace WebApp.Controllers
         //list name product
         public ActionResult ListName(string q)
         {
-            var lstName = db.Products.Where(m => m.Name.Contains(q)).Select(s => s.Name).ToList();
+            var lstName = db.Products.Where(m => m.Name.Contains(q) && m.IsDeleted==false).Select(s => s.Name).ToList();
             return Json(new
             {
                 data = lstName,
@@ -158,10 +158,10 @@ namespace WebApp.Controllers
             ViewBag.QuantityManu = new List<ManufactureDto>(db.Products.Join(db.Manufacturers, p => p.ManufacturerId, m => m.Id, (p, m) => new { p = p.productInStock, m = m.Name })
                 .ToList().GroupBy(model => model.m, (i, models) => new ManufactureDto { Name = i, QuantityManu = models.Sum(model => model.p) }));
 
-            ViewBag.ListCate = new List<CategoryDto>(db.Products.Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
+            ViewBag.ListCate = new List<CategoryDto>(db.Products.Where(w => w.IsDeleted == false).Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
                 .GroupBy(model => model.c, (i, models) => new CategoryDto { Name = i, QuantityCate = models.Sum(model => model.p) }));
 
-            var listProduct = db.Products.Where(p => p.Category.Id.Equals(Id)).ToList();
+            var listProduct = db.Products.Where(p => p.Category.Id.Equals(Id) && p.IsDeleted==false).ToList();
             var lstProductViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(listProduct);
             int pageSize = 2;
             //toán tử tương đương với nếu page!=null thì pageNumber =1 ngược lại =page
@@ -193,13 +193,13 @@ namespace WebApp.Controllers
             //    listProduct = db.Products.Where(m => m.Name.Contains(keyword)).ToList();
             //}
 
-            ViewBag.QuantityManu = new List<ManufactureDto>(db.Products.Join(db.Manufacturers, p => p.ManufacturerId, m => m.Id, (p, m) => new { p = p.productInStock, m = m.Name })
+            ViewBag.QuantityManu = new List<ManufactureDto>(db.Products.Where(w => w.IsDeleted == false).Join(db.Manufacturers, p => p.ManufacturerId, m => m.Id, (p, m) => new { p = p.productInStock, m = m.Name })
                 .ToList().GroupBy(model => model.m, (i, models) => new ManufactureDto { Name = i, QuantityManu = models.Sum(model => model.p) }));
 
-            ViewBag.ListCate = new List<CategoryDto>(db.Products.Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
+            ViewBag.ListCate = new List<CategoryDto>(db.Products.Where(w => w.IsDeleted == false).Join(db.Categories, p => p.CategoryId, c => c.Id, (p, c) => new { p = p.productInStock, c = c.Name }).ToList()
                 .GroupBy(model => model.c, (i, models) => new CategoryDto { Name = i, QuantityCate = models.Sum(model => model.p) }));
 
-            var listProduct = db.Products.Where(m => m.Name.Contains(keyword)).ToList();
+            var listProduct = db.Products.Where(m => m.Name.Contains(keyword) && m.IsDeleted==false).ToList();
             var lstProductViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(listProduct);
             int pageSize = 2;
             //toán tử tương đương với nếu page!=null thì pageNumber =1 ngược lại =page

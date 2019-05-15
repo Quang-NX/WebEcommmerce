@@ -2,14 +2,25 @@
 
 @{
     ViewBag.Title = "Nhà sản xuất";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
 }
 
-
+<div class="container-fluid danhmuc">
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Sản phẩm", "Index", "Product")</li>
+            <li>@Html.ActionLink("Nhà sản xuất", "Index", "Manufacture")</li>
+            <li>@Html.ActionLink("Nhà cung cấp", "Index", "Supplier")</li>
+        </ul>
+    </div>
+</div>
+<br />
 <h2>NHÀ SẢN XUẤT</h2>
 
 <p>
-    @Html.ActionLink("Tạo mới", "Create")
+    <button class="btn btn-success addProduct" style="font-size:17px;">
+        @Html.ActionLink("Thêm mới", "Create")
+    </button>
 </p>
 <table class="table">
     <tr>

@@ -211,7 +211,7 @@
                         var currentPage = Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber;
                     }
                     <ul class="store-pagination">
-                        <li><a href="@Url.Action("PageProductDetail", new { page = ((currentPage-1)==0)?currentPage=1:currentPage-=1, Id = ViewBag.CategoryId })"><i class="fa fa-angle-left"></i></a></li>
+                        <li><a href="@Url.Action("PageProductDetail", new { page = ((currentPage - 1) <=0) ? currentPage = Model.PageSize+1 : currentPage -= 1 })"><i class="fa fa-angle-left"></i></a></li>
                         @for (int vip = 1; vip <= Model.PageCount; vip++)
                         {
                             if (vip == (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber))
