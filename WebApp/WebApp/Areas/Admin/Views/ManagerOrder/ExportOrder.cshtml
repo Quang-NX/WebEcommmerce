@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Domain.Entities.OrderDetails>
+@using Domain.Entities
+@using WebApp.Models.ViewDto
+@{
+    Layout = null;
+    double Price = 0;
+    var customer = ViewBag.Customer;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Đơn thanh toán</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        .invoice-title h2, .invoice-title h3 {
+            display: inline-block;
+        }
+
+        .table > tbody > tr > .no-line {
+            border-top: none;
+        }
+
+        .table > thead > tr > .no-line {
+            border-bottom: none;
+        }
+
+        .table > tbody > tr > .thick-line {
+            border-top: 2px solid;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="invoice-title">
+                    <h2><img src="~/Assets/img/logo1.png" style="width:100px;height:100px;" alt="Alternate Text" />UETShop</h2><h3 style="margin-top:5%;" class="pull-right">HÓA ĐƠN</h3>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <address>
+                            <strong>Nơi vận chuyển :</strong><br>
+                            UETShop<br>
+                            144,Xuân Thủy,Cầu Giấy,Hà Nội<br>
+                        </address>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <address>
+                            <strong>Nơi nhận:</strong><br>@customer.Address
+                            <br>
+                            SĐT : @customer.PhoneNumber<br>
+                        </address>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <address>
+                            <strong>Hình thức thành toán:</strong><br>
+                            Thanh toán khi nhận hàng<br>
+                        </address>
+                        <address>
+                            <strong>Mã:</strong><br>
+                            @customer.OrderId<br><br>
+                        </address>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <address>
+                            <strong>Ngày đặt:</strong><br>
+                            @customer.OrderDate<br><br>
+                        </address>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Chi tiết hóa đơn</strong></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <td><strong>Sản phẩm</strong></td>
+                                        <td class="text-center"><strong>Hình ảnh</strong></td>
+                                        <td class="text-center"><strong>Giá</strong></td>
+
+                                        <td class="text-center"><strong>Số lượng</strong></td>
+                                        <td class="text-right"><strong>Thành tiền</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>@item.Product.Name</td>
+                                        <td><img style="width:100px;height:100px;" src="@Url.Content(item.Product.UrlImage)" alt="Hình ảnh" /></td>
+                                        <td class="text-center">@item.BuyPrice.ToString("##,#") VNĐ</td>
+                                        <td class="text-center">@item.QuantityProduct</td>
+                                        @{
+                                            double TotalPrice = item.QuantityProduct * item.BuyPrice;
+                                            Price += TotalPrice;
+                                        }
+                                        <td class="text-right">@TotalPrice.ToString("##,#") VNĐ</td>
+                                    </tr>
+                                    }
+
+                                    <tr>
+                                        <td class="thick-line"></td>
+                                        <td class="thick-line"></td>
+                                        <td class="thick-line"></td>
+                                        <td class="thick-line text-center"><strong>Tổng tiền</strong></td>
+                                        <td class="thick-line text-right" style="font-weight:bold;">@Price.ToString("##,#") VNĐ</td>
+                                    </tr>
+                                    @*<tr>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-center"><strong>Shipping</strong></td>
+                                            <td class="no-line text-right">$15</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-center"><strong>Total</strong></td>
+                                            <td class="no-line text-right">$685.99</td>
+                                        </tr>*@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

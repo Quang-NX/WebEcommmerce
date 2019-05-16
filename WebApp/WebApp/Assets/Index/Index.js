@@ -15,6 +15,9 @@
             }
         });
     });
+    $("#divScrollTop").click(function () {
+        $("body,html").animate({scrollTop:0},500);
+    });
     //$(".add-to-cart-btn").click(function () {
     //    var id = $(this).find("input").val();
     //    $(".loader").show();
@@ -31,9 +34,15 @@
     //        }
     //    });
     //});
-    $(".logo").click(function () {
-        window.location.href = "/Home/Index";
-    });
+    //$(".logo").click(function () {
+    //    window.location.href = "";
+    //});
+    //$(".logo").click(function () {
+    //    var href = $(this).attr("href");
+    //    if (href.indexOf("javascript") >= 0)
+    //        return;
+    //    history.pushState(null, $(this).html, href);
+    //});
     $(".hien").click(function () {
         $(this).addClass("active");
     });

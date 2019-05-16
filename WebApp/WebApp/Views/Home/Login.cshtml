@@ -16,41 +16,68 @@
 <body>
     <div class="login-wrap">
         <div class="login-html">
-            
+
             <div class="login-form" style="display:block;">
                 <div class="sign-in-htm">
                     @using (Html.BeginForm())
                     {
 
-                    <div class="login-page">
-                        <h3>Đăng nhập</h3>
-                        <div class="form">
-                            <form class="login-form">
-                                <div class="group">
-                                    @Html.LabelFor(model => model.UserName)
-                                    @Html.EditorFor(m => m.UserName)
-                                    <p id="TB_username" style="color:red;"></p>
-                                </div>
-                                <div class="group">
-                                    @Html.LabelFor(model => model.Password)
-                                    @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password" } })
-                                    <p id="TB_password" style="color:red;"></p>
-                                </div>
-                                <input type="submit" id="btnDangNhap" value="Đăng nhập" class="btn btn-success" />
-                                <p class="message">Chưa đăng kí? <a href="/Home/CreateUser">Tạo tài khoản mới </a></p>
-                            </form>
-                            
-                        </div>
-                        <div class="pull-left back">
+                        <div class="login-page">
+                            <h3>Đăng nhập</h3>
+                            <div class="form">
+                                <form class="login-form">
+                                    <div class="group">
+                                        @Html.LabelFor(model => model.UserName)
+                                        @Html.EditorFor(m => m.UserName)
+                                        <p id="TB_username" style="color:red;"></p>
+                                    </div>
+                                    <div class="group">
+                                        @Html.LabelFor(model => model.Password)
+                                        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password" } })
+                                        <p id="TB_password" style="color:red;"></p>
+                                    </div>
+                                    <input type="submit" id="btnDangNhap" value="Đăng nhập" class="btn btn-success" />
+                                    <p class="message">Chưa đăng kí? <a href="/Home/CreateUser">Tạo tài khoản mới </a></p>
+                                </form>
+                            </div>
+                            <div class="pull-left back">
                                 <a href="/Home/Index"> Trang chủ</a>
                             </div>
-                    </div>
+                        </div>
                     }
                 </div>
-                
             </div>
         </div>
     </div>
-    <script src="~/Assets/Index/Index.js"></script>
-</body> 
+    <script>
+        $("#btnDangNhap").click(function () {
+            var bug = 0;
+            if ($("#UserName").val() == '') {
+                $("#TB_username").text("Tên đăng nhập không được bỏ trống");
+                bug++;
+            }
+            else {
+                $("#TB_username").text("");
+            }
+            $("#UserName").keypress(function (e) {
+                if (e.which === 13 || e.which === 40) {
+                    $("#Password").focus();
+                }
+            });
+            if ($("#Password").val() == '') {
+                $("#TB_password").text("Mật khẩu không được để trống");
+                bug++;
+            }
+            else {
+                $("#TB_password").text("");
+            }
+
+            if (bug != 0) {
+                //ngăn form submit
+                return false;
+            }
+
+        });
+    </script>
+</body>
 </html>

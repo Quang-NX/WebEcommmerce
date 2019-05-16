@@ -2,7 +2,9 @@
 @{
     double TotalPrice = 0;
     int Quantity = 0;
+    Guid? id = new Guid();
 }
+
 <h3><a style="text-decoration:none;" href="/Admin/ManagerOrder/Index">Danh sách đơn hàng</a> > <span style="font-weight:bold">Chi tiết đơn hàng</span></h3>
 <br />
 <table class="table table-bordered">
@@ -14,18 +16,36 @@
     </tr>
     @foreach (var item in Model)
     {
-    <tr>
-        <td>@item.Product.Name</td>
-        <td ><img style="width:50px;height:50px;" src="@item.Product.UrlImage"  /></td>
-        <td>@item.QuantityProduct</td>
-        <td>@(item.BuyPrice * item.QuantityProduct) VNĐ</td>
-    </tr>
+        <tr>
+            <td>@item.Product.Name</td>
+            <td><img style="width:50px;height:50px;" src="@item.Product.UrlImage" /></td>
+            <td>@item.QuantityProduct</td>
+            <td>@(item.BuyPrice * item.QuantityProduct) VNĐ</td>
+        </tr>
 
         TotalPrice += item.BuyPrice * item.QuantityProduct;
         Quantity += item.QuantityProduct;
+        id = item.OrderId;
     }
 </table>
 
 <p style="font-weight:bold;font-size:20px">Số lượng : @Quantity</p>
 <p style="font-weight:bold;font-size:20px">Tổng tiền : @TotalPrice.ToString("##,#") VNĐ</p>
 <br />
+<button class=" btn btn-success">
+    @Html.ActionLink("In Hóa Đơn", "ExportFilePDF", "ManagerOrder", new { Id = id }, new { @style = "text-decoration:none;color:white;", @class = "Invoice" })
+</button>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(function () {
+        $(".Invoice").click(function () {
+            swal({
+                title: "Thành công !",
+                text: "Đã in hóa đơn !",
+                icon: "success",
+                button: "OK!",
+            });
+        });
+    });
+</script>

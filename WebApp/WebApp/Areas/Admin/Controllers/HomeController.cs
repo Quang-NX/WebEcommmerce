@@ -39,7 +39,7 @@ namespace WebApp.Areas.Admin.Controllers
                 var role = db.Roles.Where(r => r.Id==myuser.RoleId).Select(s=>s.Name).FirstOrDefault();
                 if(role == null)
                 {
-                    return Redirect("NotAccessAuthorize");
+                    return RedirectToAction("NotAccessAuthorize");
                 }
                 AuthorizeUser(username, role);
                 Session["UserName"] = username;

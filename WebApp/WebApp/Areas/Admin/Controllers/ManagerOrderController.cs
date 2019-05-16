@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Domain;
 using PagedList;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApp.Areas.Admin.Models.ViewDto;
 using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
@@ -53,6 +55,38 @@ namespace WebApp.Areas.Admin.Controllers
             var orderDetails = db.OrderDetails.Where(od => od.OrderId == id).OrderByDescending(o=>o.CreatedDate).ToList();
             var orderDetailsViewModel = Mapper.Map<IEnumerable<OrderDetailViewModel>>(orderDetails);
             return PartialView("_OrderDetailPartialView", orderDetailsViewModel);
+        }
+        //thiết kế giao diện hóa đơn
+        public ActionResult ExportOrder(Guid? Id)
+        {
+            var lstOrder = db.OrderDetails.Where(w => w.OrderId == Id).ToList();
+
+            var customer = db.Orders.Join(db.Customers, o => o.CustomerId, c => c.Id, (o, c) => new
+            {
+                Name = c.CustomerName,
+                Address = c.Address,
+                PhoneNumber = c.PhoneNumber,
+                OrderDate = o.OrderDate,
+                OrderId = o.Id
+            }).ToList().Where(w=>w.OrderId==Id).FirstOrDefault();
+            OrderDetailDto orderDetailDto = new OrderDetailDto();
+            orderDetailDto.CustomerName = customer.Name;
+            orderDetailDto.Address = customer.Address;
+            orderDetailDto.PhoneNumber = customer.PhoneNumber;
+            orderDetailDto.OrderDate = customer.OrderDate;
+            orderDetailDto.OrderId = customer.OrderId;
+
+            ViewBag.Customer = orderDetailDto;
+            return View(lstOrder);
+        }
+        public ActionResult ExportFilePDF(Guid? Id)
+        {
+            TempData["OrderId"] = Id;
+            ActionAsPdf result = new ActionAsPdf("ExportOrder", new { Id=Id})
+            {
+                FileName = Server.MapPath("~/Assets/Invoice.pdf")
+            };
+            return result;
         }
     }
 }

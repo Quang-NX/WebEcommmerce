@@ -20,47 +20,47 @@ $(document).ready( function() {
   // then onMonthChange (if the month changed).
   // finally onYearChange (if the year changed).
 
-  calendars.clndr1 = $('.cal1').clndr({
-    events: eventArray,
-    // constraints: {
-    //   startDate: '2013-11-01',
-    //   endDate: '2013-11-15'
-    // },
-    clickEvents: {
-      click: function(target) {
-        console.log(target);
-        if($(target.element).hasClass('inactive')) {
-          console.log('not a valid datepicker date.');
-        } else {
-          console.log('VALID datepicker date.');
-        }
-      },
-      nextMonth: function() {
-        console.log('next month.');
-      },
-      previousMonth: function() {
-        console.log('previous month.');
-      },
-      onMonthChange: function() {
-        console.log('month changed.');
-      },
-      nextYear: function() {
-        console.log('next year.');
-      },
-      previousYear: function() {
-        console.log('previous year.');
-      },
-      onYearChange: function() {
-        console.log('year changed.');
-      }
-    },
-    multiDayEvents: {
-      startDate: 'startDate',
-      endDate: 'endDate'
-    },
-    showAdjacentMonths: true,
-    adjacentDaysChangeMonth: false
-  });
+  //calendars.clndr1 = $('.cal1').clndr({
+  //  events: eventArray,
+  //  // constraints: {
+  //  //   startDate: '2013-11-01',
+  //  //   endDate: '2013-11-15'
+  //  // },
+  //  clickEvents: {
+  //    click: function(target) {
+  //      console.log(target);
+  //      if($(target.element).hasClass('inactive')) {
+  //        console.log('not a valid datepicker date.');
+  //      } else {
+  //        console.log('VALID datepicker date.');
+  //      }
+  //    },
+  //    nextMonth: function() {
+  //      console.log('next month.');
+  //    },
+  //    previousMonth: function() {
+  //      console.log('previous month.');
+  //    },
+  //    onMonthChange: function() {
+  //      console.log('month changed.');
+  //    },
+  //    nextYear: function() {
+  //      console.log('next year.');
+  //    },
+  //    previousYear: function() {
+  //      console.log('previous year.');
+  //    },
+  //    onYearChange: function() {
+  //      console.log('year changed.');
+  //    }
+  //  },
+  //  multiDayEvents: {
+  //    startDate: 'startDate',
+  //    endDate: 'endDate'
+  //  },
+  //  showAdjacentMonths: true,
+  //  adjacentDaysChangeMonth: false
+  //});
 
   // calendars.clndr2 = $('.cal2').clndr({
   //   template: $('#template-calendar').html(),

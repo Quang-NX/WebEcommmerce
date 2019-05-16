@@ -14,6 +14,7 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SetRoleController : Controller
     {
         private EcommerceDbContext db = new EcommerceDbContext();
@@ -31,7 +32,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             return View(lstUserViewModel);
         }
-        [Authorize(Roles = "Admin")]
+        
         //hàm chỉnh sửa quyền cho nhân viên
         public ActionResult EditRole(Guid? Id)
         {
@@ -47,7 +48,6 @@ namespace WebApp.Areas.Admin.Controllers
             return View(user);
         }
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult EditRole(User user)
         {
             if(user==null)

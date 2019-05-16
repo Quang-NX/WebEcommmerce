@@ -59,9 +59,23 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   color: #333;
+  position:relative;
 }
-
-.row.btnUp {
+div#divScrollTop {
+    position: fixed;
+    top: 90%;
+    right: 2%;
+    padding: 1em;
+    background-color: #d10024;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+    div#divScrollTop:hover {
+        transform: scale(1.2);
+        transition: 0.4s;
+    }
+    .row.btnUp {
     margin-top: 2%;
     margin-bottom: 2%;
     margin-left: 0.1%;

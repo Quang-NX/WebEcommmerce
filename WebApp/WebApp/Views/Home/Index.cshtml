@@ -105,8 +105,8 @@
                                                 <i class="fa fa-star"></i>
                                             </div>
                                             @*<div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
-                                            </div>*@
+                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                                                </div>*@
                                         </div>
                                         <div class="add-to-cart">
                                             <button class="add-to-cart-btn addCart">
@@ -115,9 +115,9 @@
                                             </button>
                                         </div>
                                         @*<span>
-                                            @Ajax.ActionLink("Thêm vào giỏ hàng ajax","ThemGioHangAjax","GioHang",new { @productId =item.Id},
-                                       new AjaxOptions { HttpMethod="GET",UpdateTargetId= "divGioHang",InsertionMode=InsertionMode.Replace },null)
-                                        </span>*@
+                                                 @Ajax.ActionLink("Thêm vào giỏ hàng ajax","ThemGioHangAjax","GioHang",new { @productId =item.Id},
+                                            new AjaxOptions { HttpMethod="GET",UpdateTargetId= "divGioHang",InsertionMode=InsertionMode.Replace },null)
+                                             </span>*@
                                     </div>
                                 }
                                 <!-- /product -->
@@ -157,9 +157,9 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                                 @*<div class="product-btns">
-                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
 
-                                                </div>*@
+                                                    </div>*@
                                             </div>
                                             <div class="add-to-cart">
                                                 <button class="add-to-cart-btn addCart">
@@ -186,3 +186,84 @@
     <!-- /container -->
 </div>
 <!-- /SECTION -->
+<!-- NEWSLETTER -->
+<div id="newsletter" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="newsletter">
+                    <p>Nhập Email để nhận thông tin <strong>MỚI NHẤT</strong></p>
+                    <form method="post" action="/Home/GetFormEmail">
+                        <input class="input" type="email" placeholder="Nhập Email của bạn" name="email">
+                        <button class="newsletter-btn"><i class="fa fa-envelope"></i> Nhận</button>
+                    </form>
+                    <ul class="newsletter-follow">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+        $(document).ready(function () {
+            const { value: email } = Swal.fire({
+                title: 'Nhận thông tin về UETShop',
+                input: 'email',
+                inputPlaceholder: 'Nhập email của bạn'
+            })
+            $(".swal2-input").keypress(function (e) {
+
+                if (e.which === 13) {
+                    alert(1);
+                    var a = $(".swal2-input").val();
+                    Swal.fire(
+                        'Đã xác nhận',
+                        'Cảm ơn quý khách đã ghé thăm',
+                        'success'
+                    )
+                }
+            });
+            if (email) {
+                Swal.fire('Xác nhận thành công : ' + email)
+            }
+            $(".swal2-confirm").click(function () {
+                var email = $(".swal2-input").val();
+                $.ajax({
+                    url: "/Home/GetFormEmail",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ email: email }),
+                    success: function (response) {
+                        if (response) {
+                            Swal.fire(
+                                'Đã xác nhận',
+                                'Cảm ơn quý khách đã ghé thăm',
+                                'success'
+                            )
+                        }
+                    }
+                });
+
+
+            });
+
+        });
+
+</script>

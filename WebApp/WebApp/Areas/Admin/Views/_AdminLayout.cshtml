@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Metro Panel Flat Bootstarp Resposive Website Template| Home :: w3layouts</title>
+    <title>Metro Panel</title>
     <link href="~/Content/AdminLayout/css/bootstrap.css" rel="stylesheet" type='text/css' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Custom Theme files -->
@@ -125,22 +125,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="~/Content/AdminLayout/js/jquery.vmap.world.js" type="text/javascript"></script>
     <script src="~/Content/AdminLayout/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
 
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            jQuery('#vmap').vectorMap({
-                map: 'world_en',
-                backgroundColor: '#333333',
-                color: '#ffffff',
-                hoverOpacity: 0.7,
-                selectedColor: '#666666',
-                enableZoom: true,
-                showTooltip: true,
-                values: sample_data,
-                scaleColors: ['#C8EEFF', '#006491'],
-                normalizeFunction: 'polynomial'
+    @*<script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#vmap').vectorMap({
+                    map: 'world_en',
+                    backgroundColor: '#333333',
+                    color: '#ffffff',
+                    hoverOpacity: 0.7,
+                    selectedColor: '#666666',
+                    enableZoom: true,
+                    showTooltip: true,
+                    values: sample_data,
+                    scaleColors: ['#C8EEFF', '#006491'],
+                    normalizeFunction: 'polynomial'
+                });
             });
-        });
-    </script>
+        </script>*@
     <!----Calender -------->
     <link rel="stylesheet" href="~/Content/AdminLayout/css/clndr.css" type="text/css" />
     <script src="~/Content/AdminLayout/js/underscore-min.js"></script>
@@ -149,22 +149,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="~/Content/AdminLayout/js/site.js"></script>
     <!----End Calender -------->
     <script src="~/Content/AdminLayout/js/easyResponsiveTabs.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#horizontalTab,#horizontalTab1,#horizontalTab2').easyResponsiveTabs({
-                type: 'default', //Types: default, vertical, accordion
-                width: 'auto', //auto or any width like 600px
-                fit: true   // 100% fit in a container
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                $('#horizontalTab,#horizontalTab1,#horizontalTab2').easyResponsiveTabs({
+                    type: 'default', //Types: default, vertical, accordion
+                    width: 'auto', //auto or any width like 600px
+                    fit: true   // 100% fit in a container
+                });
             });
-        });
-    </script>
+        </script>*@
     <link href="~/Content/AdminLayout/css/nav.css" rel="stylesheet" type="text/css" media="all" />
     <script src="~/Content/AdminLayout/js/main.js"></script> <!-- Resource jQuery -->
     <!-- chart -->
     <script src="~/Content/AdminLayout/js/Chart1.js"></script>
     <!-- //chart -->
 </head>
-<body >
+<body>
     <div class="total-content">
         <div class="col-md-3 side-bar">
             <div class="logo text-center">
@@ -281,136 +281,136 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="clearfix"></div>
 
             @{
-                Html.RenderAction("Index","Statistic");
+                Html.RenderAction("Index", "Statistic");
             }
             <div class="total-sales">
 
                 <div class="user-trends">
                     @RenderBody()
                     @*<div class="cd-tabs">
-                        <nav>
-                            <ul class="cd-tabs-navigation">
-                                <li><a data-content="fashion" href="#0">Latest Comments <i> </i></a></li>
-                                <li><a data-content="cinema" href="#0" class="selected fashion1">Latest Articles<i> </i></a></li>
-                                <li><a data-content="television" href="#0" class="fashion2">Newest Users<i> </i></a></li>
+                            <nav>
+                                <ul class="cd-tabs-navigation">
+                                    <li><a data-content="fashion" href="#0">Latest Comments <i> </i></a></li>
+                                    <li><a data-content="cinema" href="#0" class="selected fashion1">Latest Articles<i> </i></a></li>
+                                    <li><a data-content="television" href="#0" class="fashion2">Newest Users<i> </i></a></li>
+                                    <div class="clearfix"></div>
+                                </ul>
+                            </nav>
+                            @*<ul class="cd-tabs-content">
+                                <li data-content="fashion">
+                                    <div class="top-men">
+                                        <div class="men">
+                                            <div class="grid-men">
+                                                <a href="#"><img src="~/Content/AdminLayout/images/pp.jpg" class="img-responsive" alt=""> </a>
+                                            </div>
+                                            <div class="men-grid">
+                                                <h6>on <a href="#">Fashion News</a> / by <a href="#">Jolia</a></h6>
+                                                <span>12-11-2014</span>
+                                                <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="men">
+                                            <div class="grid-men">
+                                                <a href="#"><img src="~/Content/AdminLayout/images/pp0.jpg" class="img-responsive" alt=""> </a>
+                                            </div>
+                                            <div class="men-grid">
+                                                <h6>on <a href="#">Technoloy News </a>/ by <a href="#">Deo</a></h6>
+                                                <span>12-11-2014</span>
+                                                <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="men">
+                                            <div class="grid-men">
+                                                <a href="#"><img src="~/Content/AdminLayout/images/pp01.jpg" class="img-responsive" alt=""> </a>
+                                            </div>
+                                            <div class="men-grid">
+                                                <h6>on<a href="#"> Fashion News</a> / by <a href="#">Jolia</a></h6>
+                                                <span>12-11-2014</span>
+                                                <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li data-content="cinema" class="selected">
+                                    <div class="top-men">
+                                        <div class="men">
+                                            <div class="grid-men">
+                                                <a href="#"><img src="~/Content/AdminLayout/images/pp0.jpg" class="img-responsive" alt=""> </a>
+                                            </div>
+                                            <div class="men-grid">
+                                                <h6>on <a href="#"> Fashion News </a>/ by <a href="#">Jolia</a></h6>
+                                                <span>12-11-2014</span>
+                                                <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="men">
+                                            <div class="grid-men">
+                                                <a href="#"><img src="~/Content/AdminLayout/images/pp01.jpg" class="img-responsive" alt=""> </a>
+                                            </div>
+                                            <div class="men-grid">
+                                                <h6>on <a href="#">Technoloy News</a> / by <a href="#">Deo</a></h6>
+                                                <span>12-11-2014</span>
+                                                <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="men">
+                                            <div class="grid-men">
+                                                <a href="#"><img src="~/Content/AdminLayout/images/pp.jpg" class="img-responsive" alt=""> </a>
+                                            </div>
+                                            <div class="men-grid">
+                                                <h6>on <a href="#"> Fashion News </a>/ by <a href="#">Jolia</a></h6>
+                                                <span>12-11-2014</span>
+                                                <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li data-content="television">
+                                    <div class="top-men">
+                                        <div class="men">
+                                            <div class="grid-men">
+                                                <a href="#"><img src="~/Content/AdminLayout/images/pp01.jpg" class="img-responsive" alt=""> </a>
+                                            </div>
+                                            <div class="men-grid">
+                                                <h6>on <a href="#">Fashion News</a> / by <a href="#">Jolia</a></h6>
+                                                <span>12-11-2014</span>
+                                                <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="men">
+                                            <div class="grid-men">
+                                                <a href="#"><img src="~/Content/AdminLayout/images/pp.jpg" class="img-responsive" alt=""> </a>
+                                            </div>
+                                            <div class="men-grid">
+                                                <h6>on <a href="#">Technoloy News</a> / by <a href="#">Deo</a></h6>
+                                                <span>12-11-2014</span>
+                                                <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="men">
+                                            <div class="grid-men">
+                                                <a href="#"><img src="~/Content/AdminLayout/images/pp0.jpg" class="img-responsive" alt=""> </a>
+                                            </div>
+                                            <div class="men-grid">
+                                                <h6>on <a href="#">Fashion News </a>/ by <a href="#">Jolia</a></h6>
+                                                <span>12-11-2014</span>
+                                                <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </li>
                                 <div class="clearfix"></div>
                             </ul>
-                        </nav>
-                        @*<ul class="cd-tabs-content">
-                            <li data-content="fashion">
-                                <div class="top-men">
-                                    <div class="men">
-                                        <div class="grid-men">
-                                            <a href="#"><img src="~/Content/AdminLayout/images/pp.jpg" class="img-responsive" alt=""> </a>
-                                        </div>
-                                        <div class="men-grid">
-                                            <h6>on <a href="#">Fashion News</a> / by <a href="#">Jolia</a></h6>
-                                            <span>12-11-2014</span>
-                                            <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="men">
-                                        <div class="grid-men">
-                                            <a href="#"><img src="~/Content/AdminLayout/images/pp0.jpg" class="img-responsive" alt=""> </a>
-                                        </div>
-                                        <div class="men-grid">
-                                            <h6>on <a href="#">Technoloy News </a>/ by <a href="#">Deo</a></h6>
-                                            <span>12-11-2014</span>
-                                            <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="men">
-                                        <div class="grid-men">
-                                            <a href="#"><img src="~/Content/AdminLayout/images/pp01.jpg" class="img-responsive" alt=""> </a>
-                                        </div>
-                                        <div class="men-grid">
-                                            <h6>on<a href="#"> Fashion News</a> / by <a href="#">Jolia</a></h6>
-                                            <span>12-11-2014</span>
-                                            <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li data-content="cinema" class="selected">
-                                <div class="top-men">
-                                    <div class="men">
-                                        <div class="grid-men">
-                                            <a href="#"><img src="~/Content/AdminLayout/images/pp0.jpg" class="img-responsive" alt=""> </a>
-                                        </div>
-                                        <div class="men-grid">
-                                            <h6>on <a href="#"> Fashion News </a>/ by <a href="#">Jolia</a></h6>
-                                            <span>12-11-2014</span>
-                                            <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="men">
-                                        <div class="grid-men">
-                                            <a href="#"><img src="~/Content/AdminLayout/images/pp01.jpg" class="img-responsive" alt=""> </a>
-                                        </div>
-                                        <div class="men-grid">
-                                            <h6>on <a href="#">Technoloy News</a> / by <a href="#">Deo</a></h6>
-                                            <span>12-11-2014</span>
-                                            <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="men">
-                                        <div class="grid-men">
-                                            <a href="#"><img src="~/Content/AdminLayout/images/pp.jpg" class="img-responsive" alt=""> </a>
-                                        </div>
-                                        <div class="men-grid">
-                                            <h6>on <a href="#"> Fashion News </a>/ by <a href="#">Jolia</a></h6>
-                                            <span>12-11-2014</span>
-                                            <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li data-content="television">
-                                <div class="top-men">
-                                    <div class="men">
-                                        <div class="grid-men">
-                                            <a href="#"><img src="~/Content/AdminLayout/images/pp01.jpg" class="img-responsive" alt=""> </a>
-                                        </div>
-                                        <div class="men-grid">
-                                            <h6>on <a href="#">Fashion News</a> / by <a href="#">Jolia</a></h6>
-                                            <span>12-11-2014</span>
-                                            <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="men">
-                                        <div class="grid-men">
-                                            <a href="#"><img src="~/Content/AdminLayout/images/pp.jpg" class="img-responsive" alt=""> </a>
-                                        </div>
-                                        <div class="men-grid">
-                                            <h6>on <a href="#">Technoloy News</a> / by <a href="#">Deo</a></h6>
-                                            <span>12-11-2014</span>
-                                            <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="men">
-                                        <div class="grid-men">
-                                            <a href="#"><img src="~/Content/AdminLayout/images/pp0.jpg" class="img-responsive" alt=""> </a>
-                                        </div>
-                                        <div class="men-grid">
-                                            <h6>on <a href="#">Fashion News </a>/ by <a href="#">Jolia</a></h6>
-                                            <span>12-11-2014</span>
-                                            <p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.      </p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="clearfix"></div>
-                        </ul>
-                    </div>*@
+                        </div>*@
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -421,6 +421,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
 
             @RenderSection("scripts", required: false)
-            <script src="~/Areas/Admin/Assets/js/js.js"></script>
 </body>
 </html>
