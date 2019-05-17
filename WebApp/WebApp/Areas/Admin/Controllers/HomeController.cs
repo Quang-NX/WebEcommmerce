@@ -20,8 +20,25 @@ namespace WebApp.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            
-            return View(db.Products.ToList());
+            DateTime dateTime = DateTime.Now;
+            var monthNow = dateTime.Month;
+            var yearNow = dateTime.Year;
+            var FirstSale = db.Orders.Join(db.OrderDetails, c => c.Id, d => d.OrderId, (c, d) => new {
+                Sales = d.QuantityProduct * d.BuyPrice,
+                OrderDate=c.OrderDate
+            }).Where(w=>w.OrderDate.Value.Month==monthNow && w.OrderDate.Value.Year==yearNow).ToList().Sum(s=>s.Sales);
+            var SecondsSale = db.Orders.Join(db.OrderDetails, c => c.Id, d => d.OrderId, (c, d) => new {
+                Sales = d.QuantityProduct * d.BuyPrice,
+                OrderDate = c.OrderDate
+            }).Where(w => w.OrderDate.Value.Month == monthNow-1 && w.OrderDate.Value.Year == yearNow).ToList().Sum(s => s.Sales);
+            double QuantityTotalPrice = double.Parse((db.OrderDetails.Sum(n => n.QuantityProduct * n.BuyPrice)).ToString());
+            double FirstSalePercent = Math.Round((FirstSale / QuantityTotalPrice) * 100,2);
+            double SecondsSalePercent = Math.Round((SecondsSale / QuantityTotalPrice) * 100,2);
+            ViewBag.FirstSale = FirstSalePercent;
+            ViewBag.SecondsSale = SecondsSalePercent;
+            ViewBag.Month = monthNow;
+
+            return View(db.Products.OrderByDescending(o=>o.CreatedDate).ToList());
         }
         //login
         public ActionResult Login()

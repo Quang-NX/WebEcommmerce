@@ -12,6 +12,7 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,QuanLy")]
     public class SupplierController : Controller
     {
         EcommerceDbContext db = new EcommerceDbContext();
@@ -19,7 +20,7 @@ namespace WebApp.Areas.Admin.Controllers
         #region Index
         public ActionResult Index()
         {
-            var supplier = db.Suppliers.ToList();
+            var supplier = db.Suppliers.Where(w=>w.IsDeleted==false).ToList();
             var supplierViewModel = Mapper.Map<IEnumerable<SupplierViewModel>>(supplier);
             return View(supplierViewModel);
         }
@@ -149,9 +150,9 @@ namespace WebApp.Areas.Admin.Controllers
             List<Product> product = db.Products.Where(p => p.SupplierId == id).ToList();
             foreach (var item in product)
             {
-                db.Products.Remove(item);
+                item.IsDeleted = true;
             }
-            db.Suppliers.Remove(supplier);
+            supplier.IsDeleted = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

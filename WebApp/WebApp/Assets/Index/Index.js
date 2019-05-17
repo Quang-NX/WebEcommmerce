@@ -7,8 +7,8 @@
             url: "/GioHang/ThemGioHangAjax?productId=" + id,
             dataType: "html",
             success: function (data) {
-                $("#divGioHang").html(data);
-                swal("Thành công", "Đã thêm vào giỏ hàng !", "success");
+                    $("#divGioHang").html(data);
+                    swal("Thành công", "Đã thêm vào giỏ hàng !", "success");
             },
             complete: function () {
                 $(".loader").hide();
@@ -16,7 +16,7 @@
         });
     });
     $("#divScrollTop").click(function () {
-        $("body,html").animate({scrollTop:0},500);
+        $("body,html").animate({ scrollTop: 0 }, 500);
     });
     //$(".add-to-cart-btn").click(function () {
     //    var id = $(this).find("input").val();
@@ -47,16 +47,16 @@
         $(this).addClass("active");
     });
 
-
     $("#btnDangNhap").click(function () {
         var bug = 0;
+
         if ($("#UserName").val() == '') {
-            $("#TB_username").text("Tên đăng nhập không được bỏ trống");
+            $("#TB_UserName").text("Tên đăng nhập không được bỏ trống");
             bug++;
         }
 
         else {
-            $("#TB_username").text("");
+            $("#TB_UserName").text("");
         }
 
         if ($("#Password").val() == '') {
@@ -71,7 +71,6 @@
             //ngăn form submit
             return false;
         }
-
     });
     $("#login").keypress(function (e) {
         if (e.which === 13) {
@@ -79,15 +78,29 @@
             return false;
         }
     });
+
     $("#btnCreateAccount").click(function () {
         var bug = 0;
-        if ($("#UserName").val() == '') {
-            $("#TB_UserName").text("Tên đăng nhập không được bỏ trống");
+        dinhdangUser = /^[A-z_](\w|\.|_){2,32}$/;
+        KTUser = dinhdangUser.test($("#UserName").val());
+        if (!KTUser) {
+            $("#TB_UserName").text("Tên sai định dạng");
             bug++;
         }
-
+        if ($("#FirstName").val() == '') {
+            $("#TB_FirstName").text("Tên họ không được để trống");
+            bug++;
+        }
         else {
-            $("#TB_UserName").text("");
+            $("#TB_FirstName").text("");
+        }
+
+        if ($("#LastName").val() == '') {
+            $("#TB_LastName").text("Tên không được để trống");
+            bug++;
+        }
+        else {
+            $("#TB_LastName").text("");
         }
 
         if ($("#Password").val() == '') {
@@ -110,12 +123,41 @@
                 $("#TB_ConfirmPassword").text("");
             }
         }
-
+        //định dạng email
+        dinhdang = /^[a-z][a-z0-9_\.]{1,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
+        KTemail = dinhdang.test($('#Email').val());
+        if (!KTemail) {
+            $('#TB_Email').text("Email không hợp lệ")
+            bug++;
+        }
+        else {
+            $("#TB_Email").text("");
+        }
+        //định dạng số điện thoại
+        phoneNumber = /(09|01[2|6|8|9])+([0-9]{8})\b/;
+        KTPhoneNumber = phoneNumber.test($('#PhoneNumber').val());
+        if (!KTPhoneNumber) {
+            $('#TB_PhoneNumber').text("Số điện thoại không hợp lệ")
+            bug++;
+        }
+        else {
+            $("#TB_PhoneNumber").text("");
+        }
+        if ($("#Address").val() == '') {
+            $("#TB_Address").text("Địa chỉ không được để trống");
+            bug++;
+        }
+        else {
+            $("#TB_Address").text("");
+        }
         if (bug != 0) {
             //ngăn form submit
             return false;
         }
-
+        else {
+            $(".loader").show();
+            swal("Thành công", "Tạo tài khoản thành công !", "success");
+            $(".loader").hide();
+        }
     });
-    
 });

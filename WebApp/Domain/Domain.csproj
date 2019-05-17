@@ -89,6 +89,14 @@
     <Compile Include="Migrations\201905091136490_addvarchar.Designer.cs">
       <DependentUpon>201905091136490_addvarchar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905170228506_addFieldToUser.cs" />
+    <Compile Include="Migrations\201905170228506_addFieldToUser.Designer.cs">
+      <DependentUpon>201905170228506_addFieldToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905170347279_addFiled.cs" />
+    <Compile Include="Migrations\201905170347279_addFiled.Designer.cs">
+      <DependentUpon>201905170347279_addFiled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -111,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905091136490_addvarchar.resx">
       <DependentUpon>201905091136490_addvarchar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905170228506_addFieldToUser.resx">
+      <DependentUpon>201905170228506_addFieldToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905170347279_addFiled.resx">
+      <DependentUpon>201905170347279_addFiled.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

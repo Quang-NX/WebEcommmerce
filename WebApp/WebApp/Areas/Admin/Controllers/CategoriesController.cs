@@ -19,7 +19,7 @@ namespace WebApp.Areas.Admin.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            var category = db.Categories.ToList();
+            var category = db.Categories.Where(w => w.IsDeleted == false).ToList();
             var categoryViewModel = Mapper.Map<IEnumerable<CategoryViewModel>>(category);
             return View(categoryViewModel);
         }
@@ -136,9 +136,9 @@ namespace WebApp.Areas.Admin.Controllers
                 List<Product> product = db.Products.Where(p => p.CategoryId == id).ToList();
                 foreach (var item in product)
                 {
-                    db.Products.Remove(item);
+                    item.IsDeleted = true;
                 }
-                db.Categories.Remove(category);
+                category.IsDeleted = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

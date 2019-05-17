@@ -53,9 +53,9 @@ namespace WebApp.Areas.Admin.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            var categories = db.Categories.ToList();
-            var suppliers = db.Suppliers.ToList();
-            var manufacturers = db.Manufacturers.ToList();
+            var categories = db.Categories.Where(w => w.IsDeleted == false).ToList();
+            var suppliers = db.Suppliers.Where(w => w.IsDeleted == false).ToList();
+            var manufacturers = db.Manufacturers.Where(w => w.IsDeleted == false).ToList();
 
             ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
 
@@ -91,9 +91,9 @@ namespace WebApp.Areas.Admin.Controllers
         // GET: Products/Edit/5
         public ActionResult Edit(Guid? id)
         {
-            var categories = db.Categories.ToList();
-            var suppliers = db.Suppliers.ToList();
-            var manufacturers = db.Manufacturers.ToList();
+            var categories = db.Categories.Where(w=>w.IsDeleted==false).ToList();
+            var suppliers = db.Suppliers.Where(w => w.IsDeleted == false).ToList();
+            var manufacturers = db.Manufacturers.Where(w => w.IsDeleted == false).ToList();
 
             var product = db.Products.Find(id);
 

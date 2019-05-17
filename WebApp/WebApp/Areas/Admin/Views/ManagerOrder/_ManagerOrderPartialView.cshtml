@@ -5,13 +5,13 @@
 <table class="table table-bordered">
     <tr style="font-size:20px;">
         <td>
-            Tên khách hàng
+            Họ
+        </td>
+        <td>
+            Tên
         </td>
         <td>
             Ngày đặt
-        </td>
-        <td>
-            Tuổi
         </td>
         <td>
             Số điện thoại
@@ -25,54 +25,54 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @if (item.CustomerName ==null || item.CustomerName=="")
-                {
-                    @Url.Content("Đang cập nhật")
-                }
-                else
-                {
-                    @item.CustomerName
-                }
-            </td>
-            <td>
-                @item.OrderDate
-            </td>
-            <td>
-                @if (item.Age == 0)
-                {
-                    @Url.Content("Đang cập nhật")
-                }
-                else
-                {
-                    @item.Age
-                }
-            </td>
-            <td>
-                @if (item.PhoneNumber == null || item.PhoneNumber == "")
-                {
-                    @Url.Content("Đang cập nhật")
-                }
-                else
-                {
-                    @item.PhoneNumber
-                }
-            </td>
-            <td>
-                @if (item.Address == null || item.Address == "")
-                {
-                    @Url.Content("Đang cập nhật")
-                }
-                else
-                {
-                    @item.Address
-                }
-            </td>
-            <td>
-                <i class="glyphicon glyphicon-eye-open viewOrder" id="@item.Id" style="cursor:pointer;"></i>
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @if (item.FistName == null || item.FistName == "")
+            {
+                @Url.Content("Đang cập nhật")
+            }
+            else
+            {
+                @item.FistName
+            }
+        </td>
+        <td>
+            @if (item.LastName == null || item.LastName == "")
+            {
+                @Url.Content("Đang cập nhật")
+            }
+            else
+            {
+                @item.LastName
+            }
+        </td>
+        <td>
+            @item.OrderDate
+        </td>
+        <td>
+            @if (item.PhoneNumber == null || item.PhoneNumber == "")
+            {
+                @Url.Content("Đang cập nhật")
+            }
+            else
+            {
+                @item.PhoneNumber
+            }
+        </td>
+        <td>
+            @if (item.Address == null || item.Address == "")
+            {
+                @Url.Content("Đang cập nhật")
+            }
+            else
+            {
+                @item.Address
+            }
+        </td>
+        <td>
+            <i class="glyphicon glyphicon-eye-open viewOrder" id="@item.Id" style="cursor:pointer;"></i>
+        </td>
+    </tr>
     }
 </table>
 <br />

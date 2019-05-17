@@ -20,5 +20,12 @@ namespace WebApp.Models.ViewDto
         [Required(ErrorMessage = "Xác nhận mật khẩu !")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        [MaxLength(250)]
+        public string FirstName { get; set; }
+        [MaxLength(250)]
+        public string LastName { get; set; }
+        public string Address { get; set; }
     }
 }

@@ -65,9 +65,16 @@ else
                                             <p align="center" colspan="2"><b>Điền thông tin đặt hàng</b></p>
                                         </li>
                                         <li>
-                                            <span>Họ và tên</span>
+                                            <span>Họ</span>
                                             <div>
-                                                @Html.TextBox("CustomerName", null, new { @class = "form-control" })
+                                                @Html.TextBox("FistName", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="HoKh"></p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Tên</span>
+                                            <div>
+                                                @Html.TextBox("LastName", null, new { @class = "form-control" })
                                                 <p style="color:red;" id="TenKh"></p>
                                             </div>
                                         </li>
@@ -86,15 +93,10 @@ else
                                             </div>
                                         </li>
                                         <li>
-                                            <span>Tuổi</span>
-                                            <div>
-                                                @Html.TextBox("Age", null, new { @class = "form-control" })
-                                            </div>
-                                        </li>
-                                        <li>
                                             <span>Số điện thoại</span>
                                             <div>
                                                 @Html.TextBox("PhoneNumber", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="PhoneNumberKh"></p>
                                             </div>
                                         </li>
                                     </ul>
@@ -124,7 +126,15 @@ else
 
     $("#btnDatHang").click(function () {
         var bug = 0;
-        if ($("#CustomerName").val() == '') {
+        if ($("#FistName").val() == '') {
+            $("#HoKh").text("Tên họ khách hàng không được bỏ trống");
+            bug++;
+        }
+
+        else {
+            $("#HoKh").text("");
+        }
+        if ($("#LastName").val() == '') {
             $("#TenKh").text("Tên khách hàng không được bỏ trống");
             bug++;
         }
@@ -132,7 +142,6 @@ else
         else {
             $("#TenKh").text("");
         }
-
         if ($("#Address").val() == '') {
             $("#AddressKh").text("Địa chỉ khách hàng không được bỏ trống");
             bug++;
@@ -149,6 +158,16 @@ else
         }
         else {
             $("#EmailKh").text("");
+        }
+        //định dạng số điện thoại
+        phoneNumber = /(09|01[2|6|8|9])+([0-9]{8})\b/;
+        KTPhoneNumber = phoneNumber.test($('#PhoneNumber').val());
+        if (!KTPhoneNumber) {
+            $('#PhoneNumberKh').text("Số điện thoại không hợp lệ")
+            bug++;
+        }
+        else {
+            $("#PhoneNumberKh").text("");
         }
         if (bug != 0) {
             //ngăn form submit

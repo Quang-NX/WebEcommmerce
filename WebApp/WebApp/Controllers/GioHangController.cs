@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebApp.Models.ViewModels;
 
@@ -13,7 +12,8 @@ namespace WebApp.Controllers
 {
     public class GioHangController : Controller
     {
-        EcommerceDbContext db = new EcommerceDbContext();
+        private EcommerceDbContext db = new EcommerceDbContext();
+
         //lấy giỏ hàng và lưu nó vào sesstion
         //sesstion ở đây sẽ lưu 1 list item giỏ hàng
         public List<ItemGioHang> LayGioHang()
@@ -39,7 +39,6 @@ namespace WebApp.Controllers
         //    Product sp = db.Products.SingleOrDefault(n => n.Id == productId);
         //    if (sp == null)
         //    {
-                
         //        //trả về trang 404 đường dẫn không hợp lệ
 
         //        Response.StatusCode = 404;
@@ -81,18 +80,18 @@ namespace WebApp.Controllers
         {
             //Lấy giỏ hàng
             List<ItemGioHang> lstGioHang = Session["GioHang"] as List<ItemGioHang>;
-            if(lstGioHang==null)
+            if (lstGioHang == null)
             {
                 return 0;
             }
             return lstGioHang.Sum(n => n.QuantityProduct);
         }
-        
+
         //Tinsh tổng tiền
         public double TinhTongTien()
         {
             List<ItemGioHang> lstGioHang = Session["GioHang"] as List<ItemGioHang>;
-            if(lstGioHang==null)
+            if (lstGioHang == null)
             {
                 return 0;
             }
@@ -110,7 +109,7 @@ namespace WebApp.Controllers
 
         public ActionResult GioHangPartial()
         {
-            if(TinhTongSoLuong()==0)
+            if (TinhTongSoLuong() == 0)
             {
                 Session["TongSoLuong"] = 0;
                 Session["TongTien"] = 0;
@@ -120,10 +119,11 @@ namespace WebApp.Controllers
             Session["TongTien"] = TinhTongTien();
             return PartialView();
         }
+
         //chỉnh sửa giỏ hàng
         public ActionResult SuaGioHang(Guid productId)
         {
-            if(productId==null)
+            if (productId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -132,12 +132,13 @@ namespace WebApp.Controllers
             ViewBag.GioHang = lstItemGioHang;
             //check sản phẩm có trong giỏ hàng hay không
             ItemGioHang spCheck = lstItemGioHang.SingleOrDefault(n => n.ProductCode == productId);
-            if(spCheck==null)
+            if (spCheck == null)
             {
                 return RedirectToAction("Index", "Home");
             }
             return View(spCheck);
         }
+
         //xử lý cập nhật giỏ hàng
         public ActionResult CapNhatGioHang(ItemGioHang itemGioHang)
         {
@@ -147,22 +148,23 @@ namespace WebApp.Controllers
             Product spCheck = db.Products.Single(n => n.Id == itemGioHang.ProductCode);
             //spCheck.productInstock:sản phẩm còn trong kho
             //item.QuantityProduct:sản phẩm khách hàng đặt
-            if (spCheck.productInStock<itemGioHang.QuantityProduct)
+            if (spCheck.productInStock < itemGioHang.QuantityProduct)
             {
                 return View("ThongBao");
             }
             //ngược lại thì cập nhật số lại số lượng trong giỏ hàng của khách hàng
             //cập nhật vào session
-            
+
             List<ItemGioHang> lstGioHang = LayGioHang();//lấy giỏ hàng ra
             //lấy sản phâm trong giở hàng ra để cập nhật lại giá trị
-            ItemGioHang itemGHUpdate = lstGioHang.Find(n=>n.ProductCode==itemGioHang.ProductCode);
+            ItemGioHang itemGHUpdate = lstGioHang.Find(n => n.ProductCode == itemGioHang.ProductCode);
             //cập nhật số lượng
             itemGHUpdate.QuantityProduct = itemGioHang.QuantityProduct;
             //cập nhật thành tiền
             itemGHUpdate.TotalPrice = itemGHUpdate.QuantityProduct * itemGHUpdate.ProductPrice;
-            return RedirectToAction("XemGioHang","GioHang");
+            return RedirectToAction("XemGioHang", "GioHang");
         }
+
         //Xử lý xóa giỏ hàng
         public ActionResult XoaGioHang(Guid id)
         {
@@ -170,7 +172,6 @@ namespace WebApp.Controllers
             Product sp = db.Products.SingleOrDefault(n => n.Id == id);
             if (sp == null)
             {
-
                 //trả về trang 404 đường dẫn không hợp lệ
 
                 Response.StatusCode = 404;
@@ -181,14 +182,15 @@ namespace WebApp.Controllers
             //TH1:Nếu đã có sản phẩm đó tồn tại trong giỏ hàng
             //thì lấy ra sản phẩm đó ra và tăng số lượng lên tính lại thành tiền của sản phẩm đó
             ItemGioHang spCheck = lstGioHang.SingleOrDefault(s => s.ProductCode == id);
-            if(spCheck==null)
+            if (spCheck == null)
             {
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             //xóa item trong giỏ hàng
             lstGioHang.Remove(spCheck);
-            return RedirectToAction("XemGioHang","GioHang");
+            return RedirectToAction("XemGioHang", "GioHang");
         }
+
         //Xây dưng chức năng đặt hàng
         [HttpPost]
         public ActionResult DatHang(Customer cus)
@@ -210,7 +212,8 @@ namespace WebApp.Controllers
             else
             {
                 User user = Session["username"] as User;
-                cus.CustomerName = user.UserName;
+                cus.FistName = user.FirstName;
+                cus.LastName = user.LastName;
                 cus.Address = user.Address;
                 cus.Email = user.Email;
                 cus.PhoneNumber = user.PhoneNumber;
@@ -229,28 +232,29 @@ namespace WebApp.Controllers
             db.SaveChanges();//lưu lại để trong db phát sinh mã đơn đặt hàng
             //thêm chi tiết đơn đặt hàng
             List<ItemGioHang> lstGioHang = LayGioHang();
-            foreach(var item in lstGioHang)
+            foreach (var item in lstGioHang)
             {
                 OrderDetails orderDetails = new OrderDetails();
                 orderDetails.OrderId = orders.Id;
                 orderDetails.ProductId = item.ProductCode;
                 orderDetails.QuantityProduct = item.QuantityProduct;
                 orderDetails.BuyPrice = item.ProductPrice;
+                int countQuantityProduct = orderDetails.QuantityProduct;
+                (db.Products.Where(w => w.Id == orderDetails.ProductId).FirstOrDefault()).productInStock-=countQuantityProduct;
                 db.OrderDetails.Add(orderDetails);
-                
             }
             db.SaveChanges();
             Session["GioHang"] = null;
             return RedirectToAction("XemGioHang");
         }
+
         //Thêm giỏ hàng sử dụng Ajax
         public ActionResult ThemGioHangAjax(Guid productId)//mã sản phẩm,đường link dẫn đến khi redirect
         {
             //kiểm tra sản phẩm thông qua mã sp tồn tại trong csdl hay không
-            Product sp = db.Products.SingleOrDefault(n => n.Id == productId);
+            Product sp = db.Products.Where(w => w.IsDeleted == false).SingleOrDefault(n => n.Id == productId);
             if (sp == null)
             {
-
                 //trả về trang 404 đường dẫn không hợp lệ
 
                 Response.StatusCode = 404;
@@ -270,7 +274,7 @@ namespace WebApp.Controllers
                 //nếu số sản phẩm tồn nhỏ hơn số sản phẩm đặt thì view ra thông báo
                 if (sp.productInStock < spCheck.QuantityProduct)
                 {
-                    return Content("<script> alert(\"Sản phẩm hết hàng !\")</script>");
+                    return Content("<script>alert('Sản phẩm hiện đang hết hàng')</script>");
                 }
                 spCheck.QuantityProduct++;
                 Session["TongSoLuong"] = TinhTongSoLuong();
@@ -281,7 +285,7 @@ namespace WebApp.Controllers
             ItemGioHang itemGioHang = new ItemGioHang(productId);
             if (sp.productInStock < itemGioHang.QuantityProduct)
             {
-                return Content("<script> alert(\"Sản phẩm hết hàng !\")</script>");
+                return Content("<script>alert('Sản phẩm hiện đang hết hàng')</script>");
             }
             lstGioHang.Add(itemGioHang);
             Session["TongSoLuong"] = TinhTongSoLuong();

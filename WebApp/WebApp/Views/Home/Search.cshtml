@@ -57,33 +57,36 @@
                             <div class="product">
                                 <div class="product-img" onclick="location.href='@Url.Action("ProductDetail", "Home", new { id = item.Id })'">
                                     <img src="@item.UrlImage" alt="">
-                                </div> -->
-                            </div>
-                            <div class="product-body" onclick="location.href='@Url.Action("ProductDetail", "Home", new { id = item.Id })'">
-                                <p class="product-category">@item.CategoryName</p>
-                                <h3 class="product-name"><a href="#">@item.Name</a></h3>
-                                <h4 class="product-price">@item.Price.ToString("#,##") VNĐ</h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                    <!-- <div class="product-label">
+                        <span class="sale">-30%</span>
+                        <span class="new">NEW</span>
+                    </div> -->
                                 </div>
-                                <div class="product-btns">
-                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                                <div class="product-body" onclick="location.href='@Url.Action("ProductDetail", "Home", new { id = item.Id })'">
+                                    <p class="product-category">@item.CategoryName</p>
+                                    <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                                    <h4 class="product-price">@item.Price.ToString("#,##") VNĐ</h4>
+                                    <div class="product-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product-btns">
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="add-to-cart">
-                                <button class="add-to-cart-btn addCart">
-                                    @Html.Hidden("productId", item.Id)
-                                    <i class="fa fa-shopping-cart"></i> Thêm vào giỏ
-                                </button>
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn addCart">
+                                        @Html.Hidden("productId", item.Id)
+                                        <i class="fa fa-shopping-cart"></i> Thêm vào giỏ
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- /product -->
-                }
+                        <!-- /product -->
+                    }
                 </div>
                 <!-- /store products -->
                 <!-- store bottom filter -->
@@ -115,39 +118,39 @@
         <!-- /row -->
     </div>
     <!-- /container -->
-    </div>
-    <!-- /SECTION -->
-    <!-- NEWSLETTER -->
-    <div id="newsletter" class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="newsletter">
-                        <p>Đăng nhập để nhận thông tin <strong>MỚI NHẤT</strong></p>
-                        <form method="post" action="/Home/GetFormEmail">
-                            <input class="input" type="email" placeholder="Nhập Email của bạn" name="email">
-                            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Nhận</button>
-                        </form>
-                        <ul class="newsletter-follow">
-                            <li>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+</div>
+<!-- /SECTION -->
+<!-- NEWSLETTER -->
+<div id="newsletter" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="newsletter">
+                    <p>Đăng nhập để nhận thông tin <strong>MỚI NHẤT</strong></p>
+                    <form method="post" action="/Home/GetFormEmail">
+                        <input class="input" type="email" placeholder="Nhập Email của bạn" name="email">
+                        <button class="newsletter-btn"><i class="fa fa-envelope"></i> Nhận</button>
+                    </form>
+                    <ul class="newsletter-follow">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <!-- /row -->
         </div>
-        <!-- /container -->
+        <!-- /row -->
     </div>
+    <!-- /container -->
+</div>

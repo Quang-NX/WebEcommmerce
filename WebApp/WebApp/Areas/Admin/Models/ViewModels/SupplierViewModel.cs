@@ -20,7 +20,8 @@ namespace WebApp.Areas.Admin.Models.ViewModels
         public string Email { get; set; }
         
         [MaxLength(20)]
-		[DataType(DataType.PhoneNumber,ErrorMessage ="Định dạng số điện thoại sai")]
+        [Required(ErrorMessage = "Số điện thoại không được để trống")]
+        [DataType(DataType.PhoneNumber)]
         [DisplayName("Số điện thoại")]
         public string Phone { get; set; }
 

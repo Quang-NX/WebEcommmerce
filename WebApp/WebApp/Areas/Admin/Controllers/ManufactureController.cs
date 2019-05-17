@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain;
 using Domain.Entities;
+using Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,13 +13,14 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,QuanLy")]
     public class ManufactureController : Controller
     {
         EcommerceDbContext db = new EcommerceDbContext();
         // GET: Manufacture
         public ActionResult Index()
         {
-            var manufacture = db.Manufacturers.ToList();
+            var manufacture = db.Manufacturers.Where(w=>w.IsDeleted==false).ToList();
             var manufactureViewModels = Mapper.Map<IEnumerable<ManufactureViewModel>>(manufacture);
             return View(manufactureViewModels);
         }
@@ -136,9 +138,9 @@ namespace WebApp.Areas.Admin.Controllers
                 List<Product> product = db.Products.Where(p => p.ManufacturerId == id).ToList();
                 foreach (var item in product)
                 {
-                    db.Products.Remove(item);
+                    item.IsDeleted=true;
                 }
-                db.Manufacturers.Remove(manufacturer);
+                manufacturer.IsDeleted=true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

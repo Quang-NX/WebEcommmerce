@@ -45,7 +45,6 @@ namespace WebApp.Controllers
             Session["DoanhNhanId"] = db.Products.Where(s => s.Category.Name.Equals("Doanh nhân")).Where(w => w.IsDeleted == false).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
             Session["DoHoaId"] = db.Products.Where(s => s.Category.Name.Equals("Đồ họa")).Where(w => w.IsDeleted == false).Select(s => new ProductViewModel { CategoryId = s.Category.Id }).FirstOrDefault().CategoryId;
 
-            Session["username"] = null;
             return View(productList);
         }
 
@@ -72,6 +71,11 @@ namespace WebApp.Controllers
                     {
                         user.UserName = loginDto.UserName;
                         user.Password = loginDto.Password;
+                        user.Email = loginDto.Email;
+                        user.PhoneNumber = loginDto.PhoneNumber;
+                        user.FirstName = loginDto.FirstName;
+                        user.LastName = loginDto.LastName;
+                        user.Address = loginDto.Address;
                         db.Users.Add(user);
                         db.SaveChanges();
                         return RedirectToAction("Login", "Home");

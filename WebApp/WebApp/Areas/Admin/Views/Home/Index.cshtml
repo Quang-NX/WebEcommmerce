@@ -4,9 +4,10 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
     WebGrid grid = new WebGrid(source: Model, rowsPerPage: 2);
+
 }
 @**Thực hiện hiển thị dữ liệu thông qua control WebGrid*@
-
+<h2>Sản phẩm thêm gần đây</h2>
 <div class="total-sales">
     @grid.GetHtml(
     tableStyle:"gridTable",//class bao ngoài của bảng.có thể tùy chỉnh css
@@ -22,32 +23,34 @@
     ))
     <div class="site-report">
         <div class="alert-close3"> </div>
-        <h3>Thống kê</h3>
+        <h3>Thống kê doanh thu gần đây</h3>
         <div class="skills-top">
-            <h5>Sales</h5>
-            <h4>45%</h4>
+            <h5>Tháng @ViewBag.Month</h5>
+            <h4>@ViewBag.FirstSale%</h4>
             <div class="clearfix"></div>
             <div class="skills">
-                <div class="skill" style="width:45%"></div>
+                <div class="skill" style="width:@ViewBag.FirstSale%"></div>
             </div>
         </div>
         <div class="skills-top">
-            <h5>Revenue</h5>
-            <h4>68%</h4>
+            @{ 
+                int month = ViewBag.Month - 1;
+            }
+            <h5>Tháng @month</h5>
+            <h4>@ViewBag.SecondsSale%</h4>
             <div class="clearfix"></div>
             <div class="skills">
-                <div class="skill1" style="width:68%"></div>
+                <div class="skill1" style="width:@ViewBag.SecondsSale%"></div>
             </div>
         </div>
-        <div class="skills-top">
-            <h5>New Orders</h5>
+        @*<div class="skills-top">
+            <h5>Tháng</h5>
             <h4>89%</h4>
             <div class="clearfix"></div>
             <div class="skills">
                 <div class="skill2" style="width:89%"></div>
             </div>
-        </div>
-        <p>It is a long established fact that a re-ader will be distracted by the readable content of a page when looking at its layout.</p>
+        </div>*@
     </div>
     <div class="clearfix"></div>
 </div>

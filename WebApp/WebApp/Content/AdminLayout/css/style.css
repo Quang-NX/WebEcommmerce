@@ -47,8 +47,6 @@ body a{
     color: black;
 }
 input#submitEditRole {
-    margin-left: 5%;
-    margin-right: 10px;
 }
 select#RoleId {
     width: 65%;
@@ -185,7 +183,7 @@ label{
 .side-bar {
     background: #1C445F;
     padding: 0;
-    min-height: 1580px;
+    min-height: 1613px;
     width: 22%;
     margin-right: 2%;
 }
@@ -854,7 +852,7 @@ i.dollar {
 .sales {
     width: 20%;
     background: #16a085;
-    padding: 1.8em 1.5em;
+    padding: 1.8em 0.5em;
     float: left;
     cursor: pointer;
 }

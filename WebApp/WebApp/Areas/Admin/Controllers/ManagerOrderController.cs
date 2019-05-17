@@ -27,7 +27,8 @@ namespace WebApp.Areas.Admin.Controllers
             var lstOrder = db.Orders.Join(db.Customers, o => o.CustomerId, c => c.Id, (o, c) => new
             {
                 Id = o.Id,
-                CustomerName = c.CustomerName,
+                FirstName = c.FistName,
+                LastName=c.LastName,
                 Address = c.Address,
                 Age = c.Age,
                 PhoneNumber = c.PhoneNumber,
@@ -38,9 +39,9 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 ManagerOrderViewModel mana = new ManagerOrderViewModel();
                 mana.Id = item.Id;
-                mana.CustomerName = item.CustomerName;
+                mana.FistName = item.FirstName;
+                mana.LastName = item.LastName;
                 mana.Address = item.Address;
-                mana.Age = item.Age;
                 mana.PhoneNumber = item.PhoneNumber;
                 mana.OrderDate = item.OrderDate;
                 managerOrders.Add(mana);
@@ -63,14 +64,16 @@ namespace WebApp.Areas.Admin.Controllers
 
             var customer = db.Orders.Join(db.Customers, o => o.CustomerId, c => c.Id, (o, c) => new
             {
-                Name = c.CustomerName,
+                FirstName = c.FistName,
+                LastName=c.LastName,
                 Address = c.Address,
                 PhoneNumber = c.PhoneNumber,
                 OrderDate = o.OrderDate,
                 OrderId = o.Id
             }).ToList().Where(w=>w.OrderId==Id).FirstOrDefault();
             OrderDetailDto orderDetailDto = new OrderDetailDto();
-            orderDetailDto.CustomerName = customer.Name;
+            orderDetailDto.FirstName = customer.FirstName;
+            orderDetailDto.LastName = customer.LastName;
             orderDetailDto.Address = customer.Address;
             orderDetailDto.PhoneNumber = customer.PhoneNumber;
             orderDetailDto.OrderDate = customer.OrderDate;
